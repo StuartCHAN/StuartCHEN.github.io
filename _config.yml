@@ -5,7 +5,7 @@ header-img: img/post-bg-desk.jpg
 email: chen.jiazheng.stuart@foxmail.com
 description: " L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! "
 keyword: "BY, Blog Yeah, Stuart Jiazheng Chen, stuartchan, Machine Learning, NLP, Cognitive Science, Linguistics "
-url: "https://stuartjchan.online/"  #"http://stuartchan.github.io"         # your host, for absolute URL
+url: "http://stuartchan.github.io"  #"https://stuartjchan.online/"         # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/StuartCHAN/StuartCHAN.github.io.git" # you code repository
 
