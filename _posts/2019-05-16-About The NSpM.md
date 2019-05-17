@@ -4,7 +4,7 @@ title:      Think About The NSpM
 subtitle:   This is a report about the training of the NSpM model.
 date:       2019-05-17
 author:     Stuart Chen
-header-img: img/post-bg-desk.jpg
+header-img: img/post-bg-debug.jpg
 catalog: true
 tags:
     - GSoC2019
