@@ -95,7 +95,7 @@ I deployed the 'LC_QuAD_v6_art' dataset and the 'monument_300' dataset as parall
 
  * *Because of the pretraining of the dbo:Monument, the figure shares a great similarity this [report](https://arxiv.org/html/1708.07624).*
 
-The experimentation for dbo:Monument was conducted on a virtual cloud server with the GPU of GTX1080, 480GB SSD, and E5-2690 v3 24-core CPU of 64G. The experimentation for dbo:LC_QuAD_v6_art was conducted on another virtual cloud server with the GTX1080, 2TB SSD, and E5-2658 v3 48-core CPU of 64G, and . The basical setting for both comparative groups were Ubuntu 16 system with TensorFlow 1.3.0. The testing for the NMT model at was mainly displayed at three different times, i.e. at the 1,200th, 3,600th, and 12,000th iteration.
+The experimentation for dbo:Monument was conducted on a virtual cloud server with the GPU of GTX1080, 480GB SSD, and E5-2690 v3 24-core CPU of 64G. The experimentation for dbo:LC_QuAD_v6_art was conducted on another virtual cloud server with the GTX1080, 2TB SSD, and E5-2658 v3 48-core CPU of 64G, and . The basical setting for both comparative groups were Ubuntu 16 system with TensorFlow 1.3.0. The testing for the NMT model at was mainly displayed at three different times, i.e. at the 3,000th, 9,000th, and 12,000th iteration.
 
 | Dataset | BLEU 3k steps|BLEU 9k steps|BLEU 12k steps|
  | ------ | ------ |------ |------ |
