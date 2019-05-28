@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Let's compose the templates!
+title:      Let-us-make-the-templates
 subtitle:   This is a report about the training of the NSpM model.
 date:       2019-05-26
 author:     Stuart Chen
