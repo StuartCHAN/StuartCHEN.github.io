@@ -16,13 +16,13 @@ tags:
 # Introduction
 
 What's the template? If you ask me to describe it, I will imagine it as the bone of the question structure. If we have a question, like
-'''bash
-What is the elephant lifesapn?
-'''
+
+        What is the elephant lifesapn?
+
 if we mark the word "elephant" as a variable placeholder "Species", and mak the lifespan as the property "ageRange", then what can we get?
-'''bash
-dbo:Species;;;what is <A> lifespan;select ?a where { <A> dbo:ageRange ?a };select distinct(?a) where { ?a dbo:ageRange [] }
-'''
+
+        dbo:Species;;;what is <A> lifespan;select ?a where { <A> dbo:ageRange ?a };select distinct(?a) where { ?a dbo:ageRange [] }
+
 Yeah, here is the immitative syntactical silhouette of a question or sentence.
 
 ![alt text](https://cdn-images-1.medium.com/max/1200/1*QMgA0UViZMW7LUjRhil9yQ.jpeg "DBpedia RDF")
@@ -59,8 +59,9 @@ The experimentation for dbo:Species was also conducted on a virtual cloud server
 However, I saught a problem, you see the dev bleu and the test bleu don't match 
 ![alt text](https://dbpedia.slack.com/files/UJA85N9G9/FJNK43M3M/image.png "a screenshot when the 2,000th step")
 What's the problem?
-The training has been interrupted a few times when the previous training steps displays the bleu dev is approaching 60 while the external bleu test records it still as 0. I have restarted the training several times, but it goes on to be like that. Maybe it was because the number of global steps was still below 2k steps? Here will show a piece of the record:              
-'''bash
+The training has been interrupted a few times when the previous training steps displays the bleu dev is approaching 60 while the external bleu test records it still as 0. I have restarted the training several times, but it goes on to be like that. Maybe it was because the number of global steps was still below 2k steps? Here will show a piece of the record:
+
+ 
 
     External evaluation, global step 1000
     decoding to output /data/DBPEDIA/neural-qa/data/annotations_Species/output/output_dev.
@@ -81,30 +82,29 @@ The training has been interrupted a few times when the previous training steps d
     bleu test: 0.0
     saving hparams to /data/DBPEDIA/neural-qa/data/annotations_Species/output/hparams
 
-'''
-##How to fix the ZeroDivisionError?
+ 
+
+## How to fix the ZeroDivisionError?
 We found that the log shows 0 sentences in test set, as a result this turns out to be zero.
 So, we should change the argument values while spliting the data_.* files into train_., dev_., and test_.* .
 It should trace back to the [NSpM/split_in_train_dev_test.py](https://github.com/AKSW/NSpM/blob/master/split_in_train_dev_test.py) file, and I think it was due to percentage that it set:
-'''bash
 
-TRAINING_PERCENTAGE = 90
-TEST_PERCENTAGE = 0
-DEV_PERCENTAGE = 10
+        TRAINING_PERCENTAGE = 90
+        TEST_PERCENTAGE = 0
+        DEV_PERCENTAGE = 10
 
-'''
 Here we can see the developper tried to build the datasets based on the 10-fold cross-validation method. However, it is neglect about he situation where the number of total training templates might not be numerous enough.
 
 How to better the spliting?
 
-If the test set contains zero sentence, it is possible to try selecting 10 percent from the training data and 10 percent from the testing data to manually build one after generating and a check. The the ratio would be 
-'''bash
-TRAINING_PERCENTAGE : TEST_PERCENTAGE : DEV_PERCENTAGE = 90 : 10 : 10
-'''
+If the test set contains zero sentence, it is possible to try selecting 10 percent from the training data and 10 percent from the testing data to manually build one after generating and a check. The the ratio would be
+
+        TRAINING_PERCENTAGE : TEST_PERCENTAGE : DEV_PERCENTAGE = 90 : 10 : 10
+
+
 with
-'''bash
-TEST _fromTRAINING : TEST_fromDEV = 9 : 1
-TEST _fromTRAINING + TEST_fromDEV = TEST_PERCENTAGE
-'''
+
+        TEST _fromTRAINING : TEST_fromDEV = 9 : 1
+        TEST _fromTRAINING + TEST_fromDEV = TEST_PERCENTAGE
 
 **We can see the training results [here](https://drive.google.com/drive/folders/1f2cs0Pz4-OmXUQ0nkr3RnOpBi7oE4NWB?usp=sharing).
