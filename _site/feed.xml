@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Stuart Chen's Blog</title>
+    <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Wed, 29 May 2019 18:11:07 +0800</pubDate>
+    <lastBuildDate>Wed, 29 May 2019 18:11:07 +0800</lastBuildDate>
+    <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Bonding</title>
+        <description>&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;What’s the template? If you ask me to describe it, I will imagine it as the bone of the question structure. If we have a question, like&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    What is the elephant lifesapn?
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;if we mark the word “elephant” as a variable placeholder “Species”, and mak the lifespan as the property “ageRange”, then what can we get?&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    dbo:Species;;;what is &amp;lt;A&amp;gt; lifespan;select ?a where { &amp;lt;A&amp;gt; dbo:ageRange ?a };select distinct(?a) where { ?a dbo:ageRange [] }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Yeah, here is the immitative syntactical silhouette of a question or sentence.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/1200/1*QMgA0UViZMW7LUjRhil9yQ.jpeg&quot; alt=&quot;alt text&quot; title=&quot;DBpedia RDF&quot; /&gt;
+&lt;img src=&quot;https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/f_auto,q_auto,w_1100/v1555924214/shape/mentalfloss/451244723_0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;the-templates-are-so-important&quot;&gt;The templates are so important!&lt;/h1&gt;
+
+&lt;p&gt;It is the base that we get our training data in the NSpM model.&lt;/p&gt;
+
+&lt;h2 id=&quot;ok-we-go-to-the-experiment-now&quot;&gt;OK, we go to the experiment now.&lt;/h2&gt;
+
+&lt;p&gt;The templates about the &lt;a href=&quot;http://mappings.dbpedia.org/server/ontology/classes/Species&quot;&gt;ontology of species&lt;/a&gt; in DBpedia can be found &lt;a href=&quot;https://docs.google.com/spreadsheets/d/1o7mpc7TuJOBnMb4CmtC2FE1wsVrYUVMQR7fy0EOSSqo/edit?usp=sharing&quot;&gt;here&lt;/a&gt;, and these are the &lt;a href=&quot;https://drive.google.com/drive/folders/1J7olhKwObf4yMVaiO2vATixI2QnuZVY1?usp=sharing&quot;&gt;generated training data&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;experiments-records&quot;&gt;Experiments Records&lt;/h2&gt;
+
+&lt;p&gt;I used the Species data that had been generated in previous step, and get the records like this:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Dataset&lt;/th&gt;
+      &lt;th&gt;Examples per template&lt;/th&gt;
+      &lt;th&gt;Training size&lt;/th&gt;
+      &lt;th&gt;Average examples per instance&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;dbo:Species&lt;/td&gt;
+      &lt;td&gt;39&lt;/td&gt;
+      &lt;td&gt;12000&lt;/td&gt;
+      &lt;td&gt;307.69&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The experimentation for dbo:Species was also conducted on a virtual cloud server with the GPU of GTX1080, 480GB SSD, and E5-2690 v3 24-core CPU of 64G, with basical setting for both comparative groups were Ubuntu 16 system with TensorFlow 1.3.0. The testing for the NMT model at was mainly displayed at three different times, i.e. at the 2,000th, 1,000th, and 12,000th iteration.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Dataset&lt;/th&gt;
+      &lt;th&gt;BLEU 2k steps&lt;/th&gt;
+      &lt;th&gt;BLEU 10k steps&lt;/th&gt;
+      &lt;th&gt;BLEU 12k steps&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;dbo:Species&lt;/td&gt;
+      &lt;td&gt;60.2 (May 25 07:24:53 2019)&lt;/td&gt;
+      &lt;td&gt;84.3 (May 25 08:39:16 2019)&lt;/td&gt;
+      &lt;td&gt;89.2 (May 25 08:54:56 2019)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;analyses&quot;&gt;Analyses&lt;/h2&gt;
+
+&lt;p&gt;However, I saught a problem, you see the dev bleu and the test bleu don’t match 
+&lt;img src=&quot;https://dbpedia.slack.com/files/UJA85N9G9/FJNK43M3M/image.png&quot; alt=&quot;alt text&quot; title=&quot;a screenshot when the 2,000th step&quot; /&gt;
+What’s the problem?
+The training has been interrupted a few times when the previous training steps displays the bleu dev is approaching 60 while the external bleu test records it still as 0. I have restarted the training several times, but it goes on to be like that. Maybe it was because the number of global steps was still below 2k steps? Here will show a piece of the record:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;External evaluation, global step 1000
+decoding to output /data/DBPEDIA/neural-qa/data/annotations_Species/output/output_dev.
+2019-05-25 07:20:16.906704: W tensorflow/core/framework/op_kernel.cc:1192] Out of range: End of sequence
+        [[Node: IteratorGetNext = IteratorGetNext[output_shapes=[[?,?], [?]], output_types=[DT_INT32, DT_INT32], _device=&quot;/job:localhost/replica:0/task:0/cpu:0&quot;](Iterator)]]
+2019-05-25 07:20:16.906708: W tensorflow/core/framework/op_kernel.cc:1192] Out of range: End of sequence
+        [[Node: IteratorGetNext = IteratorGetNext[output_shapes=[[?,?], [?]], output_types=[DT_INT32, DT_INT32], _device=&quot;/job:localhost/replica:0/task:0/cpu:0&quot;](Iterator)]]
+done, num sentences 1200, time 1s, Sat May 25 07:20:16 2019.
+bleu dev: 59.3
+saving hparams to /data/DBPEDIA/neural-qa/data/annotations_Species/output/hparams
+External evaluation, global step 1000
+decoding to output /data/DBPEDIA/neural-qa/data/annotations_Species/output/output_test.
+2019-05-25 07:20:18.993003: W tensorflow/core/framework/op_kernel.cc:1192] Out of range: End of sequence
+        [[Node: IteratorGetNext = IteratorGetNext[output_shapes=[[?,?], [?]], output_types=[DT_INT32, DT_INT32], _device=&quot;/job:localhost/replica:0/task:0/cpu:0&quot;](Iterator)]]
+2019-05-25 07:20:18.993082: W tensorflow/core/framework/op_kernel.cc:1192] Out of range: End of sequence
+        [[Node: IteratorGetNext = IteratorGetNext[output_shapes=[[?,?], [?]], output_types=[DT_INT32, DT_INT32], _device=&quot;/job:localhost/replica:0/task:0/cpu:0&quot;](Iterator)]]
+done, num sentences 0, time 0s, Sat May 25 07:20:18 2019.
+bleu test: 0.0
+saving hparams to /data/DBPEDIA/neural-qa/data/annotations_Species/output/hparams
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;how-to-fix-the-zerodivisionerror&quot;&gt;How to fix the ZeroDivisionError?&lt;/h2&gt;
+&lt;p&gt;We found that the log shows 0 sentences in test set, as a result this turns out to be zero.
+So, we should change the argument values while spliting the data_.* files into train_., dev_., and test_.* .
+It should trace back to the &lt;a href=&quot;https://github.com/AKSW/NSpM/blob/master/split_in_train_dev_test.py&quot;&gt;NSpM/split_in_train_dev_test.py&lt;/a&gt; file, and I think it was due to percentage that it set:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    TRAINING_PERCENTAGE = 90
+    TEST_PERCENTAGE = 0
+    DEV_PERCENTAGE = 10
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Here we can see the developper tried to build the datasets based on the 10-fold cross-validation method. However, it is neglect about he situation where the number of total training templates might not be numerous enough.&lt;/p&gt;
+
+&lt;p&gt;How to better the spliting?&lt;/p&gt;
+
+&lt;p&gt;If the test set contains zero sentence, it is possible to try selecting 10 percent from the training data and 10 percent from the testing data to manually build one after generating and a check. The the ratio would be&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    TRAINING_PERCENTAGE : TEST_PERCENTAGE : DEV_PERCENTAGE = 90 : 10 : 10
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;with&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    TEST _fromTRAINING : TEST_fromDEV = 9 : 1
+    TEST _fromTRAINING + TEST_fromDEV = TEST_PERCENTAGE
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;**We can see the training results &lt;a href=&quot;https://drive.google.com/drive/folders/1f2cs0Pz4-OmXUQ0nkr3RnOpBi7oE4NWB?usp=sharing&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 26 May 2019 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2019/05/26/Bonding/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/05/26/Bonding/</guid>
+        
+        <category>GSoC2019</category>
+        
+        <category>NLP</category>
+        
+        <category>DBpedia</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Think About The NSpM</title>
+        <description>&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;The NSpM model, Neural SPARQL Machines, are a type of LSTM-based Machine Translation Approaches for Question Answering based on external knowledge base in DBpedia and via SPARQL query.&lt;/p&gt;
+
+&lt;p&gt;I feel touched by this model mostly because I have always the passion for the neural memory structure, the memorization mechanism and the reasoning processing, with which I saw a lucid hint from the NSpM.&lt;/p&gt;
+
+&lt;p&gt;Now, let’s talk about it.&lt;/p&gt;
+
+&lt;p&gt;Here is the code：
+https://github.com/AKSW/NSpM&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.liberai.org/img/seq2seq-webexport-160px.png&quot; alt=&quot;alt text&quot; title=&quot;Neural SPARQL Machines&quot; /&gt;
+&lt;img src=&quot;http://www.liberai.org/img/flag-sparql-160px.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;the-previous-training&quot;&gt;The Previous Training&lt;/h1&gt;
+
+&lt;p&gt;I am an art fan, so I prefered the data with the topic ‘LC_QuAD_v6_art’. My lucky number is 608, then I randomly picked 608 temple from the file, and generated 98458 lines in the training data file. 
+After running&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sh train.sh data/LC_QuAD_v6_art 120000
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;different cases were found:&lt;/p&gt;
+
+&lt;h2 id=&quot;trial-no1&quot;&gt;Trial No.1&lt;/h2&gt;
+&lt;p&gt;At first, I choosed a laptop with Ubuntu 16, TensorFlow and Python 2.7 to do the computation, without GPU. It turned out that the training seemed abnormal while there were many conflicts in the codes, which kept printing that the modiles had something unmatched. Then I borrowed some functons with a same arithmetical meaning to replace the bugs. But the results were not so reasonable as expected, and my laptop’s Linux OS just collapesd.&lt;/p&gt;
+
+&lt;h2 id=&quot;trial-no2&quot;&gt;Trial No.2&lt;/h2&gt;
+&lt;p&gt;So it went to the next. That time I figured out that it might be due to the version of TensorFlow had not been satisfied. It had been deployed on a higher version than 1.3.0. So this time I was more fucuesd on the selection of the TensorFlow version. And considering about the hardware, the second trial was experimented on an Cloud ECS computing platform of &lt;a href=&quot;https://cn.aliyun.com/?accounttraceid=a3b99d73-db56-4cd2-ae2f-aa707c1e0a9e&quot;&gt;Alibaba Cloud&lt;/a&gt;. But there were still glitches. When I open the data holding folder, I found that the corresponding pars of natural language setences and the queries, repectively from the .en and .sparql files, were not well matched like the provided pretrained sample. And the final inferences did not feel so logic to the questions. It was strange-looking.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;We must be cautious about the following points:\
+1, the different versions of TensorFlow can lead to the gap between the functions in the module:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;tf.contrib
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;may be not existing any more in higher versions, which leads to the missing of its sub-modules.&lt;/p&gt;
+
+&lt;p&gt;2, If it is run on the online computing cloud, must pay attention to the internet connection interface of virtual server, for it could be unable to use the SPARQL or any relevant functions to the DBpedia.&lt;/p&gt;
+
+&lt;h1 id=&quot;recent-experiments&quot;&gt;Recent Experiments&lt;/h1&gt;
+
+&lt;p&gt;Recently, the experiment have been into two trials:&lt;/p&gt;
+
+&lt;h2 id=&quot;experiment-1&quot;&gt;Experiment 1&lt;/h2&gt;
+&lt;p&gt;The experiment was still using the previously mentioned data from the topic ‘LC_QuAD_v6_art’. This trial was on a Lenovo computer without GPU, which had TensorFlow 1.3.0, Python 2.7, and tensorboard. The procedure was as the official guidance above. I checked into the files, where every thing seemed okay, and the inference after the training looked sensible.&lt;/p&gt;
+
+&lt;p&gt;However, I did not notice the absence of the BLEU records. After rethinking about the experiment, I hypothesized that the early stop policy should be blamed, because I had set the stop, at about 12 00, less than the steps officially proposed.&lt;/p&gt;
+
+&lt;p&gt;Another suspicion about the training is that, the originally provideded template contains a long number value at the last column which seems unexplainable.&lt;/p&gt;
+
+&lt;h2 id=&quot;experiment-2&quot;&gt;Experiment 2&lt;/h2&gt;
+
+&lt;p&gt;Ok, here is my fatal fight with this model.&lt;/p&gt;
+
+&lt;p&gt;Firstly, it must have something to say with the template selection. I have konwn that any even subtle edition of the file can lead to a huge divergence. So, this time, I just try to be a good boy and use the very official provided template, checking all the required details to reproduce the experiment.&lt;/p&gt;
+
+&lt;p&gt;Secondly, I admited that, at first, I had thought about(and physically, I really did the job) rewriting the cods, incuding overriding the lost function and the evaluation functions. But, anyway, I rewrote them back and do the suggested traditional way.&lt;/p&gt;
+
+&lt;p&gt;Finally, I put it on a high performance GPU &lt;a href=&quot;https://www.jikecloud.net/list.html&quot;&gt;online cloud&lt;/a&gt;, sacrificing all the wages of my last week’s part-times to pay for the cloud device. I was excited facing the battle with the model.&lt;/p&gt;
+
+&lt;p&gt;And, nice, look at what it brought us:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.google.com/document/d/1S49o0qlKtHYMHDekGryPbUO2CcVXHQeZ1m72Zdm4yVw/edit?usp=sharing&quot;&gt;Experiment 1 notes&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.google.com/document/d/1fkbylG4wK9waybCMiM8MKtrUFCUaartHKhShajt2UD0/edit?usp=sharing&quot;&gt;Experiment 2 notes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;experiments-results&quot;&gt;Experiments Results&lt;/h2&gt;
+
+&lt;p&gt;I deployed the ‘LC_QuAD_v6_art’ dataset and the ‘monument_300’ dataset as parallel comparative groups to conduct the experiment. Here the evaluation of the accuracy of the neural model was based on the BLEU test, which is a modified precision metric for testing the machine translation output against the reference translation standard.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Dataset&lt;/th&gt;
+      &lt;th&gt;Examples per template&lt;/th&gt;
+      &lt;th&gt;Training size&lt;/th&gt;
+      &lt;th&gt;Average examples per instance&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;dbo:LC_QuAD_v6_art&lt;/td&gt;
+      &lt;td&gt;608&lt;/td&gt;
+      &lt;td&gt;1200&lt;/td&gt;
+      &lt;td&gt;161.94&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;dbo:Monument&lt;/td&gt;
+      &lt;td&gt;300&lt;/td&gt;
+      &lt;td&gt;12000&lt;/td&gt;
+      &lt;td&gt;13.35 *&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;Because of the pretraining of the dbo:Monument, the figure shares a great similarity this &lt;a href=&quot;https://arxiv.org/html/1708.07624&quot;&gt;report&lt;/a&gt;.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The experimentation for dbo:Monument was conducted on a virtual cloud server with the GPU of GTX1080, 480GB SSD, and E5-2690 v3 24-core CPU of 64G. The experimentation for dbo:LC_QuAD_v6_art was conducted on another virtual cloud server with the GTX1080, 2TB SSD, and E5-2658 v3 48-core CPU of 64G, and . The basical setting for both comparative groups were Ubuntu 16 system with TensorFlow 1.3.0. The testing for the NMT model at was mainly displayed at three different times, i.e. at the 3,000th, 9,000th, and 12,000th iteration.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Dataset&lt;/th&gt;
+      &lt;th&gt;BLEU 3k steps&lt;/th&gt;
+      &lt;th&gt;BLEU 9k steps&lt;/th&gt;
+      &lt;th&gt;BLEU 12k steps&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;dbo:LC_QuAD_v6_art&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;dbo:Monument&lt;/td&gt;
+      &lt;td&gt;67.0 (May 16 14:23:21 2019)&lt;/td&gt;
+      &lt;td&gt;79.6 (May 16 15:55:34 2019)&lt;/td&gt;
+      &lt;td&gt;80.2 (May 16 17:00:32 2019)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;final-analyses&quot;&gt;Final Analyses&lt;/h2&gt;
+
+&lt;p&gt;In the different parts of the experiments, we can see the huge gap between the training results, which tells a lot of information.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;The model may have a strong dependency on the generated data, which requires the high quality of the source template.&lt;/li&gt;
+  &lt;li&gt;And, before all the training, make sure the environment is fit for every details of the prerequisites, e.g, the version of packages and the dependencies of them.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
+&lt;p&gt;[1] Tommaso Soru, Edgard Marx, André Valdestilhas, Diego Esteves, Diego Moussallem, Gustavo Publio. (2018). Neural Machine Translation for Query Construction and Composition.&lt;/p&gt;
+
+&lt;p&gt;[2] Papineni K., Roukos S., Ward T., Zhu W. (2002). BLEU: a method for automatic evaluation of machine translation. Proceedings of the 40th annual meeting on association for computational linguistics.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 17 May 2019 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2019/05/17/About-The-NSpM/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/05/17/About-The-NSpM/</guid>
+        
+        <category>GSoC2019</category>
+        
+        <category>NLP</category>
+        
+        <category>DBpedia</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>
