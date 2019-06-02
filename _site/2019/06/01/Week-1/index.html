@@ -235,38 +235,41 @@ It works on two parts parallel:</p>
 
 <h2 id="entity-recognition--semantic-parsing">Entity Recognition &amp; Semantic Parsing</h2>
 
-<p>To illustrate the ideas, I would hope to show you this figure that was extracted from the data below:
-        {
-                                “id”: “3”,
-                                “answertype”: “resource”,
-                                “aggregation”: false,
-                                “onlydbo”: true,
-                                “hybrid”: false,
-                                “question”: [{
-                                                “language”: “en”,
-                                                “string”: “Who was the wife of U.S. president Lincoln?”,
-                                                “keywords”: “U.S. president, Lincoln, wife”
-                                        },
-        …
-        “query”: {
-        “sparql”: 
-        “PREFIX dbo: <a href="http://dbpedia.org/ontology/">http://dbpedia.org/ontology/</a>\nPREFIX res: <a href="http://dbpedia.org/resource/">http://dbpedia.org/resource/</a>\nSELECT DISTINCT ?uri \nWHERE {\n\tres:Abraham_Lincoln dbo:spouse ?uri.\n}”
-                                },
-                                “answers”: [{
-                                        “head”: {
-                                                “vars”: [
-                                                        “uri”
-                                                ]
-                                        },
-                                        “results”: {
-                                                “bindings”: [{
-                                                        “uri”: {
-                                                                “type”: “uri”,
-                                                                “value”: “http://dbpedia.org/resource/Mary_Todd_Lincoln”
-                                                        }</p>
+<p>To illustrate the ideas, I would hope to show you this figure that was extracted from the data below:</p>
 
-<p><img src="https://github.com/StuartCHAN/StuartCHAN.github.io/blob/master/img/tree.png" alt="alt text" title="Semantic Tree" />
-<img src="https://github.com/StuartCHAN/StuartCHAN.github.io/blob/master/img/semantic_parser.PNG" alt="alt text" title="Semantic Parsing" /></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    {
+                            "id": "3",
+                            "answertype": "resource",
+                            "aggregation": false,
+                            "onlydbo": true,
+                            "hybrid": false,
+                            "question": [{
+                                            "language": "en",
+                                            "string": "Who was the wife of U.S. president Lincoln?",
+                                            "keywords": "U.S. president, Lincoln, wife"
+                                    },
+    …
+    "query": {
+    "sparql": 
+    "PREFIX dbo: &lt;http://dbpedia.org/ontology/&gt;\nPREFIX res: &lt;http://dbpedia.org/resource/&gt;\nSELECT DISTINCT ?uri \nWHERE {\n\tres:Abraham_Lincoln dbo:spouse ?uri.\n}"
+                            },
+                            "answers": [{
+                                    "head": {
+                                            "vars": [
+                                                    "uri"
+                                            ]
+                                    },
+                                    "results": {
+                                            "bindings": [{
+                                                    "uri": {
+                                                            "type": "uri",
+                                                            "value": "http://dbpedia.org/resource/Mary_Todd_Lincoln"
+                                                    }
+</code></pre></div></div>
+
+<p><img src="https://github.com/StuartCHAN/StuartCHAN.github.io/tree/master/img/img/tree.png" alt="tree" /></p>
+
+<p><img src="https://github.com/StuartCHAN/StuartCHAN.github.io/tree/master/img/img/semantic_parser.PNG" alt="semantic_parser" /></p>
 
 <p>This show the idelogical processing about how we detect the entities from the sentence and do the parsing, because we need to mapp them towards the RDF in DBpedia.</p>
 

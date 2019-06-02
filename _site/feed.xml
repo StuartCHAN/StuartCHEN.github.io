@@ -5,8 +5,8 @@
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 02 Jun 2019 22:48:27 +0800</pubDate>
-    <lastBuildDate>Sun, 02 Jun 2019 22:48:27 +0800</lastBuildDate>
+    <pubDate>Sun, 02 Jun 2019 22:59:22 +0800</pubDate>
+    <lastBuildDate>Sun, 02 Jun 2019 22:59:22 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -47,38 +47,41 @@ It works on two parts parallel:&lt;/p&gt;
 
 &lt;h2 id=&quot;entity-recognition--semantic-parsing&quot;&gt;Entity Recognition &amp;amp; Semantic Parsing&lt;/h2&gt;
 
-&lt;p&gt;To illustrate the ideas, I would hope to show you this figure that was extracted from the data below:
-        {
-                                “id”: “3”,
-                                “answertype”: “resource”,
-                                “aggregation”: false,
-                                “onlydbo”: true,
-                                “hybrid”: false,
-                                “question”: [{
-                                                “language”: “en”,
-                                                “string”: “Who was the wife of U.S. president Lincoln?”,
-                                                “keywords”: “U.S. president, Lincoln, wife”
-                                        },
-        …
-        “query”: {
-        “sparql”: 
-        “PREFIX dbo: &lt;a href=&quot;http://dbpedia.org/ontology/&quot;&gt;http://dbpedia.org/ontology/&lt;/a&gt;\nPREFIX res: &lt;a href=&quot;http://dbpedia.org/resource/&quot;&gt;http://dbpedia.org/resource/&lt;/a&gt;\nSELECT DISTINCT ?uri \nWHERE {\n\tres:Abraham_Lincoln dbo:spouse ?uri.\n}”
-                                },
-                                “answers”: [{
-                                        “head”: {
-                                                “vars”: [
-                                                        “uri”
-                                                ]
-                                        },
-                                        “results”: {
-                                                “bindings”: [{
-                                                        “uri”: {
-                                                                “type”: “uri”,
-                                                                “value”: “http://dbpedia.org/resource/Mary_Todd_Lincoln”
-                                                        }&lt;/p&gt;
+&lt;p&gt;To illustrate the ideas, I would hope to show you this figure that was extracted from the data below:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://github.com/StuartCHAN/StuartCHAN.github.io/blob/master/img/tree.png&quot; alt=&quot;alt text&quot; title=&quot;Semantic Tree&quot; /&gt;
-&lt;img src=&quot;https://github.com/StuartCHAN/StuartCHAN.github.io/blob/master/img/semantic_parser.PNG&quot; alt=&quot;alt text&quot; title=&quot;Semantic Parsing&quot; /&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    {
+                            &quot;id&quot;: &quot;3&quot;,
+                            &quot;answertype&quot;: &quot;resource&quot;,
+                            &quot;aggregation&quot;: false,
+                            &quot;onlydbo&quot;: true,
+                            &quot;hybrid&quot;: false,
+                            &quot;question&quot;: [{
+                                            &quot;language&quot;: &quot;en&quot;,
+                                            &quot;string&quot;: &quot;Who was the wife of U.S. president Lincoln?&quot;,
+                                            &quot;keywords&quot;: &quot;U.S. president, Lincoln, wife&quot;
+                                    },
+    …
+    &quot;query&quot;: {
+    &quot;sparql&quot;: 
+    &quot;PREFIX dbo: &amp;lt;http://dbpedia.org/ontology/&amp;gt;\nPREFIX res: &amp;lt;http://dbpedia.org/resource/&amp;gt;\nSELECT DISTINCT ?uri \nWHERE {\n\tres:Abraham_Lincoln dbo:spouse ?uri.\n}&quot;
+                            },
+                            &quot;answers&quot;: [{
+                                    &quot;head&quot;: {
+                                            &quot;vars&quot;: [
+                                                    &quot;uri&quot;
+                                            ]
+                                    },
+                                    &quot;results&quot;: {
+                                            &quot;bindings&quot;: [{
+                                                    &quot;uri&quot;: {
+                                                            &quot;type&quot;: &quot;uri&quot;,
+                                                            &quot;value&quot;: &quot;http://dbpedia.org/resource/Mary_Todd_Lincoln&quot;
+                                                    }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/StuartCHAN/StuartCHAN.github.io/tree/master/img/img/tree.png&quot; alt=&quot;tree&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/StuartCHAN/StuartCHAN.github.io/tree/master/img/img/semantic_parser.PNG&quot; alt=&quot;semantic_parser&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;This show the idelogical processing about how we detect the entities from the sentence and do the parsing, because we need to mapp them towards the RDF in DBpedia.&lt;/p&gt;
 
