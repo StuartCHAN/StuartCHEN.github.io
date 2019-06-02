@@ -10,7 +10,7 @@
     <meta name="keywords"  content="BY, Blog Yeah, Stuart Jiazheng Chen, stuartchan, Machine Learning, NLP, Cognitive Science, Linguistics ">
     <meta name="theme-color" content="#000000">
     
-    <title>Think About The NSpM - Stuart Chen | Blog Yeah</title>
+    <title>Week 1 - Stuart Chen | Blog Yeah</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2019/05/17/About-The-NSpM/">
+    <link rel="canonical" href="http://localhost:4000/2019/06/01/Week-1/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -150,13 +150,13 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/post-bg-debug.jpg" width="0" height="0"> -->
+<!-- <img src="/img/ivana-cajina-343416-unsplash.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/post-bg-debug.jpg')
+        background-image: url('/img/ivana-cajina-343416-unsplash.jpg')
     }
 
     
@@ -176,12 +176,12 @@
                         <a class="tag" href="/tags/#DBpedia" title="DBpedia">DBpedia</a>
                         
                     </div>
-                    <h1>Think About The NSpM</h1>
+                    <h1>Week 1</h1>
                     
                     
-                    <h2 class="subheading">This is a report about the training of the NSpM model.</h2>
+                    <h2 class="subheading">Let's firstly set up the evaluation measure!</h2>
                     
-                    <span class="meta">Posted by Stuart Chen on May 17, 2019</span>
+                    <span class="meta">Posted by Stuart Chen on June 1, 2019</span>
                 </div>
             </div>
         </div>
@@ -199,156 +199,90 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h1 id="introduction">Introduction</h1>
+				<blockquote>
+  <h1 id="the-goals-for-week-1">The Goals for Week 1</h1>
+</blockquote>
 
-<p>The NSpM model, Neural SPARQL Machines, are a type of LSTM-based Machine Translation Approaches for Question Answering based on external knowledge base in DBpedia and via SPARQL query.</p>
+<p>Let’s have a look into this week’s topics:</p>
+<blockquote>
+  <ol>
+    <li>
+      <p>qald evaluation against GERBIL interface</p>
+    </li>
+    <li>
+      <p>building the semantic tree structue for the natural language sentence</p>
+    </li>
+  </ol>
+</blockquote>
 
-<p>I feel touched by this model mostly because I have always the passion for the neural memory structure, the memorization mechanism and the reasoning processing, with which I saw a lucid hint from the NSpM.</p>
+<h2 id="the-balance-between-whether-to-write-a-script-to-de-the-evaluation-or-to-wrap-the-whole-system-into-gerbil">The balance between whether to write a script to de the evaluation or to wrap the whole system into GERBIL</h2>
 
-<p>Now, let’s talk about it.</p>
+<h3 id="method-1-evaluationsh--evaluationpy-vs-mehod-2-wrapper-of-the-qa-system">Method 1: evaluation.sh + evaluation.py V.S. Mehod 2: Wrapper of the QA System</h3>
 
-<p>Here is the code：
-https://github.com/AKSW/NSpM</p>
+<p>For Method 1, the basic idea was that, based on the two files that I committed to my <a href="https://github.com/StuartCHAN/neural-qa/tree/gsoc-stuart">branch</a>, the evaluation depends on running the GERBIL system on local machine to get a json-format response as comparison. 
+It works on two parts parallel:</p>
 
-<p><img src="http://www.liberai.org/img/seq2seq-webexport-160px.png" alt="alt text" title="Neural SPARQL Machines" />
-<img src="http://www.liberai.org/img/flag-sparql-160px.png" alt="" /></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    1)first, in the evaluation.sh , it calls the NSpM model to give the output based on trained model;
 
-<h1 id="the-previous-training">The Previous Training</h1>
-
-<p>I am an art fan, so I prefered the data with the topic ‘LC_QuAD_v6_art’. My lucky number is 608, then I randomly picked 608 temple from the file, and generated 98458 lines in the training data file. 
-After running</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sh train.sh data/LC_QuAD_v6_art 120000
+    2)next, it retrieve the comparative output from the GERBIL to do the evaluation. The evaluation is conducted upon the data file after generation operation.  
 </code></pre></div></div>
-<p>different cases were found:</p>
 
-<h2 id="trial-no1">Trial No.1</h2>
-<p>At first, I choosed a laptop with Ubuntu 16, TensorFlow and Python 2.7 to do the computation, without GPU. It turned out that the training seemed abnormal while there were many conflicts in the codes, which kept printing that the modiles had something unmatched. Then I borrowed some functons with a same arithmetical meaning to replace the bugs. But the results were not so reasonable as expected, and my laptop’s Linux OS just collapesd.</p>
+<p>For Method 2, it is that the GERBIL needs to wrap the whole self-built QA system that’s written in python into the <a href="https://github.com/dice-group/GerbilQA-Benchmarking-Template/blob/master/src/main/java/org/dice/qa/impl/ExampleQASystem.java">existed system</a> that’s written in java via jython. And I was adviced that this would be more straightforward to spares us from implementing the evaluation module of our own.</p>
 
-<h2 id="trial-no2">Trial No.2</h2>
-<p>So it went to the next. That time I figured out that it might be due to the version of TensorFlow had not been satisfied. It had been deployed on a higher version than 1.3.0. So this time I was more fucuesd on the selection of the TensorFlow version. And considering about the hardware, the second trial was experimented on an Cloud ECS computing platform of <a href="https://cn.aliyun.com/?accounttraceid=a3b99d73-db56-4cd2-ae2f-aa707c1e0a9e">Alibaba Cloud</a>. But there were still glitches. When I open the data holding folder, I found that the corresponding pars of natural language setences and the queries, repectively from the .en and .sparql files, were not well matched like the provided pretrained sample. And the final inferences did not feel so logic to the questions. It was strange-looking.</p>
+<p>Besides, I have worked on cleaning up and refining a dataset from QALD that may be useful sooner, which contains a set of natural language queries and SPARQL queries with their answer’s value.</p>
 
-<h2 id="conclusion">Conclusion</h2>
-<p>We must be cautious about the following points:\
-1, the different versions of TensorFlow can lead to the gap between the functions in the module:</p>
+<p>When talking the question, those natural language queries, it highlights the importance of sparsing a sentence while generating the template.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tf.contrib
-</code></pre></div></div>
-<p>may be not existing any more in higher versions, which leads to the missing of its sub-modules.</p>
+<h2 id="entity-recognition--semantic-parsing">Entity Recognition &amp; Semantic Parsing</h2>
 
-<p>2, If it is run on the online computing cloud, must pay attention to the internet connection interface of virtual server, for it could be unable to use the SPARQL or any relevant functions to the DBpedia.</p>
+<p>To illustrate the ideas, I would hope to show you this figure that was extracted from the data below:
+        {
+                                “id”: “3”,
+                                “answertype”: “resource”,
+                                “aggregation”: false,
+                                “onlydbo”: true,
+                                “hybrid”: false,
+                                “question”: [{
+                                                “language”: “en”,
+                                                “string”: “Who was the wife of U.S. president Lincoln?”,
+                                                “keywords”: “U.S. president, Lincoln, wife”
+                                        },
+        …
+        “query”: {
+        “sparql”: 
+        “PREFIX dbo: <a href="http://dbpedia.org/ontology/">http://dbpedia.org/ontology/</a>\nPREFIX res: <a href="http://dbpedia.org/resource/">http://dbpedia.org/resource/</a>\nSELECT DISTINCT ?uri \nWHERE {\n\tres:Abraham_Lincoln dbo:spouse ?uri.\n}”
+                                },
+                                “answers”: [{
+                                        “head”: {
+                                                “vars”: [
+                                                        “uri”
+                                                ]
+                                        },
+                                        “results”: {
+                                                “bindings”: [{
+                                                        “uri”: {
+                                                                “type”: “uri”,
+                                                                “value”: “http://dbpedia.org/resource/Mary_Todd_Lincoln”
+                                                        }</p>
 
-<h1 id="recent-experiments">Recent Experiments</h1>
+<p><img src="https://github.com/StuartCHAN/StuartCHAN.github.io/blob/master/img/tree.png" alt="alt text" title="Semantic Tree" />
+<img src="https://github.com/StuartCHAN/StuartCHAN.github.io/blob/master/img/semantic_parser.PNG" alt="alt text" title="Semantic Parsing" /></p>
 
-<p>Recently, the experiment have been into two trials:</p>
+<p>This show the idelogical processing about how we detect the entities from the sentence and do the parsing, because we need to mapp them towards the RDF in DBpedia.</p>
 
-<h2 id="experiment-1">Experiment 1</h2>
-<p>The experiment was still using the previously mentioned data from the topic ‘LC_QuAD_v6_art’. This trial was on a Lenovo computer without GPU, which had TensorFlow 1.3.0, Python 2.7, and tensorboard. The procedure was as the official guidance above. I checked into the files, where every thing seemed okay, and the inference after the training looked sensible.</p>
-
-<p>However, I did not notice the absence of the BLEU records. After rethinking about the experiment, I hypothesized that the early stop policy should be blamed, because I had set the stop, at about 12 00, less than the steps officially proposed.</p>
-
-<p>Another suspicion about the training is that, the originally provideded template contains a long number value at the last column which seems unexplainable.</p>
-
-<h2 id="experiment-2">Experiment 2</h2>
-
-<p>Ok, here is my fatal fight with this model.</p>
-
-<p>Firstly, it must have something to say with the template selection. I have konwn that any even subtle edition of the file can lead to a huge divergence. So, this time, I just try to be a good boy and use the very official provided template, checking all the required details to reproduce the experiment.</p>
-
-<p>Secondly, I admited that, at first, I had thought about(and physically, I really did the job) rewriting the cods, incuding overriding the lost function and the evaluation functions. But, anyway, I rewrote them back and do the suggested traditional way.</p>
-
-<p>Finally, I put it on a high performance GPU <a href="https://www.jikecloud.net/list.html">online cloud</a>, sacrificing all the wages of my last week’s part-times to pay for the cloud device. I was excited facing the battle with the model.</p>
-
-<p>And, nice, look at what it brought us:</p>
-<ul>
-  <li><a href="https://docs.google.com/document/d/1S49o0qlKtHYMHDekGryPbUO2CcVXHQeZ1m72Zdm4yVw/edit?usp=sharing">Experiment 1 notes</a></li>
-  <li><a href="https://docs.google.com/document/d/1fkbylG4wK9waybCMiM8MKtrUFCUaartHKhShajt2UD0/edit?usp=sharing">Experiment 2 notes</a></li>
-</ul>
-
-<h2 id="experiments-results">Experiments Results</h2>
-
-<p>I deployed the ‘LC_QuAD_v6_art’ dataset and the ‘monument_300’ dataset as parallel comparative groups to conduct the experiment. Here the evaluation of the accuracy of the neural model was based on the BLEU test, which is a modified precision metric for testing the machine translation output against the reference translation standard.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Dataset</th>
-      <th>Examples per template</th>
-      <th>Training size</th>
-      <th>Average examples per instance</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>dbo:LC_QuAD_v6_art</td>
-      <td>608</td>
-      <td>1200</td>
-      <td>161.94</td>
-    </tr>
-    <tr>
-      <td>dbo:Monument</td>
-      <td>300</td>
-      <td>12000</td>
-      <td>13.35 *</td>
-    </tr>
-  </tbody>
-</table>
-
-<ul>
-  <li><em>Because of the pretraining of the dbo:Monument, the figure shares a great similarity this <a href="https://arxiv.org/html/1708.07624">report</a>.</em></li>
-</ul>
-
-<p>The experimentation for dbo:Monument was conducted on a virtual cloud server with the GPU of GTX1080, 480GB SSD, and E5-2690 v3 24-core CPU of 64G. The experimentation for dbo:LC_QuAD_v6_art was conducted on another virtual cloud server with the GTX1080, 2TB SSD, and E5-2658 v3 48-core CPU of 64G, and . The basical setting for both comparative groups were Ubuntu 16 system with TensorFlow 1.3.0. The testing for the NMT model at was mainly displayed at three different times, i.e. at the 3,000th, 9,000th, and 12,000th iteration.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Dataset</th>
-      <th>BLEU 3k steps</th>
-      <th>BLEU 9k steps</th>
-      <th>BLEU 12k steps</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>dbo:LC_QuAD_v6_art</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <td>dbo:Monument</td>
-      <td>67.0 (May 16 14:23:21 2019)</td>
-      <td>79.6 (May 16 15:55:34 2019)</td>
-      <td>80.2 (May 16 17:00:32 2019)</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="final-analyses">Final Analyses</h2>
-
-<p>In the different parts of the experiments, we can see the huge gap between the training results, which tells a lot of information.</p>
-<ul>
-  <li>The model may have a strong dependency on the generated data, which requires the high quality of the source template.</li>
-  <li>And, before all the training, make sure the environment is fit for every details of the prerequisites, e.g, the version of packages and the dependencies of them.</li>
-</ul>
-
-<h1 id="references">References</h1>
-<p>[1] Tommaso Soru, Edgard Marx, André Valdestilhas, Diego Esteves, Diego Moussallem, Gustavo Publio. (2018). Neural Machine Translation for Query Construction and Composition.</p>
-
-<p>[2] Papineni K., Roukos S., Ward T., Zhu W. (2002). BLEU: a method for automatic evaluation of machine translation. Proceedings of the 40th annual meeting on association for computational linguistics.</p>
 
 
                 <hr style="visibility: hidden;">
 
                 <ul class="pager">
                     
-                    
-                    <li class="next">
+                    <li class="previous">
                         <a href="/2019/05/26/Bonding/" data-toggle="tooltip" data-placement="top" title="Bonding">
-                        Next<br>
+                        Previous<br>
                         <span>Bonding</span>
                         </a>
                     </li>
+                    
                     
                 </ul>
 
