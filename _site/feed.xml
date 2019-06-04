@@ -5,8 +5,8 @@
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 04 Jun 2019 15:31:03 +0800</pubDate>
-    <lastBuildDate>Tue, 04 Jun 2019 15:31:03 +0800</lastBuildDate>
+    <pubDate>Tue, 04 Jun 2019 15:41:50 +0800</pubDate>
+    <lastBuildDate>Tue, 04 Jun 2019 15:41:50 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -14,7 +14,7 @@
         <description>&lt;h1 id=&quot;the-pipeline-of-architecture&quot;&gt;The Pipeline of Architecture&lt;/h1&gt;
 
 &lt;p&gt;The model architecture is like:
-&lt;img src=&quot;https://github.com/StuartCHAN/StuartCHAN.github.io/blob/master/img/Atten_NSPM00.png&quot; alt=&quot;architecture and pipeline&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;img/Atten_NSPM00.png&quot; alt=&quot;architecture and pipeline&quot; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;pipeline&quot;&gt;Pipeline&lt;/h1&gt;
 
