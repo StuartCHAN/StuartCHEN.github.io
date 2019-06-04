@@ -5,9 +5,43 @@
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 02 Jun 2019 22:59:22 +0800</pubDate>
-    <lastBuildDate>Sun, 02 Jun 2019 22:59:22 +0800</lastBuildDate>
+    <pubDate>Tue, 04 Jun 2019 15:31:03 +0800</pubDate>
+    <lastBuildDate>Tue, 04 Jun 2019 15:31:03 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Architecture</title>
+        <description>&lt;h1 id=&quot;the-pipeline-of-architecture&quot;&gt;The Pipeline of Architecture&lt;/h1&gt;
+
+&lt;p&gt;The model architecture is like:
+&lt;img src=&quot;https://github.com/StuartCHAN/StuartCHAN.github.io/blob/master/img/Atten_NSPM00.png&quot; alt=&quot;architecture and pipeline&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;pipeline&quot;&gt;Pipeline&lt;/h1&gt;
+
+&lt;h2 id=&quot;1-question-generation-from-natural-language&quot;&gt;1. Question Generation from Natural Language&lt;/h2&gt;
+&lt;p&gt;We will use attention mechanism to generate questions from natural language contextual passage. By detecting entities in the passage, it will automatically get questions about the entities.&lt;/p&gt;
+
+&lt;h2 id=&quot;2-from-natural-language-questions-to-templates&quot;&gt;2. From Natural Language Questions to Templates&lt;/h2&gt;
+&lt;p&gt;With the help of semantic parsing, the model extracts the templates from the questions.&lt;/p&gt;
+
+&lt;h2 id=&quot;3-construction-of-the-templates-bank&quot;&gt;3. Construction of the Templates Bank&lt;/h2&gt;
+&lt;p&gt;The Templates Bank is a base where stores the existed templates.&lt;/p&gt;
+
+&lt;h2 id=&quot;4-comparison-of-newly-generated-templates-and-the-model-matching&quot;&gt;4. Comparison of Newly Generated Templates and the Model Matching&lt;/h2&gt;
+&lt;p&gt;The templates generated in the previous step shall be compared against the tempalets in the Templates Bank as to match the similar one. Then, if matched, it will refer to the similar trained model that contains the matched template; if not matched, it turns to train the model on the new templates, and store the new results into the Templates Bank.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 02 Jun 2019 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2019/06/02/Architecture/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/06/02/Architecture/</guid>
+        
+        <category>GSoC2019</category>
+        
+        <category>NLP</category>
+        
+        <category>DBpedia</category>
+        
+        
+      </item>
     
       <item>
         <title>Week 1</title>
@@ -79,9 +113,9 @@ It works on two parts parallel:&lt;/p&gt;
                                                     }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://github.com/StuartCHAN/StuartCHAN.github.io/tree/master/img/img/tree.png&quot; alt=&quot;tree&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/StuartCHAN/StuartCHAN.github.io/blob/master/img/tree.PNG&quot; alt=&quot;tree&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://github.com/StuartCHAN/StuartCHAN.github.io/tree/master/img/img/semantic_parser.PNG&quot; alt=&quot;semantic_parser&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/StuartCHAN/StuartCHAN.github.io/blob/master/img/semantic_parser.PNG&quot; alt=&quot;semantic_parser&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;This show the idelogical processing about how we detect the entities from the sentence and do the parsing, because we need to mapp them towards the RDF in DBpedia.&lt;/p&gt;
 
