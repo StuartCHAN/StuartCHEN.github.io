@@ -16,7 +16,7 @@ tags:
 # The Pipeline of Architecture
 
 The model architecture is like:
-![architecture and pipeline](img/Atten_NSPM00.png)
+![architecture and pipeline](https://github.com/StuartCHAN/StuartCHAN.github.io/blob/master/img/Atten_NSPM00.png)
 
 # Pipeline 
 
