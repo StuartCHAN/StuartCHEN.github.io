@@ -201,19 +201,132 @@
 
 				<h1 id="the-pipeline-of-architecture">The Pipeline of Architecture</h1>
 
-<p>The model architecture is like:
-<img src="https://github.com/StuartCHAN/StuartCHAN.github.io/blob/master/img/Atten_NSPM00.png" alt="architecture and pipeline" /></p>
+<p>The model architecture is like:</p>
+
+<p><img src="assets/Atten_NSPM00.png" alt="architecture and pipeline" /></p>
 
 <h1 id="pipeline">Pipeline</h1>
 
 <h2 id="1-question-generation-from-natural-language">1. Question Generation from Natural Language</h2>
+
+<p><img src="assets/Atten_NSPM00.QuestionsGeneration.png" alt="QuestionsGeneration" /></p>
+
 <p>We will use attention mechanism to generate questions from natural language contextual passage. By detecting entities in the passage, it will automatically get questions about the entities.</p>
 
+<h3 id="11-input-from-natural-language">1.1 Input from Natural Language</h3>
+
+<p>We use the natural language passage from Wikipedia as input :</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Audrey Hepburn was a British actress and humanitarian. Recognised as a movie star and fashion icon, Hepburn was active during Hollywood's Golden Age. She was ranked by the American Film Institute as the third-greatest female screen legend in Golden Age Hollywood, and was inducted into the International Best Dressed List Hall of Fame. She rose to star in Roman Holiday in 1953.
+</code></pre></div></div>
+<h3 id="12-attention-layer-with-embedding">1.2 Attention Layer with Embedding</h3>
+<p>The passage goes through attention layer with embedding:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># T stands for time_steps, timing length
+</span><span class="k">def</span> <span class="nf">embedding_attention_seq2seq</span><span class="p">(</span><span class="n">encoder_inputs</span><span class="p">,</span> <span class="c1"># [T, batch_size]
+</span>                             	<span class="n">Decoder_inputs</span><span class="p">,</span> <span class="c1"># [T, batch_size]
+</span>                             	<span class="n">Cell</span><span class="p">,</span>
+                             	<span class="n">Num_encoder_symbols</span><span class="p">,</span>
+                             	<span class="n">Num_decoder_symbols</span><span class="p">,</span>
+                             	<span class="n">Embeddding_size</span><span class="p">,</span>
+                             	<span class="n">Num_heads</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># attention of the number of taps
+</span>                             	<span class="n">Output_projection</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="c1">#decoder's projection matrix
+</span>                             	<span class="n">Feed_previous</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                             	<span class="n">Dtype</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                             	<span class="n">Scope</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                             	<span class="n">Initial_state_attention</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">encoder_cell</span> <span class="o">=</span> <span class="n">rnn_cell</span><span class="o">.</span><span class="n">EmbeddingWrapper</span><span class="p">(</span>
+        <span class="n">cell</span><span class="p">,</span> <span class="n">embedding_classes</span><span class="o">=</span><span class="n">num_encoder_symbols</span><span class="p">,</span>
+        <span class="n">embeddding_size</span><span class="o">=</span><span class="n">embedding_size</span><span class="p">)</span>
+<span class="n">encoder_outputs</span><span class="p">,</span> <span class="n">encoder_state</span> <span class="o">=</span> <span class="n">rnn</span><span class="o">.</span><span class="n">rnn</span><span class="p">(</span>
+        <span class="n">encoder_cell</span><span class="p">,</span> <span class="n">encoder_inputs</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span> 
+
+<span class="n">top_states</span> <span class="o">=</span> <span class="p">[</span><span class="n">array_ops</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cell</span><span class="o">.</span><span class="n">output_size</span><span class="p">])</span> \
+                  <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">encoder_outputs</span><span class="p">]</span> 
+<span class="n">attention_states</span> <span class="o">=</span> <span class="n">array_ops</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">top_states</span><span class="p">)</span> 
+
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">embedding_attention_decoder</span><span class="p">(</span><span class="n">decoder_inputs</span><span class="p">,</span>
+                                <span class="n">initial_state</span><span class="p">,</span>
+                                <span class="n">attention_states</span><span class="p">,</span>
+                                <span class="n">cell</span><span class="p">,</span>
+                                <span class="n">num_symbols</span><span class="p">,</span>
+                                <span class="n">embeddding_size</span><span class="p">,</span>
+                                <span class="n">num_heads</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                <span class="n">output_size</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                                <span class="n">output_projection</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                                <span class="n">feed_previous</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                                <span class="n">update_embedding_for_previous</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                <span class="n">dtype</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                                <span class="n">scope</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                                <span class="n">initial_state_attention</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<span class="c1"># core code
+</span>    <span class="n">embedding</span> <span class="o">=</span> <span class="n">variable_scope</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s">"embedding"</span><span class="p">,</span>
+                                            <span class="p">[</span><span class="n">num_symbols</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">])</span>
+    <span class="n">loop_function</span> <span class="o">=</span> <span class="n">_extract_argmax_and_embed</span><span class="p">(</span>
+        <span class="n">embedding</span><span class="p">,</span> <span class="n">output_projection</span><span class="p">,</span>
+        <span class="n">update_embedding_for_previous</span><span class="p">)</span> <span class="k">if</span> <span class="n">feed_previous</span> <span class="k">else</span> <span class="bp">None</span>
+    <span class="n">emb_inp</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">embeddding_ops</span><span class="o">.</span><span class="n">embedding_lookup</span><span class="p">(</span><span class="n">embedding</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">decoder_inputs</span><span class="p">]</span>
+    <span class="c1"># T * [batch_size, embedding_size]
+</span>    <span class="k">return</span> <span class="n">attention_decoder</span><span class="p">(</span>
+        <span class="n">emb_inp</span><span class="p">,</span>
+        <span class="n">initial_state</span><span class="p">,</span>
+        <span class="n">attention_states</span><span class="p">,</span>
+        <span class="n">cell</span><span class="p">,</span>
+        <span class="n">output_size</span><span class="o">=</span><span class="n">output_size</span><span class="p">,</span>
+        <span class="n">num_heads</span><span class="o">=</span><span class="n">num_heads</span><span class="p">,</span>
+        <span class="n">loop_function</span><span class="o">=</span><span class="n">loop_function</span><span class="p">,</span>
+        <span class="n">initial_state_attention</span><span class="o">=</span><span class="n">initial_state_attention</span><span class="p">)</span>
+
+</code></pre></div></div>
+<h3 id="13-output-the-question">1.3 Output The Question</h3>
+<p>Then we get the output question:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    "Which movie does Audrey Hepburn star ?"
+</code></pre></div></div>
+
 <h2 id="2-from-natural-language-questions-to-templates">2. From Natural Language Questions to Templates</h2>
+
+<p><img src="assets/Atten_NSPM00.TemplatesGeneration.png" alt="" /></p>
+
 <p>With the help of semantic parsing, the model extracts the templates from the questions.</p>
 
+<h3 id="21-entity-annotation">2.1 Entity Annotation</h3>
+<p>With the help of DBpedia’s application Spotlight, the model is able to detect the entities in the question:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\e</span>xamples<span class="se">\d</span>bpedia&gt;python annotation.py <span class="s2">"Which movie does Audrey Hepburn star ?"</span>
+</code></pre></div></div>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="err">'Audrey</span><span class="w"> </span><span class="err">Hepburn'</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">'@URI'</span><span class="p">:</span><span class="w"> </span><span class="err">'http</span><span class="p">:</span><span class="err">//dbpedia.org/resource/Audrey_Hepburn'</span><span class="p">,</span><span class="w"> </span><span class="err">'Ref'</span><span class="p">:</span><span class="w"> </span><span class="err">'Audrey_Hepburn'</span><span class="p">,</span><span class="w"> </span><span class="err">'Schema'</span><span class="p">:</span><span class="w"> </span><span class="err">'Person'</span><span class="p">,</span><span class="w"> </span><span class="err">'DBpedia'</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">'Person'</span><span class="p">,</span><span class="w"> </span><span class="err">'Agent'</span><span class="p">]}}</span><span class="w">
+</span><span class="err">the</span><span class="w"> </span><span class="err">template</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">('Which</span><span class="w"> </span><span class="err">movie</span><span class="w"> </span><span class="err">does</span><span class="w"> </span><span class="err">&lt;A&gt;</span><span class="w"> </span><span class="err">star</span><span class="w"> </span><span class="err">?'</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="err">'Person'</span><span class="p">]</span><span class="err">)</span><span class="w">
+</span></code></pre></div></div>
+<h3 id="22-template-generation-with-semantic-parsing">2.2 Template Generation With Semantic Parsing</h3>
+<p>We deploy the method of semantic parser to get the core structure of a question for query generation:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">question</span> <span class="o">=</span> <span class="s">"Which movie does Audrey Hepburn star ?"</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">semantic_parser</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+<span class="n">regex</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">match_regex</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>regex
+<span class="o">&gt;&gt;&gt;</span>Question<span class="o">(</span>Pos<span class="o">(</span><span class="s2">"DT"</span><span class="o">))</span> + nouns<span class="o">(</span>Pos<span class="o">(</span><span class="s2">"NN"</span><span class="o">)</span> | Pos<span class="o">(</span><span class="s2">"NNS"</span><span class="o">)</span> | Pos<span class="o">(</span><span class="s2">"NNP"</span><span class="o">)</span> | Pos<span class="o">(</span><span class="s2">"NNPS"</span><span class="o">))</span>
+</code></pre></div></div>
+<p>given thes above, the query template is generated:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">'query'</span><span class="p">:</span><span class="w"> </span><span class="err">IsMovie()</span><span class="w"> </span><span class="err">+</span><span class="w"> </span><span class="err">HasName(name)</span><span class="w">
+</span></code></pre></div></div>
+<p>then, we can get the primitive query template:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT DISTINCT ?a WHERE {
+   ?a rdf:type dbpedia-owl:Film.
+   ?x0 dbpprop:starring ?b.
+   ?a foaf:name ?x2.
+   ?b rdf:type &lt;A&gt;
+   ?b rdfs:label "Audrey
+   ?b rdfs:label "Audrey}
+</code></pre></div></div>
+
 <h2 id="3-construction-of-the-templates-bank">3. Construction of the Templates Bank</h2>
-<p>The Templates Bank is a base where stores the existed templates.</p>
+<p>The Templates Bank is a base where stores the existed templates. 
+The basic idea is to use the DBpedia entities embedding vectors to encode the question templates in order to match the existent templates.</p>
+
+<p><img src="assets/Atten_NSPM00.TemplatesMatching.png" alt="TemplatesMatching" /></p>
 
 <h2 id="4-comparison-of-newly-generated-templates-and-the-model-matching">4. Comparison of Newly Generated Templates and the Model Matching</h2>
 <p>The templates generated in the previous step shall be compared against the tempalets in the Templates Bank as to match the similar one. Then, if matched, it will refer to the similar trained model that contains the matched template; if not matched, it turns to train the model on the new templates, and store the new results into the Templates Bank.</p>
@@ -230,6 +343,13 @@
                         </a>
                     </li>
                     
+                    
+                    <li class="next">
+                        <a href="/2019/06/08/Week-2/" data-toggle="tooltip" data-placement="top" title="Week 2">
+                        Next<br>
+                        <span>Week 2</span>
+                        </a>
+                    </li>
                     
                 </ul>
 
@@ -293,19 +413,19 @@
                     <div class="tags">
         				
                             
-                				<a href="/tags/#GSoC2019" title="GSoC2019" rel="4">
+                				<a href="/tags/#GSoC2019" title="GSoC2019" rel="5">
                                     GSoC2019
                                 </a>
                             
         				
                             
-                				<a href="/tags/#NLP" title="NLP" rel="4">
+                				<a href="/tags/#NLP" title="NLP" rel="5">
                                     NLP
                                 </a>
                             
         				
                             
-                				<a href="/tags/#DBpedia" title="DBpedia" rel="4">
+                				<a href="/tags/#DBpedia" title="DBpedia" rel="5">
                                     DBpedia
                                 </a>
                             

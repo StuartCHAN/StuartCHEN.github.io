@@ -10,7 +10,7 @@
     <meta name="keywords"  content="BY, Blog Yeah, Stuart Jiazheng Chen, stuartchan, Machine Learning, NLP, Cognitive Science, Linguistics ">
     <meta name="theme-color" content="#000000">
     
-    <title>Think About The NSpM - Stuart Chen | Blog Yeah</title>
+    <title>Week 2 - Stuart Chen | Blog Yeah</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2019/05/17/About-The-NSpM/">
+    <link rel="canonical" href="http://localhost:4000/2019/06/08/Week-2/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -150,13 +150,13 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/post-bg-debug.jpg" width="0" height="0"> -->
+<!-- <img src="/img/audrey-hepburn-galaxy.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/post-bg-debug.jpg')
+        background-image: url('/img/audrey-hepburn-galaxy.jpg')
     }
 
     
@@ -176,12 +176,12 @@
                         <a class="tag" href="/tags/#DBpedia" title="DBpedia">DBpedia</a>
                         
                     </div>
-                    <h1>Think About The NSpM</h1>
+                    <h1>Week 2</h1>
                     
                     
-                    <h2 class="subheading">This is a report about the training of the NSpM model.</h2>
+                    <h2 class="subheading">Entity Recognition + Template Generation</h2>
                     
-                    <span class="meta">Posted by Stuart Chen on May 17, 2019</span>
+                    <span class="meta">Posted by Stuart Chen on June 8, 2019</span>
                 </div>
             </div>
         </div>
@@ -199,156 +199,151 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h1 id="introduction">Introduction</h1>
+				<h1 id="the-week--2">The Week  2</h1>
 
-<p>The NSpM model, Neural SPARQL Machines, are a type of LSTM-based Machine Translation Approaches for Question Answering based on external knowledge base in DBpedia and via SPARQL query.</p>
+<p>Let’s have a look into this week’s goals:</p>
+<blockquote>
+  <ol>
+    <li>
+      <p>Entity Recognition</p>
+    </li>
+    <li>
+      <p>Template Generation</p>
+    </li>
+  </ol>
+</blockquote>
 
-<p>I feel touched by this model mostly because I have always the passion for the neural memory structure, the memorization mechanism and the reasoning processing, with which I saw a lucid hint from the NSpM.</p>
+<h2 id="1-entity-recognition">1. Entity Recognition</h2>
 
-<p>Now, let’s talk about it.</p>
+<h3 id="strategy-i">Strategy I</h3>
+<p>I had planned to deploy the pyspotlight for detecting the DBpedia entities in the question.
+However, it seems the connectivity to the server is intermittently unstable, which might result in renting a remote server or it might stumble even after the doing so.
+So I jumped to the Strategy 2.</p>
 
-<p>Here is the code：
-https://github.com/AKSW/NSpM</p>
+<h3 id="strategy-ii">Strategy II</h3>
+<p>I rent a server as the transition server.
+Then we can freely make the request to the Spotlight:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">annotate</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"text"</span><span class="p">:</span><span class="n">text</span> <span class="p">,</span>
+    <span class="s">'confidence'</span><span class="p">:</span> <span class="s">'0.35'</span>
+    <span class="p">}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'http://api.dbpedia-spotlight.org/en/annotate'</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="o">...</span>
+    <span class="c1"># Now it's so easy！
+</span></code></pre></div></div>
 
-<p><img src="http://www.liberai.org/img/seq2seq-webexport-160px.png" alt="alt text" title="Neural SPARQL Machines" />
-<img src="http://www.liberai.org/img/flag-sparql-160px.png" alt="" /></p>
+<h2 id="2-template-generation">2. Template Generation</h2>
 
-<h1 id="the-previous-training">The Previous Training</h1>
+<p>This function depends on the semantic parsing of the question to get the core synthetic structure of the question in order to build a template.</p>
 
-<p>I am an art fan, so I prefered the data with the topic ‘LC_QuAD_v6_art’. My lucky number is 608, then I randomly picked 608 temple from the file, and generated 98458 lines in the training data file. 
-After running</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sh train.sh data/LC_QuAD_v6_art 120000
+<p>When thinking of Audrey Hepburn, we might ask:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Which movie does Audrey Hepburn star ?"
 </code></pre></div></div>
-<p>different cases were found:</p>
 
-<h2 id="trial-no1">Trial No.1</h2>
-<p>At first, I choosed a laptop with Ubuntu 16, TensorFlow and Python 2.7 to do the computation, without GPU. It turned out that the training seemed abnormal while there were many conflicts in the codes, which kept printing that the modiles had something unmatched. Then I borrowed some functons with a same arithmetical meaning to replace the bugs. But the results were not so reasonable as expected, and my laptop’s Linux OS just collapesd.</p>
+<h3 id="21-semantic-parsing">2.1 Semantic Parsing</h3>
+<p>The question should be parsed to get the synthetic structure by:</p>
 
-<h2 id="trial-no2">Trial No.2</h2>
-<p>So it went to the next. That time I figured out that it might be due to the version of TensorFlow had not been satisfied. It had been deployed on a higher version than 1.3.0. So this time I was more fucuesd on the selection of the TensorFlow version. And considering about the hardware, the second trial was experimented on an Cloud ECS computing platform of <a href="https://cn.aliyun.com/?accounttraceid=a3b99d73-db56-4cd2-ae2f-aa707c1e0a9e">Alibaba Cloud</a>. But there were still glitches. When I open the data holding folder, I found that the corresponding pars of natural language setences and the queries, repectively from the .en and .sparql files, were not well matched like the provided pretrained sample. And the final inferences did not feel so logic to the questions. It was strange-looking.</p>
-
-<h2 id="conclusion">Conclusion</h2>
-<p>We must be cautious about the following points:\
-1, the different versions of TensorFlow can lead to the gap between the functions in the module:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tf.contrib
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[(</span><span class="s1">'Which'</span>, <span class="s1">'JJ'</span><span class="o">)</span>,
+ <span class="o">(</span><span class="s1">'movie'</span>, <span class="s1">'NN'</span><span class="o">)</span>,
+ <span class="o">(</span><span class="s1">'does'</span>, <span class="s1">'VBZ'</span><span class="o">)</span>,
+ <span class="o">(</span><span class="s1">'Audrey'</span>, <span class="s1">'NNP'</span><span class="o">)</span>,
+ <span class="o">(</span><span class="s1">'star'</span>, <span class="s1">'VB'</span><span class="o">)</span>,
+ <span class="o">(</span><span class="s1">'?'</span>, <span class="s1">'.'</span><span class="o">)]</span>
 </code></pre></div></div>
-<p>may be not existing any more in higher versions, which leads to the missing of its sub-modules.</p>
+<p>then we get the semantic tree like:
+<img src="assets/Audrey_tree1.PNG" alt="" /></p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">('Which</span><span class="w"> </span><span class="err">movie</span><span class="w"> </span><span class="err">does</span><span class="w"> </span><span class="err">&lt;A&gt;</span><span class="w"> </span><span class="err">star</span><span class="w"> </span><span class="err">?'</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="err">'Person'</span><span class="p">]</span><span class="err">)</span><span class="w">
+</span></code></pre></div></div>
 
-<p>2, If it is run on the online computing cloud, must pay attention to the internet connection interface of virtual server, for it could be unable to use the SPARQL or any relevant functions to the DBpedia.</p>
+<blockquote>
+  <p>Problem that I think for I :
+		The semantic parsing is not automated enough that it needs further improvement.</p>
+</blockquote>
 
-<h1 id="recent-experiments">Recent Experiments</h1>
+<h3 id="21-query-template">2.1 Query Template</h3>
+<p>Then, based on the work in the last step, we construct the semantic structure for the query template:
+<img src="assets/Audrey_tree2.PNG" alt="" /></p>
 
-<p>Recently, the experiment have been into two trials:</p>
+<p>And then, with the help of matching the regex of the question,</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">class</span> <span class="nc">Movie</span><span class="p">(</span><span class="n">Particle</span><span class="p">):</span>
+    <span class="n">regex</span> <span class="o">=</span> <span class="n">Question</span><span class="p">(</span><span class="n">Pos</span><span class="p">(</span><span class="s">"DT"</span><span class="p">))</span> <span class="o">+</span> <span class="n">nouns</span>
+    <span class="k">def</span> <span class="nf">interpret</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">match</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">words</span><span class="o">.</span><span class="n">tokens</span>
+        <span class="k">return</span> <span class="n">IsMovie</span><span class="p">()</span> <span class="o">+</span> <span class="n">HasName</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
-<h2 id="experiment-1">Experiment 1</h2>
-<p>The experiment was still using the previously mentioned data from the topic ‘LC_QuAD_v6_art’. This trial was on a Lenovo computer without GPU, which had TensorFlow 1.3.0, Python 2.7, and tensorboard. The procedure was as the official guidance above. I checked into the files, where every thing seemed okay, and the inference after the training looked sensible.</p>
 
-<p>However, I did not notice the absence of the BLEU records. After rethinking about the experiment, I hypothesized that the early stop policy should be blamed, because I had set the stop, at about 12 00, less than the steps officially proposed.</p>
+<span class="k">class</span> <span class="nc">Actor</span><span class="p">(</span><span class="n">Particle</span><span class="p">):</span>
+    <span class="n">regex</span> <span class="o">=</span> <span class="n">nouns</span>
+    <span class="k">def</span> <span class="nf">interpret</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">match</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">words</span><span class="o">.</span><span class="n">tokens</span>
+        <span class="k">return</span> <span class="n">IsPerson</span><span class="p">()</span> <span class="o">+</span> <span class="n">HasKeyword</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
-<p>Another suspicion about the training is that, the originally provideded template contains a long number value at the last column which seems unexplainable.</p>
 
-<h2 id="experiment-2">Experiment 2</h2>
+<span class="k">class</span> <span class="nc">Director</span><span class="p">(</span><span class="n">Particle</span><span class="p">):</span>
+    <span class="n">regex</span> <span class="o">=</span> <span class="n">nouns</span>
+    <span class="k">def</span> <span class="nf">interpret</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">match</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">words</span><span class="o">.</span><span class="n">tokens</span>
+        <span class="k">return</span> <span class="n">IsPerson</span><span class="p">()</span> <span class="o">+</span> <span class="n">HasKeyword</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
-<p>Ok, here is my fatal fight with this model.</p>
 
-<p>Firstly, it must have something to say with the template selection. I have konwn that any even subtle edition of the file can lead to a huge divergence. So, this time, I just try to be a good boy and use the very official provided template, checking all the required details to reproduce the experiment.</p>
+<span class="k">class</span> <span class="nc">ListMoviesQuestion</span><span class="p">(</span><span class="n">QuestionTemplate</span><span class="p">):</span>
+    <span class="n">regex</span> <span class="o">=</span> <span class="n">Lemma</span><span class="p">(</span><span class="s">"list"</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">Lemma</span><span class="p">(</span><span class="s">"movie"</span><span class="p">)</span> <span class="o">|</span> <span class="n">Lemma</span><span class="p">(</span><span class="s">"film"</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">interpret</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">match</span><span class="p">):</span>
+        <span class="n">movie</span> <span class="o">=</span> <span class="n">IsMovie</span><span class="p">()</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">NameOf</span><span class="p">(</span><span class="n">movie</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">name</span><span class="p">,</span> <span class="s">"enum"</span>
 
-<p>Secondly, I admited that, at first, I had thought about(and physically, I really did the job) rewriting the cods, incuding overriding the lost function and the evaluation functions. But, anyway, I rewrote them back and do the suggested traditional way.</p>
+</code></pre></div></div>
+<p>we can get the query output:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT DISTINCT ?a WHERE <span class="o">{</span>
+   ?a rdf:type dbpedia-owl:Film.
+   ?x0 dbpprop:starring ?b.
+   ?a foaf:name ?x2.
+   ?b rdf:type &lt;A&gt;
+   ?b rdfs:label <span class="s2">"Audrey
+   ?b rdfs:label "</span>Audrey
+   <span class="o">}</span>
+</code></pre></div></div>
 
-<p>Finally, I put it on a high performance GPU <a href="https://www.jikecloud.net/list.html">online cloud</a>, sacrificing all the wages of my last week’s part-times to pay for the cloud device. I was excited facing the battle with the model.</p>
+<blockquote>
+  <p>Problem that I think for II:
+		We can see, the regex needs to be built from the parsing result.
+		So, when dealing with a totally new question, it risks of disability to immediately figure 
+		out the new regex for the new questions that the model has never faced before.
+		How? With what? Based on what?
+		I must go deeper.
+		The regex is still not immediately created while facing a new genre of  question, this 
+		needs  to be focused.</p>
+</blockquote>
 
-<p>And, nice, look at what it brought us:</p>
-<ul>
-  <li><a href="https://docs.google.com/document/d/1S49o0qlKtHYMHDekGryPbUO2CcVXHQeZ1m72Zdm4yVw/edit?usp=sharing">Experiment 1 notes</a></li>
-  <li><a href="https://docs.google.com/document/d/1fkbylG4wK9waybCMiM8MKtrUFCUaartHKhShajt2UD0/edit?usp=sharing">Experiment 2 notes</a></li>
-</ul>
+<h2 id="summing-up-for-week-2">Summing Up For Week 2</h2>
 
-<h2 id="experiments-results">Experiments Results</h2>
+<p>The Templates Generator component is basically built, 
+however, still far from perfect.
+The next days should delve into the automation about creating the new regexes for the never-processed genres of questions, for which I consider the semantic parsing is the point to break through.</p>
 
-<p>I deployed the ‘LC_QuAD_v6_art’ dataset and the ‘monument_300’ dataset as parallel comparative groups to conduct the experiment. Here the evaluation of the accuracy of the neural model was based on the BLEU test, which is a modified precision metric for testing the machine translation output against the reference translation standard.</p>
+<p>We have certain achievement this week, but still a long way to go.</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Dataset</th>
-      <th>Examples per template</th>
-      <th>Training size</th>
-      <th>Average examples per instance</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>dbo:LC_QuAD_v6_art</td>
-      <td>608</td>
-      <td>1200</td>
-      <td>161.94</td>
-    </tr>
-    <tr>
-      <td>dbo:Monument</td>
-      <td>300</td>
-      <td>12000</td>
-      <td>13.35 *</td>
-    </tr>
-  </tbody>
-</table>
-
-<ul>
-  <li><em>Because of the pretraining of the dbo:Monument, the figure shares a great similarity this <a href="https://arxiv.org/html/1708.07624">report</a>.</em></li>
-</ul>
-
-<p>The experimentation for dbo:Monument was conducted on a virtual cloud server with the GPU of GTX1080, 480GB SSD, and E5-2690 v3 24-core CPU of 64G. The experimentation for dbo:LC_QuAD_v6_art was conducted on another virtual cloud server with the GTX1080, 2TB SSD, and E5-2658 v3 48-core CPU of 64G, and . The basical setting for both comparative groups were Ubuntu 16 system with TensorFlow 1.3.0. The testing for the NMT model at was mainly displayed at three different times, i.e. at the 3,000th, 9,000th, and 12,000th iteration.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Dataset</th>
-      <th>BLEU 3k steps</th>
-      <th>BLEU 9k steps</th>
-      <th>BLEU 12k steps</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>dbo:LC_QuAD_v6_art</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <td>dbo:Monument</td>
-      <td>67.0 (May 16 14:23:21 2019)</td>
-      <td>79.6 (May 16 15:55:34 2019)</td>
-      <td>80.2 (May 16 17:00:32 2019)</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="final-analyses">Final Analyses</h2>
-
-<p>In the different parts of the experiments, we can see the huge gap between the training results, which tells a lot of information.</p>
-<ul>
-  <li>The model may have a strong dependency on the generated data, which requires the high quality of the source template.</li>
-  <li>And, before all the training, make sure the environment is fit for every details of the prerequisites, e.g, the version of packages and the dependencies of them.</li>
-</ul>
-
-<h1 id="references">References</h1>
-<p>[1] Tommaso Soru, Edgard Marx, André Valdestilhas, Diego Esteves, Diego Moussallem, Gustavo Publio. (2018). Neural Machine Translation for Query Construction and Composition.</p>
-
-<p>[2] Papineni K., Roukos S., Ward T., Zhu W. (2002). BLEU: a method for automatic evaluation of machine translation. Proceedings of the 40th annual meeting on association for computational linguistics.</p>
 
 
                 <hr style="visibility: hidden;">
 
                 <ul class="pager">
                     
-                    
-                    <li class="next">
-                        <a href="/2019/05/26/Bonding/" data-toggle="tooltip" data-placement="top" title="Bonding">
-                        Next<br>
-                        <span>Bonding</span>
+                    <li class="previous">
+                        <a href="/2019/06/02/Architecture/" data-toggle="tooltip" data-placement="top" title="Architecture">
+                        Previous<br>
+                        <span>Architecture</span>
                         </a>
                     </li>
+                    
                     
                 </ul>
 
