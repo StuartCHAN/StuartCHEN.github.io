@@ -5,8 +5,8 @@
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 10 Jun 2019 01:11:19 +0800</pubDate>
-    <lastBuildDate>Mon, 10 Jun 2019 01:11:19 +0800</lastBuildDate>
+    <pubDate>Mon, 10 Jun 2019 01:21:03 +0800</pubDate>
+    <lastBuildDate>Mon, 10 Jun 2019 01:21:03 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -69,7 +69,7 @@ Then we can freely make the request to the Spotlight:&lt;/p&gt;
  &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'?'&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;'.'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)]&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;then we get the semantic tree like:
-&lt;img src=&quot;assets/Audrey_tree1.PNG&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;assets/Audrey_tree1.PNG&quot; alt=&quot;Audrey_tree1&quot; /&gt;&lt;/p&gt;
 &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;('Which&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;movie&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;does&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;A&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;star&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;?'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'Person'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -80,7 +80,7 @@ Then we can freely make the request to the Spotlight:&lt;/p&gt;
 
 &lt;h3 id=&quot;21-query-template&quot;&gt;2.1 Query Template&lt;/h3&gt;
 &lt;p&gt;Then, based on the work in the last step, we construct the semantic structure for the query template:
-&lt;img src=&quot;assets/Audrey_tree2.PNG&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;assets/Audrey_tree2.PNG&quot; alt=&quot;Audrey_tree2&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;And then, with the help of matching the regex of the question,&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
