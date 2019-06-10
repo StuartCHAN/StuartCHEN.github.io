@@ -203,13 +203,13 @@
 
 <p>The model architecture is like:</p>
 
-<p><img src="assets/Atten_NSPM00.png" alt="architecture and pipeline" /></p>
+<p><img src="https://pic3.zhimg.com/80/v2-a9408da7b2103f4018708efdc3e1f6be_hd.jpg" alt="architecture and pipeline" /></p>
 
 <h1 id="pipeline">Pipeline</h1>
 
 <h2 id="1-question-generation-from-natural-language">1. Question Generation from Natural Language</h2>
 
-<p><img src="assets/Atten_NSPM00.QuestionsGeneration.png" alt="QuestionsGeneration" /></p>
+<p><img src="https://pic2.zhimg.com/80/v2-cbcf157a6a472066848f3623789a9565_hd.jpg" alt="QuestionsGeneration" /></p>
 
 <p>We will use attention mechanism to generate questions from natural language contextual passage. By detecting entities in the passage, it will automatically get questions about the entities.</p>
 
@@ -218,7 +218,10 @@
 <p>We use the natural language passage from Wikipedia as input :</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Audrey Hepburn was a British actress and humanitarian. Recognised as a movie star and fashion icon, Hepburn was active during Hollywood's Golden Age. She was ranked by the American Film Institute as the third-greatest female screen legend in Golden Age Hollywood, and was inducted into the International Best Dressed List Hall of Fame. She rose to star in Roman Holiday in 1953.
 </code></pre></div></div>
+<p><img src="https://pic1.zhimg.com/80/v2-6a37b3b2f4db3949137d90642df08ff4_hd.png" alt="" /></p>
+
 <h3 id="12-attention-layer-with-embedding">1.2 Attention Layer with Embedding</h3>
+
 <p>The passage goes through attention layer with embedding:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># T stands for time_steps, timing length
@@ -288,7 +291,7 @@
 
 <h2 id="2-from-natural-language-questions-to-templates">2. From Natural Language Questions to Templates</h2>
 
-<p><img src="assets/Atten_NSPM00.TemplatesGeneration.png" alt="" /></p>
+<p><img src="https://pic2.zhimg.com/80/v2-a23047e0556d185a03e86f145659d625_hd.jpg" alt="" /></p>
 
 <p>With the help of semantic parsing, the model extracts the templates from the questions.</p>
 
@@ -326,7 +329,7 @@
 <p>The Templates Bank is a base where stores the existed templates. 
 The basic idea is to use the DBpedia entities embedding vectors to encode the question templates in order to match the existent templates.</p>
 
-<p><img src="assets/Atten_NSPM00.TemplatesMatching.png" alt="TemplatesMatching" /></p>
+<p><img src="https://pic1.zhimg.com/80/v2-4a5f6b5e4f26dfb80083e9a3e3c337ec_hd.jpg" alt="TemplatesMatching" /></p>
 
 <h2 id="4-comparison-of-newly-generated-templates-and-the-model-matching">4. Comparison of Newly Generated Templates and the Model Matching</h2>
 <p>The templates generated in the previous step shall be compared against the tempalets in the Templates Bank as to match the similar one. Then, if matched, it will refer to the similar trained model that contains the matched template; if not matched, it turns to train the model on the new templates, and store the new results into the Templates Bank.</p>

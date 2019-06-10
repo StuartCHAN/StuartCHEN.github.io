@@ -237,39 +237,39 @@ It works on two parts parallel:</p>
 
 <p>To illustrate the ideas, I would hope to show you this figure that was extracted from the data below:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    {
-                            "id": "3",
-                            "answertype": "resource",
-                            "aggregation": false,
-                            "onlydbo": true,
-                            "hybrid": false,
-                            "question": [{
-                                            "language": "en",
-                                            "string": "Who was the wife of U.S. president Lincoln?",
-                                            "keywords": "U.S. president, Lincoln, wife"
-                                    },
-    …
-    "query": {
-    "sparql": 
-    "PREFIX dbo: &lt;http://dbpedia.org/ontology/&gt;\nPREFIX res: &lt;http://dbpedia.org/resource/&gt;\nSELECT DISTINCT ?uri \nWHERE {\n\tres:Abraham_Lincoln dbo:spouse ?uri.\n}"
-                            },
-                            "answers": [{
-                                    "head": {
-                                            "vars": [
-                                                    "uri"
-                                            ]
-                                    },
-                                    "results": {
-                                            "bindings": [{
-                                                    "uri": {
-                                                            "type": "uri",
-                                                            "value": "http://dbpedia.org/resource/Mary_Todd_Lincoln"
-                                                    }
-</code></pre></div></div>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">        </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"answertype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resource"</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"aggregation"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"onlydbo"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"hybrid"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"question"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                                                </span><span class="s2">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+                                                </span><span class="s2">"string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Who was the wife of U.S. president Lincoln?"</span><span class="p">,</span><span class="w">
+                                                </span><span class="s2">"keywords"</span><span class="p">:</span><span class="w"> </span><span class="s2">"U.S. president, Lincoln, wife"</span><span class="w">
+                                        </span><span class="p">},</span><span class="w">
+        </span><span class="err">…</span><span class="w">
+        </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"sparql"</span><span class="p">:</span><span class="w"> 
+        </span><span class="s2">"PREFIX dbo: &lt;http://dbpedia.org/ontology/&gt;</span><span class="se">\n</span><span class="s2">PREFIX res: &lt;http://dbpedia.org/resource/&gt;</span><span class="se">\n</span><span class="s2">SELECT DISTINCT ?uri </span><span class="se">\n</span><span class="s2">WHERE {</span><span class="se">\n\t</span><span class="s2">res:Abraham_Lincoln dbo:spouse ?uri.</span><span class="se">\n</span><span class="s2">}"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                                        </span><span class="s2">"head"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                                </span><span class="s2">"vars"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                                        </span><span class="s2">"uri"</span><span class="w">
+                                                </span><span class="p">]</span><span class="w">
+                                        </span><span class="p">},</span><span class="w">
+                                        </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                                </span><span class="s2">"bindings"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                                                        </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                                                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uri"</span><span class="p">,</span><span class="w">
+                                                                </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dbpedia.org/resource/Mary_Todd_Lincoln"</span><span class="w">
+                                                        </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
 
-<p><img src="assets/tree.png" alt="" /></p>
+<p><img src="https://pic1.zhimg.com/80/v2-c9e0a1948e0e405081513620172f94f0_hd.jpg" alt="" /></p>
 
-<p><img src="assets/semantic_parser.PNG" alt="" /></p>
+<p><img src="https://pic3.zhimg.com/80/v2-bf0e8dcbe4a0a7804196c8fcfc055c62_hd.png" alt="" /></p>
 
 <p>This show the idelogical processing about how we detect the entities from the sentence and do the parsing, because we need to mapp them towards the RDF in DBpedia.</p>
 

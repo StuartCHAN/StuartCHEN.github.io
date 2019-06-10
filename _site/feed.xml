@@ -5,8 +5,8 @@
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 10 Jun 2019 01:21:03 +0800</pubDate>
-    <lastBuildDate>Mon, 10 Jun 2019 01:21:03 +0800</lastBuildDate>
+    <pubDate>Mon, 10 Jun 2019 16:46:10 +0800</pubDate>
+    <lastBuildDate>Mon, 10 Jun 2019 16:46:10 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -69,7 +69,7 @@ Then we can freely make the request to the Spotlight:&lt;/p&gt;
  &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'?'&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;'.'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)]&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;then we get the semantic tree like:
-&lt;img src=&quot;assets/Audrey_tree1.PNG&quot; alt=&quot;Audrey_tree1&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://pic2.zhimg.com/80/v2-56675bcbf18f06a3fd2ee116c87a5381_hd.png&quot; alt=&quot;Audrey_tree1&quot; /&gt;&lt;/p&gt;
 &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;('Which&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;movie&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;does&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;A&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;star&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;?'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'Person'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -80,7 +80,7 @@ Then we can freely make the request to the Spotlight:&lt;/p&gt;
 
 &lt;h3 id=&quot;21-query-template&quot;&gt;2.1 Query Template&lt;/h3&gt;
 &lt;p&gt;Then, based on the work in the last step, we construct the semantic structure for the query template:
-&lt;img src=&quot;assets/Audrey_tree2.PNG&quot; alt=&quot;Audrey_tree2&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://pic1.zhimg.com/80/v2-740e8b38b75543e8584305caeca2cb38_hd.jpg&quot; alt=&quot;Audrey_tree2&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;And then, with the help of matching the regex of the question,&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
@@ -163,13 +163,13 @@ The next days should delve into the automation about creating the new regexes fo
 
 &lt;p&gt;The model architecture is like:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;assets/Atten_NSPM00.png&quot; alt=&quot;architecture and pipeline&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://pic3.zhimg.com/80/v2-a9408da7b2103f4018708efdc3e1f6be_hd.jpg&quot; alt=&quot;architecture and pipeline&quot; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;pipeline&quot;&gt;Pipeline&lt;/h1&gt;
 
 &lt;h2 id=&quot;1-question-generation-from-natural-language&quot;&gt;1. Question Generation from Natural Language&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;assets/Atten_NSPM00.QuestionsGeneration.png&quot; alt=&quot;QuestionsGeneration&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://pic2.zhimg.com/80/v2-cbcf157a6a472066848f3623789a9565_hd.jpg&quot; alt=&quot;QuestionsGeneration&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;We will use attention mechanism to generate questions from natural language contextual passage. By detecting entities in the passage, it will automatically get questions about the entities.&lt;/p&gt;
 
@@ -178,7 +178,10 @@ The next days should delve into the automation about creating the new regexes fo
 &lt;p&gt;We use the natural language passage from Wikipedia as input :&lt;/p&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    Audrey Hepburn was a British actress and humanitarian. Recognised as a movie star and fashion icon, Hepburn was active during Hollywood's Golden Age. She was ranked by the American Film Institute as the third-greatest female screen legend in Golden Age Hollywood, and was inducted into the International Best Dressed List Hall of Fame. She rose to star in Roman Holiday in 1953.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;https://pic1.zhimg.com/80/v2-6a37b3b2f4db3949137d90642df08ff4_hd.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
 &lt;h3 id=&quot;12-attention-layer-with-embedding&quot;&gt;1.2 Attention Layer with Embedding&lt;/h3&gt;
+
 &lt;p&gt;The passage goes through attention layer with embedding:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# T stands for time_steps, timing length
@@ -248,7 +251,7 @@ The next days should delve into the automation about creating the new regexes fo
 
 &lt;h2 id=&quot;2-from-natural-language-questions-to-templates&quot;&gt;2. From Natural Language Questions to Templates&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;assets/Atten_NSPM00.TemplatesGeneration.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://pic2.zhimg.com/80/v2-a23047e0556d185a03e86f145659d625_hd.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;With the help of semantic parsing, the model extracts the templates from the questions.&lt;/p&gt;
 
@@ -286,7 +289,7 @@ The next days should delve into the automation about creating the new regexes fo
 &lt;p&gt;The Templates Bank is a base where stores the existed templates. 
 The basic idea is to use the DBpedia entities embedding vectors to encode the question templates in order to match the existent templates.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;assets/Atten_NSPM00.TemplatesMatching.png&quot; alt=&quot;TemplatesMatching&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://pic1.zhimg.com/80/v2-4a5f6b5e4f26dfb80083e9a3e3c337ec_hd.jpg&quot; alt=&quot;TemplatesMatching&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;4-comparison-of-newly-generated-templates-and-the-model-matching&quot;&gt;4. Comparison of Newly Generated Templates and the Model Matching&lt;/h2&gt;
 &lt;p&gt;The templates generated in the previous step shall be compared against the tempalets in the Templates Bank as to match the similar one. Then, if matched, it will refer to the similar trained model that contains the matched template; if not matched, it turns to train the model on the new templates, and store the new results into the Templates Bank.&lt;/p&gt;
@@ -344,39 +347,39 @@ It works on two parts parallel:&lt;/p&gt;
 
 &lt;p&gt;To illustrate the ideas, I would hope to show you this figure that was extracted from the data below:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    {
-                            &quot;id&quot;: &quot;3&quot;,
-                            &quot;answertype&quot;: &quot;resource&quot;,
-                            &quot;aggregation&quot;: false,
-                            &quot;onlydbo&quot;: true,
-                            &quot;hybrid&quot;: false,
-                            &quot;question&quot;: [{
-                                            &quot;language&quot;: &quot;en&quot;,
-                                            &quot;string&quot;: &quot;Who was the wife of U.S. president Lincoln?&quot;,
-                                            &quot;keywords&quot;: &quot;U.S. president, Lincoln, wife&quot;
-                                    },
-    …
-    &quot;query&quot;: {
-    &quot;sparql&quot;: 
-    &quot;PREFIX dbo: &amp;lt;http://dbpedia.org/ontology/&amp;gt;\nPREFIX res: &amp;lt;http://dbpedia.org/resource/&amp;gt;\nSELECT DISTINCT ?uri \nWHERE {\n\tres:Abraham_Lincoln dbo:spouse ?uri.\n}&quot;
-                            },
-                            &quot;answers&quot;: [{
-                                    &quot;head&quot;: {
-                                            &quot;vars&quot;: [
-                                                    &quot;uri&quot;
-                                            ]
-                                    },
-                                    &quot;results&quot;: {
-                                            &quot;bindings&quot;: [{
-                                                    &quot;uri&quot;: {
-                                                            &quot;type&quot;: &quot;uri&quot;,
-                                                            &quot;value&quot;: &quot;http://dbpedia.org/resource/Mary_Todd_Lincoln&quot;
-                                                    }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;answertype&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;resource&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;aggregation&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;onlydbo&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;hybrid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;question&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;language&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;en&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Who was the wife of U.S. president Lincoln?&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;keywords&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;U.S. president, Lincoln, wife&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                                        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;…&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;query&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;sparql&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; 
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;PREFIX dbo: &amp;lt;http://dbpedia.org/ontology/&amp;gt;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;PREFIX res: &amp;lt;http://dbpedia.org/resource/&amp;gt;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;SELECT DISTINCT ?uri &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;WHERE {&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n\t&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;res:Abraham_Lincoln dbo:spouse ?uri.&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;}&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                                &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;answers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                                        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;head&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;vars&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                                                        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;uri&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                                                &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                                        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                                        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;results&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;bindings&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                                                        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;uri&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                                                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;uri&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                                                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;value&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;http://dbpedia.org/resource/Mary_Todd_Lincoln&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                                                        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;assets/tree.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://pic1.zhimg.com/80/v2-c9e0a1948e0e405081513620172f94f0_hd.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;assets/semantic_parser.PNG&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://pic3.zhimg.com/80/v2-bf0e8dcbe4a0a7804196c8fcfc055c62_hd.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;This show the idelogical processing about how we detect the entities from the sentence and do the parsing, because we need to mapp them towards the RDF in DBpedia.&lt;/p&gt;
 
