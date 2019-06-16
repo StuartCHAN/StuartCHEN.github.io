@@ -10,7 +10,7 @@
     <meta name="keywords"  content="BY, Blog Yeah, Stuart Jiazheng Chen, stuartchan, Machine Learning, NLP, Cognitive Science, Linguistics ">
     <meta name="theme-color" content="#000000">
     
-    <title>Week 1 - Stuart Chen | Blog Yeah</title>
+    <title>Week 3 - Stuart Chen | Blog Yeah</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2019/06/01/Week-1/">
+    <link rel="canonical" href="http://localhost:4000/2019/06/16/Week-3/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -150,13 +150,13 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/ivana-cajina-343416-unsplash.jpg" width="0" height="0"> -->
+<!-- <img src="/img/4k-wallpaper-adventure-climb-691668.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/ivana-cajina-343416-unsplash.jpg')
+        background-image: url('/img/4k-wallpaper-adventure-climb-691668.jpg')
     }
 
     
@@ -176,12 +176,12 @@
                         <a class="tag" href="/tags/#DBpedia" title="DBpedia">DBpedia</a>
                         
                     </div>
-                    <h1>Week 1</h1>
+                    <h1>Week 3</h1>
                     
                     
-                    <h2 class="subheading">Let's firstly set up the evaluation measure!</h2>
+                    <h2 class="subheading">Improving the Generation Component + Thinking About The Evaluations</h2>
                     
-                    <span class="meta">Posted by Stuart Chen on June 1, 2019</span>
+                    <span class="meta">Posted by Stuart Chen on June 16, 2019</span>
                 </div>
             </div>
         </div>
@@ -199,80 +199,92 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<blockquote>
-  <h1 id="the-goals-for-week-1">The Goals for Week 1</h1>
-</blockquote>
+				<h1 id="the-week--2">The Week  2</h1>
 
-<p>Let’s have a look into this week’s topics:</p>
+<p>This week, I have replaced the exited tools with my own innovative and independent modules pertinent to DBpedia. However, after doing so, the problem emerges while doing the BLEU evaluation.</p>
+
+<p>I have buried myself into coding and checking on this weekends, while spending the whole weekend in evaluating and considering the flexibility of the generation component.</p>
+
+<p>At present, the component only accepts the limited questions matched to certain regexes and generate the template queries that do not contain explicit URLs.</p>
+
 <blockquote>
   <ol>
     <li>
-      <p>qald evaluation against GERBIL interface</p>
+      <p>the current component rejects the questions’ formats in  annotations_monument.csv</p>
     </li>
     <li>
-      <p>building the semantic tree structue for the natural language sentence</p>
+      <p>the function is so restricted that, the question which it had not accepted would be accepted well after
+  fine-tuning some uppper/lower class or even arranging the order:
+   1) the syntactic parsing dependency is not working very well in transforming the similar question in the
+      templates; 
+   2) the regex matching stays fragile, not robust enough to catch the syntactical structure of a new question; 
+   3) while doing the BLEU, I replace the variables in the templates with exact vocabularies, and the module
+      could not handle it and refused to generate the template queries, which tells me that it is far from 
+      perfect.</p>
+    </li>
+  </ol>
+
+</blockquote>
+
+<p>The work in this week’s goals:</p>
+
+<blockquote>
+  <ol>
+    <li>
+      <p>Improving the Generation Component</p>
+    </li>
+    <li>
+      <p>Thinking About The Evaluations</p>
     </li>
   </ol>
 </blockquote>
 
-<h2 id="the-balance-between-whether-to-write-a-script-to-de-the-evaluation-or-to-wrap-the-whole-system-into-gerbil">The balance between whether to write a script to de the evaluation or to wrap the whole system into GERBIL</h2>
+<h2 id="1-improving-the-generation-component">1. Improving the Generation Component</h2>
 
-<h3 id="method-1-evaluationsh--evaluationpy-vs-mehod-2-wrapper-of-the-qa-system">Method 1: evaluation.sh + evaluation.py V.S. Mehod 2: Wrapper of the QA System</h3>
+<h3 id="thinking-deeper-to-find-a-method-to-more-intelligently-represent-the-syntactic-structures-of-the-questions">Thinking deeper to find a method to more intelligently represent the syntactic structures of the questions.</h3>
 
-<p>For Method 1, the basic idea was that, based on the two files that I committed to my <a href="https://github.com/StuartCHAN/neural-qa/tree/gsoc-stuart">branch</a>, the evaluation depends on running the GERBIL system on local machine to get a json-format response as comparison. 
-It works on two parts parallel:</p>
+<p>For two reasons:</p>
+<blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    1)first, in the evaluation.sh , it calls the NSpM model to give the output based on trained model;
+  <p>1) It helps to improve the automation of templates generation, especially in query templates generation, for 
+   which I have worked on three paths:
+      Syntactic parsing with entity detection to seize the structure, that?s the currently primary option but not
+      highly automatic;
+      Use sequence to sequence LSTM to train a model for natural language to query, which is estimated to be quite &gt;       time-consuming;
+      Deploy the Universal Sentence Encoder to embed the syntactic structures into embedding vectors as the 
+      representation, which would also help a lot in the next phase of project while this requires some endeavors.</p>
+</blockquote>
 
-    2)next, it retrieve the comparative output from the GERBIL to do the evaluation. The evaluation is conducted upon the data file after generation operation.  
-</code></pre></div></div>
+<blockquote>
+  <p>2) If the representation of the syntactic structures is efficient enough, it will accelerate the computation 
+  for matching the templates in the Templates Bank.  It reinforces the grounding of Templates Comparison, which is 
+  to be one of the goals in next week too.
+  And from this, it derives two aspects of further consideration:
+  the storing of  the templates and their representation, whether to store in the database or, maybe more 
+  efficient for computing the matching, in Hadoop/Spark via the python API;
+  Still, the representation of the templates or their syntactic structures, for easier matching, like calculating 
+  the similarity of two embedding vectors to get the most matched.</p>
+</blockquote>
 
-<p>For Method 2, it is that the GERBIL needs to wrap the whole self-built QA system that’s written in python into the <a href="https://github.com/dice-group/GerbilQA-Benchmarking-Template/blob/master/src/main/java/org/dice/qa/impl/ExampleQASystem.java">existed system</a> that’s written in java via jython. And I was adviced that this would be more straightforward to spares us from implementing the evaluation module of our own.</p>
+<h2 id="2-thinking-about-the-evaluations">2. Thinking About The Evaluations</h2>
 
-<p>Besides, I have worked on cleaning up and refining a dataset from QALD that may be useful sooner, which contains a set of natural language queries and SPARQL queries with their answer’s value.</p>
+<blockquote>
+  <p>1) After two days’ trial on evaluating the performance, the lacking in robustness is apparent after the 
+      changing in this week.
+      So, how to improve the model based on the experiments that we had.
+      First, the dependency parsing might be a good idea.
+      Second, the regexes should be more intelligent.</p>
+</blockquote>
 
-<p>When talking the question, those natural language queries, it highlights the importance of sparsing a sentence while generating the template.</p>
+<blockquote>
+  <p>2) We will try on the GERBIL plateform, for its convienience.</p>
+</blockquote>
 
-<h2 id="entity-recognition--semantic-parsing">Entity Recognition &amp; Semantic Parsing</h2>
+<h2 id="the-commit-of-this-week">The Commit of This Week</h2>
 
-<p>To illustrate the ideas, I would hope to show you this figure that was extracted from the data below:</p>
+<p>This is the <a href="https://github.com/dbpedia/neural-qa/compare/master...StuartCHAN:gsoc-stuart?expand=1">summing-up</a> the works that I have done.</p>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">        </span><span class="p">{</span><span class="w">
-                                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
-                                </span><span class="s2">"answertype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resource"</span><span class="p">,</span><span class="w">
-                                </span><span class="s2">"aggregation"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                                </span><span class="s2">"onlydbo"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                                </span><span class="s2">"hybrid"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                                </span><span class="s2">"question"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-                                                </span><span class="s2">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
-                                                </span><span class="s2">"string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Who was the wife of U.S. president Lincoln?"</span><span class="p">,</span><span class="w">
-                                                </span><span class="s2">"keywords"</span><span class="p">:</span><span class="w"> </span><span class="s2">"U.S. president, Lincoln, wife"</span><span class="w">
-                                        </span><span class="p">},</span><span class="w">
-        </span><span class="err">…</span><span class="w">
-        </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"sparql"</span><span class="p">:</span><span class="w"> 
-        </span><span class="s2">"PREFIX dbo: &lt;http://dbpedia.org/ontology/&gt;</span><span class="se">\n</span><span class="s2">PREFIX res: &lt;http://dbpedia.org/resource/&gt;</span><span class="se">\n</span><span class="s2">SELECT DISTINCT ?uri </span><span class="se">\n</span><span class="s2">WHERE {</span><span class="se">\n\t</span><span class="s2">res:Abraham_Lincoln dbo:spouse ?uri.</span><span class="se">\n</span><span class="s2">}"</span><span class="w">
-                                </span><span class="p">},</span><span class="w">
-                                </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-                                        </span><span class="s2">"head"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                                                </span><span class="s2">"vars"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                                                        </span><span class="s2">"uri"</span><span class="w">
-                                                </span><span class="p">]</span><span class="w">
-                                        </span><span class="p">},</span><span class="w">
-                                        </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                                                </span><span class="s2">"bindings"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-                                                        </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                                                                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uri"</span><span class="p">,</span><span class="w">
-                                                                </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dbpedia.org/resource/Mary_Todd_Lincoln"</span><span class="w">
-                                                        </span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<p><img src="https://pic1.zhimg.com/80/v2-c9e0a1948e0e405081513620172f94f0_hd.jpg" alt="" /></p>
-
-<p><img src="https://pic3.zhimg.com/80/v2-bf0e8dcbe4a0a7804196c8fcfc055c62_hd.png" alt="" /></p>
-
-<p>This show the idelogical processing about how we detect the entities from the sentence and do the parsing, because we need to mapp them towards the RDF in DBpedia.</p>
-
+<p>For the next week, I will do more works concerning about the dependency parsing which pertains to the automated query template generation with robustness.</p>
 
 
                 <hr style="visibility: hidden;">
@@ -280,19 +292,12 @@ It works on two parts parallel:</p>
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2019/05/26/Bonding/" data-toggle="tooltip" data-placement="top" title="Bonding">
+                        <a href="/2019/06/08/Week-2/" data-toggle="tooltip" data-placement="top" title="Week 2">
                         Previous<br>
-                        <span>Bonding</span>
+                        <span>Week 2</span>
                         </a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2019/06/02/Architecture/" data-toggle="tooltip" data-placement="top" title="Architecture">
-                        Next<br>
-                        <span>Architecture</span>
-                        </a>
-                    </li>
                     
                 </ul>
 

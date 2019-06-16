@@ -5,9 +5,111 @@
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 10 Jun 2019 16:46:10 +0800</pubDate>
-    <lastBuildDate>Mon, 10 Jun 2019 16:46:10 +0800</lastBuildDate>
+    <pubDate>Mon, 17 Jun 2019 01:45:30 +0800</pubDate>
+    <lastBuildDate>Mon, 17 Jun 2019 01:45:30 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Week 3</title>
+        <description>&lt;h1 id=&quot;the-week--2&quot;&gt;The Week  2&lt;/h1&gt;
+
+&lt;p&gt;This week, I have replaced the exited tools with my own innovative and independent modules pertinent to DBpedia. However, after doing so, the problem emerges while doing the BLEU evaluation.&lt;/p&gt;
+
+&lt;p&gt;I have buried myself into coding and checking on this weekends, while spending the whole weekend in evaluating and considering the flexibility of the generation component.&lt;/p&gt;
+
+&lt;p&gt;At present, the component only accepts the limited questions matched to certain regexes and generate the template queries that do not contain explicit URLs.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;
+      &lt;p&gt;the current component rejects the questions’ formats in  annotations_monument.csv&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;p&gt;the function is so restricted that, the question which it had not accepted would be accepted well after
+  fine-tuning some uppper/lower class or even arranging the order:
+   1) the syntactic parsing dependency is not working very well in transforming the similar question in the
+      templates; 
+   2) the regex matching stays fragile, not robust enough to catch the syntactical structure of a new question; 
+   3) while doing the BLEU, I replace the variables in the templates with exact vocabularies, and the module
+      could not handle it and refused to generate the template queries, which tells me that it is far from 
+      perfect.&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+
+&lt;/blockquote&gt;
+
+&lt;p&gt;The work in this week’s goals:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;
+      &lt;p&gt;Improving the Generation Component&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;p&gt;Thinking About The Evaluations&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;1-improving-the-generation-component&quot;&gt;1. Improving the Generation Component&lt;/h2&gt;
+
+&lt;h3 id=&quot;thinking-deeper-to-find-a-method-to-more-intelligently-represent-the-syntactic-structures-of-the-questions&quot;&gt;Thinking deeper to find a method to more intelligently represent the syntactic structures of the questions.&lt;/h3&gt;
+
+&lt;p&gt;For two reasons:&lt;/p&gt;
+&lt;blockquote&gt;
+
+  &lt;p&gt;1) It helps to improve the automation of templates generation, especially in query templates generation, for 
+   which I have worked on three paths:
+      Syntactic parsing with entity detection to seize the structure, that?s the currently primary option but not
+      highly automatic;
+      Use sequence to sequence LSTM to train a model for natural language to query, which is estimated to be quite &amp;gt;       time-consuming;
+      Deploy the Universal Sentence Encoder to embed the syntactic structures into embedding vectors as the 
+      representation, which would also help a lot in the next phase of project while this requires some endeavors.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;2) If the representation of the syntactic structures is efficient enough, it will accelerate the computation 
+  for matching the templates in the Templates Bank.  It reinforces the grounding of Templates Comparison, which is 
+  to be one of the goals in next week too.
+  And from this, it derives two aspects of further consideration:
+  the storing of  the templates and their representation, whether to store in the database or, maybe more 
+  efficient for computing the matching, in Hadoop/Spark via the python API;
+  Still, the representation of the templates or their syntactic structures, for easier matching, like calculating 
+  the similarity of two embedding vectors to get the most matched.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;2-thinking-about-the-evaluations&quot;&gt;2. Thinking About The Evaluations&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;1) After two days’ trial on evaluating the performance, the lacking in robustness is apparent after the 
+      changing in this week.
+      So, how to improve the model based on the experiments that we had.
+      First, the dependency parsing might be a good idea.
+      Second, the regexes should be more intelligent.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;2) We will try on the GERBIL plateform, for its convienience.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;the-commit-of-this-week&quot;&gt;The Commit of This Week&lt;/h2&gt;
+
+&lt;p&gt;This is the &lt;a href=&quot;https://github.com/dbpedia/neural-qa/compare/master...StuartCHAN:gsoc-stuart?expand=1&quot;&gt;summing-up&lt;/a&gt; the works that I have done.&lt;/p&gt;
+
+&lt;p&gt;For the next week, I will do more works concerning about the dependency parsing which pertains to the automated query template generation with robustness.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 16 Jun 2019 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2019/06/16/Week-3/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/06/16/Week-3/</guid>
+        
+        <category>GSoC2019</category>
+        
+        <category>NLP</category>
+        
+        <category>DBpedia</category>
+        
+        
+      </item>
     
       <item>
         <title>Week 2</title>
@@ -70,6 +172,7 @@ Then we can freely make the request to the Spotlight:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;then we get the semantic tree like:
 &lt;img src=&quot;https://pic2.zhimg.com/80/v2-56675bcbf18f06a3fd2ee116c87a5381_hd.png&quot; alt=&quot;Audrey_tree1&quot; /&gt;&lt;/p&gt;
+
 &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;('Which&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;movie&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;does&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;A&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;star&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;?'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'Person'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
