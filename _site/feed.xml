@@ -5,8 +5,8 @@
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
     <link>https://stuartchan.github.io/</link>
     <atom:link href="https://stuartchan.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 25 Jun 2019 00:14:01 +0800</pubDate>
-    <lastBuildDate>Tue, 25 Jun 2019 00:14:01 +0800</lastBuildDate>
+    <pubDate>Tue, 25 Jun 2019 00:15:44 +0800</pubDate>
+    <lastBuildDate>Tue, 25 Jun 2019 00:15:44 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -88,13 +88,12 @@
 &lt;p&gt;This might help in two problems:&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1) the restrictedness of the vocabulary while the model works with the unprecedentde entity vocabulary that 
-   had not learned in the traing;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+  &lt;p&gt;1) the restrictedness of the vocabulary while the model works with the unprecedentde entity vocabulary that 
+     had not learned in the traing;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2) the global representation in the bi-LSTM encoding layer could not accurately handle the recognition of the &amp;gt;        entities in natuaral language.
+  &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2) the global representation in the bi-LSTM encoding layer could not accurately handle the recognition of the &amp;gt;      entities in natuaral language.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
 &lt;/blockquote&gt;
 </description>
