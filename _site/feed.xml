@@ -5,8 +5,8 @@
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
     <link>https://stuartchan.github.io/</link>
     <atom:link href="https://stuartchan.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 25 Jun 2019 00:04:24 +0800</pubDate>
-    <lastBuildDate>Tue, 25 Jun 2019 00:04:24 +0800</lastBuildDate>
+    <pubDate>Tue, 25 Jun 2019 00:14:01 +0800</pubDate>
+    <lastBuildDate>Tue, 25 Jun 2019 00:14:01 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -46,21 +46,19 @@
 
 &lt;h3 id=&quot;11-constituency-parsing-might-be-a-good-way-to-get-the-syntactial-structure&quot;&gt;1.1 Constituency Parsing might be a good way to get the syntactial structure&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;What is it? How is it diffrent from the previous method of dependency parsing?
+&lt;p&gt;What is it? How is it diffrent from the previous method of dependency parsing?&lt;/p&gt;
 
-Syntactic analysis is a very important part of analyzing sentences, including constituency parsing and dependency parsing, which have very large differences.
+&lt;p&gt;Syntactic analysis is a very important part of analyzing sentences, including constituency parsing and dependency parsing, which have very large differences.&lt;/p&gt;
 
-Let's take an exemple, the constituency parse tree breaks a text into sub-phrases. Non-terminals in the tree are types of phrases, the terminals are the words in the sentence, and the edges are unlabeled. For a simple sentence &quot;John sees Bill&quot;, a constituency parse would be: 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Let’s take an exemple, the constituency parse tree breaks a text into sub-phrases. Non-terminals in the tree are types of phrases, the terminals are the words in the sentence, and the edges are unlabeled. For a simple sentence “John sees Bill”, a constituency parse would be:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://pic3.zhimg.com/80/v2-448af772ea31d990d0f0b5414e6b1afa_hd.jpg&quot; alt=&quot;constituency_parse_tree&quot; /&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;It might do better in matching the relation between the pair(Object, Verb, Subject). However, it distract the focus from the importance of pairing the pair(Object + Property). So, I stll think dependency parsing is more pertinent to our problem in this aspect.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;It might do better in matching the relation between the pair(Object, Verb, Subject). However, it distract the focus from the importance of pairing the pair(Object + Property). So, I stll think dependency parsing is more pertinent to our problem in this aspect.&lt;/p&gt;
 
 &lt;h3 id=&quot;12-the-self-made-easy-mehod-when-the-sparqlwrapper-does-not-connect&quot;&gt;1.2 The Self-made Easy Mehod when the SPARQLwrapper does not connect&lt;/h3&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;The design goal is to post a request to the Virtuoso endpoint, so we simply do this:
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The design goal is to post a request to the Virtuoso endpoint, so we simply do this:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;request&lt;/span&gt;
 
@@ -81,18 +79,24 @@ Let's take an exemple, the constituency parse tree breaks a text into sub-phrase
 
 &lt;h3 id=&quot;the-duplicated-issue-for-data-generation-from-templates&quot;&gt;The Duplicated Issue For Data Generation From Templates&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;While running the given generator.py, the terminal showed that ther was a key be added an additional value.
+&lt;p&gt;While running the given generator.py, the terminal showed that ther was a key be added an additional value.&lt;/p&gt;
 
-Then I open the generated dataset file from the generator.py, searching for the redundant key-value pair. There was a vocabulary appeared twice in the dataset, which should be blamed for the duplicated mapping problem.
+&lt;p&gt;Then I open the generated dataset file from the generator.py, searching for the redundant key-value pair. There was a vocabulary appeared twice in the dataset, which should be blamed for the duplicated mapping problem.&lt;/p&gt;
 
-From this, I have an idea, why not use a comprehensive set of embeddding vector set to represent the vocabulary mapping to the knowledge graph entities in DBpedia?
+&lt;p&gt;From this, I have an idea, why not use a comprehensive set of embeddding vector set to represent the vocabulary mapping to the knowledge graph entities in DBpedia?&lt;/p&gt;
 
-This might help in two problems:
+&lt;p&gt;This might help in two problems:&lt;/p&gt;
 
- 1) the restrictedness of the vocabulary while the model works with the unprecedentde entity vocabulary that had not learned in the traing;
+&lt;blockquote&gt;
+  &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1) the restrictedness of the vocabulary while the model works with the unprecedentde entity vocabulary that 
+   had not learned in the traing;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+&lt;/blockquote&gt;
 
- 2) the global representation in the bi-LSTM encoding layer could not accurately handle the recognition of the entities in natuaral language.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+  &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2) the global representation in the bi-LSTM encoding layer could not accurately handle the recognition of the &amp;gt;        entities in natuaral language.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+&lt;/blockquote&gt;
 </description>
         <pubDate>Sun, 23 Jun 2019 00:00:00 +0800</pubDate>
         <link>https://stuartchan.github.io/2019/06/23/Week-4/</link>

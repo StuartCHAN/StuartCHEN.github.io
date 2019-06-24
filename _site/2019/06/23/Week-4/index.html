@@ -150,13 +150,13 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/justin-luebke-90718-unsplash.jpg" width="0" height="0"> -->
+<!-- <img src="/img/sticker-mule-189122-unsplash.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/justin-luebke-90718-unsplash.jpg')
+        background-image: url('/img/sticker-mule-189122-unsplash.jpg')
     }
 
     
@@ -234,21 +234,19 @@
 
 <h3 id="11-constituency-parsing-might-be-a-good-way-to-get-the-syntactial-structure">1.1 Constituency Parsing might be a good way to get the syntactial structure</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>What is it? How is it diffrent from the previous method of dependency parsing?
+<p>What is it? How is it diffrent from the previous method of dependency parsing?</p>
 
-Syntactic analysis is a very important part of analyzing sentences, including constituency parsing and dependency parsing, which have very large differences.
+<p>Syntactic analysis is a very important part of analyzing sentences, including constituency parsing and dependency parsing, which have very large differences.</p>
 
-Let's take an exemple, the constituency parse tree breaks a text into sub-phrases. Non-terminals in the tree are types of phrases, the terminals are the words in the sentence, and the edges are unlabeled. For a simple sentence "John sees Bill", a constituency parse would be: 
-</code></pre></div></div>
+<p>Let’s take an exemple, the constituency parse tree breaks a text into sub-phrases. Non-terminals in the tree are types of phrases, the terminals are the words in the sentence, and the edges are unlabeled. For a simple sentence “John sees Bill”, a constituency parse would be:</p>
 
 <p><img src="https://pic3.zhimg.com/80/v2-448af772ea31d990d0f0b5414e6b1afa_hd.jpg" alt="constituency_parse_tree" /></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>It might do better in matching the relation between the pair(Object, Verb, Subject). However, it distract the focus from the importance of pairing the pair(Object + Property). So, I stll think dependency parsing is more pertinent to our problem in this aspect.
-</code></pre></div></div>
+<p>It might do better in matching the relation between the pair(Object, Verb, Subject). However, it distract the focus from the importance of pairing the pair(Object + Property). So, I stll think dependency parsing is more pertinent to our problem in this aspect.</p>
 
 <h3 id="12-the-self-made-easy-mehod-when-the-sparqlwrapper-does-not-connect">1.2 The Self-made Easy Mehod when the SPARQLwrapper does not connect</h3>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The design goal is to post a request to the Virtuoso endpoint, so we simply do this:
-</code></pre></div></div>
+
+<p>The design goal is to post a request to the Virtuoso endpoint, so we simply do this:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">import</span> <span class="nn">request</span>
 
@@ -269,18 +267,24 @@ Let's take an exemple, the constituency parse tree breaks a text into sub-phrase
 
 <h3 id="the-duplicated-issue-for-data-generation-from-templates">The Duplicated Issue For Data Generation From Templates</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>While running the given generator.py, the terminal showed that ther was a key be added an additional value.
+<p>While running the given generator.py, the terminal showed that ther was a key be added an additional value.</p>
 
-Then I open the generated dataset file from the generator.py, searching for the redundant key-value pair. There was a vocabulary appeared twice in the dataset, which should be blamed for the duplicated mapping problem.
+<p>Then I open the generated dataset file from the generator.py, searching for the redundant key-value pair. There was a vocabulary appeared twice in the dataset, which should be blamed for the duplicated mapping problem.</p>
 
-From this, I have an idea, why not use a comprehensive set of embeddding vector set to represent the vocabulary mapping to the knowledge graph entities in DBpedia?
+<p>From this, I have an idea, why not use a comprehensive set of embeddding vector set to represent the vocabulary mapping to the knowledge graph entities in DBpedia?</p>
 
-This might help in two problems:
+<p>This might help in two problems:</p>
 
- 1) the restrictedness of the vocabulary while the model works with the unprecedentde entity vocabulary that had not learned in the traing;
+<blockquote>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1) the restrictedness of the vocabulary while the model works with the unprecedentde entity vocabulary that 
+   had not learned in the traing;
+</code></pre></div>  </div>
+</blockquote>
 
- 2) the global representation in the bi-LSTM encoding layer could not accurately handle the recognition of the entities in natuaral language.
-</code></pre></div></div>
+<blockquote>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2) the global representation in the bi-LSTM encoding layer could not accurately handle the recognition of the &gt;        entities in natuaral language.
+</code></pre></div>  </div>
+</blockquote>
 
 
                 <hr style="visibility: hidden;">
