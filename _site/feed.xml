@@ -5,8 +5,8 @@
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
     <link>https://stuartchan.github.io/</link>
     <atom:link href="https://stuartchan.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 25 Jun 2019 00:15:44 +0800</pubDate>
-    <lastBuildDate>Tue, 25 Jun 2019 00:15:44 +0800</lastBuildDate>
+    <pubDate>Tue, 25 Jun 2019 00:17:02 +0800</pubDate>
+    <lastBuildDate>Tue, 25 Jun 2019 00:17:02 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -93,8 +93,7 @@
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2) the global representation in the bi-LSTM encoding layer could not accurately handle the recognition of the &amp;gt;      entities in natuaral language.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+  &lt;p&gt;2) the global representation in the bi-LSTM encoding layer could not accurately handle the recognition of the &amp;gt;      entities in natuaral language.&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
         <pubDate>Sun, 23 Jun 2019 00:00:00 +0800</pubDate>
