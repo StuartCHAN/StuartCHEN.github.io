@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2019/06/30/Week-5/">
+    <link rel="canonical" href="https://stuartchan.github.io/2019/06/30/Week-5/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -217,25 +217,31 @@
 
 <h3 id="11-the-mismatching-while-trained-models-work-with-unprecedented-vocabulary">1.1 The Mismatching While Trained Models Work With Unprecedented Vocabulary</h3>
 
-<p>Case 1: Entities Ambiguation
-	For example,
-	when the NSpM model took an input natural question that contains
-	“region”,
-	the model referred it to the “dbr:wineRegion” that it had only
-    learned,
-	which might be biased and divergent to the original sense.</p>
+<p>Case 1: Entities Ambiguation</p>
 
-<p>Case 2: The Abused Mapping
-	That’s to say, when the model handles a vocabulary that is not in 
-	the topic that it was trained, 
-	it would mistakenly place the unprecedented word into the place of 
-	another vocabulary that it had learned, then mismatching to the 
-	value of the replaced vocabulary.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>For example,
+when the NSpM model took an input natural question that contains
+"region",
+the model referred it to the "dbr:wineRegion" that it had only
+learned,
+which might be biased and divergent to the original sense.
+</code></pre></div></div>
 
-<p>Case 3: Issue On Reproducibility
-	The models that have attained BLEU could have not perfectly 
-	translated the natural language questions with a new different 
-	vocabulary into the correct query.</p>
+<p>Case 2: The Abused Mapping</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>That's to say, when the model handles a vocabulary that is not in 
+the topic that it was trained, 
+it would mistakenly place the unprecedented word into the place of 
+another vocabulary that it had learned, then mismatching to the 
+value of the replaced vocabulary.
+</code></pre></div></div>
+
+<p>Case 3: Issue On Reproducibility</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The models that have attained BLEU could have not perfectly 
+translated the natural language questions with a new different 
+vocabulary into the correct query.
+</code></pre></div></div>
 
 <p>Summing Up:
 	The current neural SPARQL machine would be having a strong 	
@@ -260,7 +266,8 @@
 
 <p>That’s to say, their models tend to build a more direct function from the natural language question through the generation of the structured query finally towards the return answer, based on which this type of algorithms of reinforcement learning get the reward upon the right or wrong of the result of the generated query then learning to let the query generator get the more and more pertinent returned answer.</p>
 
-<p>To sum up, the machine translation based-model is query-driven while the reinforcement learning model that tries to take a step further can be classified as a final-answer-driven method.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>To sum up, the machine translation based-model is query-driven while 	 the reinforcement learning model that tries to take a step further 	can be classified as a final-answer-driven method.
+</code></pre></div></div>
 
 <p>However, in this type of final-answer-driven models, there’s a pre-requisite that requires to embed the natural language questions, the structured query, and the answers entities into a calculable form while working with our problem.</p>
 

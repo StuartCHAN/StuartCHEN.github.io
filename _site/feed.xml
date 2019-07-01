@@ -3,10 +3,10 @@
   <channel>
     <title>Stuart Chen's Blog</title>
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 01 Jul 2019 20:35:13 +0800</pubDate>
-    <lastBuildDate>Mon, 01 Jul 2019 20:35:13 +0800</lastBuildDate>
+    <link>https://stuartchan.github.io/</link>
+    <atom:link href="https://stuartchan.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Mon, 01 Jul 2019 20:44:10 +0800</pubDate>
+    <lastBuildDate>Mon, 01 Jul 2019 20:44:10 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -29,25 +29,31 @@
 
 &lt;h3 id=&quot;11-the-mismatching-while-trained-models-work-with-unprecedented-vocabulary&quot;&gt;1.1 The Mismatching While Trained Models Work With Unprecedented Vocabulary&lt;/h3&gt;
 
-&lt;p&gt;Case 1: Entities Ambiguation
-	For example,
-	when the NSpM model took an input natural question that contains
-	“region”,
-	the model referred it to the “dbr:wineRegion” that it had only
-    learned,
-	which might be biased and divergent to the original sense.&lt;/p&gt;
+&lt;p&gt;Case 1: Entities Ambiguation&lt;/p&gt;
 
-&lt;p&gt;Case 2: The Abused Mapping
-	That’s to say, when the model handles a vocabulary that is not in 
-	the topic that it was trained, 
-	it would mistakenly place the unprecedented word into the place of 
-	another vocabulary that it had learned, then mismatching to the 
-	value of the replaced vocabulary.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;For example,
+when the NSpM model took an input natural question that contains
+&quot;region&quot;,
+the model referred it to the &quot;dbr:wineRegion&quot; that it had only
+learned,
+which might be biased and divergent to the original sense.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Case 3: Issue On Reproducibility
-	The models that have attained BLEU could have not perfectly 
-	translated the natural language questions with a new different 
-	vocabulary into the correct query.&lt;/p&gt;
+&lt;p&gt;Case 2: The Abused Mapping&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;That's to say, when the model handles a vocabulary that is not in 
+the topic that it was trained, 
+it would mistakenly place the unprecedented word into the place of 
+another vocabulary that it had learned, then mismatching to the 
+value of the replaced vocabulary.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Case 3: Issue On Reproducibility&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;The models that have attained BLEU could have not perfectly 
+translated the natural language questions with a new different 
+vocabulary into the correct query.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Summing Up:
 	The current neural SPARQL machine would be having a strong 	
@@ -72,7 +78,8 @@
 
 &lt;p&gt;That’s to say, their models tend to build a more direct function from the natural language question through the generation of the structured query finally towards the return answer, based on which this type of algorithms of reinforcement learning get the reward upon the right or wrong of the result of the generated query then learning to let the query generator get the more and more pertinent returned answer.&lt;/p&gt;
 
-&lt;p&gt;To sum up, the machine translation based-model is query-driven while the reinforcement learning model that tries to take a step further can be classified as a final-answer-driven method.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;To sum up, the machine translation based-model is query-driven while 	 the reinforcement learning model that tries to take a step further 	can be classified as a final-answer-driven method.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;However, in this type of final-answer-driven models, there’s a pre-requisite that requires to embed the natural language questions, the structured query, and the answers entities into a calculable form while working with our problem.&lt;/p&gt;
 
@@ -111,8 +118,8 @@ LEARNING&lt;/p&gt;
 &lt;p&gt;[2] &lt;a href=&quot;https://arxiv.org/search/cs?searchtype=author&amp;amp;query=Liang%2C+C&quot;&gt;Chen Liang&lt;/a&gt;, &lt;a href=&quot;https://arxiv.org/search/cs?searchtype=author&amp;amp;query=Norouzi%2C+M&quot;&gt;Mohammad Norouzi&lt;/a&gt;, &lt;a href=&quot;https://arxiv.org/search/cs?searchtype=author&amp;amp;query=Berant%2C+J&quot;&gt;Jonathan Berant&lt;/a&gt;, &lt;a href=&quot;https://arxiv.org/search/cs?searchtype=author&amp;amp;query=Le%2C+Q&quot;&gt;Quoc Le&lt;/a&gt;, &lt;a href=&quot;https://arxiv.org/search/cs?searchtype=author&amp;amp;query=Lao%2C+N&quot;&gt;Ni Lao&lt;/a&gt; (2018) Memory Augmented Policy Optimization for Program Synthesis and Semantic Parsing&lt;/p&gt;
 </description>
         <pubDate>Sun, 30 Jun 2019 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2019/06/30/Week-5/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/06/30/Week-5/</guid>
+        <link>https://stuartchan.github.io/2019/06/30/Week-5/</link>
+        <guid isPermaLink="true">https://stuartchan.github.io/2019/06/30/Week-5/</guid>
         
         <category>GSoC2019</category>
         
@@ -211,8 +218,8 @@ LEARNING&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
         <pubDate>Sun, 23 Jun 2019 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2019/06/23/Week-4/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/06/23/Week-4/</guid>
+        <link>https://stuartchan.github.io/2019/06/23/Week-4/</link>
+        <guid isPermaLink="true">https://stuartchan.github.io/2019/06/23/Week-4/</guid>
         
         <category>GSoC2019</category>
         
@@ -313,8 +320,8 @@ LEARNING&lt;/p&gt;
 &lt;p&gt;For the next week, I will do more works concerning about the dependency parsing which pertains to the automated query template generation with robustness.&lt;/p&gt;
 </description>
         <pubDate>Sun, 16 Jun 2019 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2019/06/16/Week-3/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/06/16/Week-3/</guid>
+        <link>https://stuartchan.github.io/2019/06/16/Week-3/</link>
+        <guid isPermaLink="true">https://stuartchan.github.io/2019/06/16/Week-3/</guid>
         
         <category>GSoC2019</category>
         
@@ -462,8 +469,8 @@ The next days should delve into the automation about creating the new regexes fo
 
 </description>
         <pubDate>Sat, 08 Jun 2019 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2019/06/08/Week-2/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/06/08/Week-2/</guid>
+        <link>https://stuartchan.github.io/2019/06/08/Week-2/</link>
+        <guid isPermaLink="true">https://stuartchan.github.io/2019/06/08/Week-2/</guid>
         
         <category>GSoC2019</category>
         
@@ -612,8 +619,8 @@ The basic idea is to use the DBpedia entities embedding vectors to encode the qu
 &lt;p&gt;The templates generated in the previous step shall be compared against the tempalets in the Templates Bank as to match the similar one. Then, if matched, it will refer to the similar trained model that contains the matched template; if not matched, it turns to train the model on the new templates, and store the new results into the Templates Bank.&lt;/p&gt;
 </description>
         <pubDate>Sun, 02 Jun 2019 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2019/06/02/Architecture/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/06/02/Architecture/</guid>
+        <link>https://stuartchan.github.io/2019/06/02/Architecture/</link>
+        <guid isPermaLink="true">https://stuartchan.github.io/2019/06/02/Architecture/</guid>
         
         <category>GSoC2019</category>
         
@@ -702,8 +709,8 @@ It works on two parts parallel:&lt;/p&gt;
 
 </description>
         <pubDate>Sat, 01 Jun 2019 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2019/06/01/Week-1/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/06/01/Week-1/</guid>
+        <link>https://stuartchan.github.io/2019/06/01/Week-1/</link>
+        <guid isPermaLink="true">https://stuartchan.github.io/2019/06/01/Week-1/</guid>
         
         <category>GSoC2019</category>
         
@@ -840,8 +847,8 @@ It should trace back to the &lt;a href=&quot;https://github.com/AKSW/NSpM/blob/m
 &lt;p&gt;**We can see the training results &lt;a href=&quot;https://drive.google.com/drive/folders/1f2cs0Pz4-OmXUQ0nkr3RnOpBi7oE4NWB?usp=sharing&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
         <pubDate>Sun, 26 May 2019 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2019/05/26/Bonding/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/05/26/Bonding/</guid>
+        <link>https://stuartchan.github.io/2019/05/26/Bonding/</link>
+        <guid isPermaLink="true">https://stuartchan.github.io/2019/05/26/Bonding/</guid>
         
         <category>GSoC2019</category>
         
@@ -993,8 +1000,8 @@ After running&lt;/p&gt;
 &lt;p&gt;[2] Papineni K., Roukos S., Ward T., Zhu W. (2002). BLEU: a method for automatic evaluation of machine translation. Proceedings of the 40th annual meeting on association for computational linguistics.&lt;/p&gt;
 </description>
         <pubDate>Fri, 17 May 2019 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2019/05/17/About-The-NSpM/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/05/17/About-The-NSpM/</guid>
+        <link>https://stuartchan.github.io/2019/05/17/About-The-NSpM/</link>
+        <guid isPermaLink="true">https://stuartchan.github.io/2019/05/17/About-The-NSpM/</guid>
         
         <category>GSoC2019</category>
         
