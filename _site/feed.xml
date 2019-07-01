@@ -5,8 +5,8 @@
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
     <link>https://stuartchan.github.io/</link>
     <atom:link href="https://stuartchan.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 01 Jul 2019 20:44:10 +0800</pubDate>
-    <lastBuildDate>Mon, 01 Jul 2019 20:44:10 +0800</lastBuildDate>
+    <pubDate>Mon, 01 Jul 2019 20:47:32 +0800</pubDate>
+    <lastBuildDate>Mon, 01 Jul 2019 20:47:32 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -55,14 +55,17 @@ translated the natural language questions with a new different
 vocabulary into the correct query.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Summing Up:
-	The current neural SPARQL machine would be having a strong 	
-	dependency on the vocabulary that it have learned.
-	Also, the present version of the model design has mostly focused on 
-	the fitting of neural machine translation between the  natural 
-	language questions and the SPARQL queries.&lt;/p&gt;
+&lt;p&gt;Summing Up:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;The current neural SPARQL machine would be having a strong 	
+dependency on the vocabulary that it have learned.
+Also, the present version of the model design has mostly focused on 
+the fitting of neural machine translation between the  natural 
+language questions and the SPARQL queries.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;12-expanding-the-question&quot;&gt;1.2 Expanding The Question:&lt;/h3&gt;
+
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;So, what should we do next?
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -78,8 +81,11 @@ vocabulary into the correct query.
 
 &lt;p&gt;That’s to say, their models tend to build a more direct function from the natural language question through the generation of the structured query finally towards the return answer, based on which this type of algorithms of reinforcement learning get the reward upon the right or wrong of the result of the generated query then learning to let the query generator get the more and more pertinent returned answer.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;To sum up, the machine translation based-model is query-driven while 	 the reinforcement learning model that tries to take a step further 	can be classified as a final-answer-driven method.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;To sum up, the machine translation based-model is query-driven while 	 the reinforcement 
+learning model that tries to take a step further 	can be classified as a final-answer-driven 
+method.&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;p&gt;However, in this type of final-answer-driven models, there’s a pre-requisite that requires to embed the natural language questions, the structured query, and the answers entities into a calculable form while working with our problem.&lt;/p&gt;
 
@@ -116,6 +122,7 @@ FROM NATURAL LANGUAGE USING REINFORCEMENT
 LEARNING&lt;/p&gt;
 
 &lt;p&gt;[2] &lt;a href=&quot;https://arxiv.org/search/cs?searchtype=author&amp;amp;query=Liang%2C+C&quot;&gt;Chen Liang&lt;/a&gt;, &lt;a href=&quot;https://arxiv.org/search/cs?searchtype=author&amp;amp;query=Norouzi%2C+M&quot;&gt;Mohammad Norouzi&lt;/a&gt;, &lt;a href=&quot;https://arxiv.org/search/cs?searchtype=author&amp;amp;query=Berant%2C+J&quot;&gt;Jonathan Berant&lt;/a&gt;, &lt;a href=&quot;https://arxiv.org/search/cs?searchtype=author&amp;amp;query=Le%2C+Q&quot;&gt;Quoc Le&lt;/a&gt;, &lt;a href=&quot;https://arxiv.org/search/cs?searchtype=author&amp;amp;query=Lao%2C+N&quot;&gt;Ni Lao&lt;/a&gt; (2018) Memory Augmented Policy Optimization for Program Synthesis and Semantic Parsing&lt;/p&gt;
+
 </description>
         <pubDate>Sun, 30 Jun 2019 00:00:00 +0800</pubDate>
         <link>https://stuartchan.github.io/2019/06/30/Week-5/</link>

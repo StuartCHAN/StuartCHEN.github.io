@@ -243,14 +243,17 @@ translated the natural language questions with a new different
 vocabulary into the correct query.
 </code></pre></div></div>
 
-<p>Summing Up:
-	The current neural SPARQL machine would be having a strong 	
-	dependency on the vocabulary that it have learned.
-	Also, the present version of the model design has mostly focused on 
-	the fitting of neural machine translation between the  natural 
-	language questions and the SPARQL queries.</p>
+<p>Summing Up:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The current neural SPARQL machine would be having a strong 	
+dependency on the vocabulary that it have learned.
+Also, the present version of the model design has mostly focused on 
+the fitting of neural machine translation between the  natural 
+language questions and the SPARQL queries.
+</code></pre></div></div>
 
 <h3 id="12-expanding-the-question">1.2 Expanding The Question:</h3>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>So, what should we do next?
 </code></pre></div></div>
 
@@ -266,8 +269,11 @@ vocabulary into the correct query.
 
 <p>That’s to say, their models tend to build a more direct function from the natural language question through the generation of the structured query finally towards the return answer, based on which this type of algorithms of reinforcement learning get the reward upon the right or wrong of the result of the generated query then learning to let the query generator get the more and more pertinent returned answer.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>To sum up, the machine translation based-model is query-driven while 	 the reinforcement learning model that tries to take a step further 	can be classified as a final-answer-driven method.
-</code></pre></div></div>
+<blockquote>
+  <p>To sum up, the machine translation based-model is query-driven while 	 the reinforcement 
+learning model that tries to take a step further 	can be classified as a final-answer-driven 
+method.</p>
+</blockquote>
 
 <p>However, in this type of final-answer-driven models, there’s a pre-requisite that requires to embed the natural language questions, the structured query, and the answers entities into a calculable form while working with our problem.</p>
 
@@ -304,6 +310,7 @@ FROM NATURAL LANGUAGE USING REINFORCEMENT
 LEARNING</p>
 
 <p>[2] <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Liang%2C+C">Chen Liang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Norouzi%2C+M">Mohammad Norouzi</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Berant%2C+J">Jonathan Berant</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Le%2C+Q">Quoc Le</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Lao%2C+N">Ni Lao</a> (2018) Memory Augmented Policy Optimization for Program Synthesis and Semantic Parsing</p>
+
 
 
                 <hr style="visibility: hidden;">
