@@ -10,7 +10,7 @@
     <meta name="keywords"  content="BY, Blog Yeah, Stuart Jiazheng Chen, stuartchan, Machine Learning, NLP, Cognitive Science, Linguistics ">
     <meta name="theme-color" content="#000000">
     
-    <title>Week 2 - Stuart Chen | Blog Yeah</title>
+    <title>Week 5 - Stuart Chen | Blog Yeah</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2019/06/08/Week-2/">
+    <link rel="canonical" href="http://localhost:4000/2019/06/30/Week-5/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -150,13 +150,13 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/audrey-hepburn-galaxy.jpg" width="0" height="0"> -->
+<!-- <img src="/img/justin-luebke-90718-unsplash.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/audrey-hepburn-galaxy.jpg')
+        background-image: url('/img/justin-luebke-90718-unsplash.jpg')
     }
 
     
@@ -176,12 +176,12 @@
                         <a class="tag" href="/tags/#DBpedia" title="DBpedia">DBpedia</a>
                         
                     </div>
-                    <h1>Week 2</h1>
+                    <h1>Week 5</h1>
                     
                     
-                    <h2 class="subheading">Entity Recognition + Template Generation</h2>
+                    <h2 class="subheading">Issues Analyses & Vectors Embedding</h2>
                     
-                    <span class="meta">Posted by Stuart Chen on June 8, 2019</span>
+                    <span class="meta">Posted by Stuart Chen on June 30, 2019</span>
                 </div>
             </div>
         </div>
@@ -199,139 +199,104 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h1 id="the-week--2">The Week  2</h1>
+				<h1 id="the-week--5">The Week  5</h1>
 
-<p>Let’s have a look into this week’s goals:</p>
-<blockquote>
-  <ol>
-    <li>
-      <p>Entity Recognition</p>
-    </li>
-    <li>
-      <p>Template Generation</p>
-    </li>
-  </ol>
-</blockquote>
+<p>This week I believe it’s a diving.</p>
 
-<h2 id="1-entity-recognition">1. Entity Recognition</h2>
+<p>I can now see many things, subtle and seemingly extending to somewhere abyssal.</p>
 
-<h3 id="strategy-i">Strategy I</h3>
-<p>I had planned to deploy the pyspotlight for detecting the DBpedia entities in the question.
-However, it seems the connectivity to the server is intermittently unstable, which might result in renting a remote server or it might stumble even after the doing so.
-So I jumped to the Strategy 2.</p>
+<p>In this week, I have tried transforming the natural language questions into SPARQL queries via the trained neural SPARQL machine models, which showed the restrictedness in the vocabulary mapping.</p>
 
-<h3 id="strategy-ii">Strategy II</h3>
-<p>I rent a server as the transition server.
-Then we can freely make the request to the Spotlight:</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">annotate</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-    <span class="p">}</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">"text"</span><span class="p">:</span><span class="n">text</span> <span class="p">,</span>
-    <span class="s">'confidence'</span><span class="p">:</span> <span class="s">'0.35'</span>
-    <span class="p">}</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'http://api.dbpedia-spotlight.org/en/annotate'</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-    <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-    <span class="o">...</span>
-    <span class="c1"># Now it's so easy！
-</span></code></pre></div></div>
+<p>To trace back, I noticed that the Spotlight annotation might focus on the entity recognition based on the word-wise input. Thus, the entity consisting of more than one word could have been missed.</p>
 
-<h2 id="2-template-generation">2. Template Generation</h2>
+<p>Also, to make better use of the efforts of the existing templates, it is more efficient to vectorize the new question templates generated in the previous work in order to do the comparison with the existing question templates’ embeddings.</p>
 
-<p>This function depends on the semantic parsing of the question to get the core synthetic structure of the question in order to build a template.</p>
+<p>What’s more, with the helpful advice, the project is moving forward an insightful and pioneering direction.</p>
 
-<p>When thinking of Audrey Hepburn, we might ask:</p>
+<h2 id="1-issues-analyses">1. Issues Analyses</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Which movie does Audrey Hepburn star ?"
+<h3 id="11-the-mismatching-while-trained-models-work-with-unprecedented-vocabulary">1.1 The Mismatching While Trained Models Work With Unprecedented Vocabulary</h3>
+
+<p>Case 1: Entities Ambiguation
+	For example,
+	when the NSpM model took an input natural question that contains
+	“region”,
+	the model referred it to the “dbr:wineRegion” that it had only
+    learned,
+	which might be biased and divergent to the original sense.</p>
+
+<p>Case 2: The Abused Mapping
+	That’s to say, when the model handles a vocabulary that is not in 
+	the topic that it was trained, 
+	it would mistakenly place the unprecedented word into the place of 
+	another vocabulary that it had learned, then mismatching to the 
+	value of the replaced vocabulary.</p>
+
+<p>Case 3: Issue On Reproducibility
+	The models that have attained BLEU could have not perfectly 
+	translated the natural language questions with a new different 
+	vocabulary into the correct query.</p>
+
+<p>Summing Up:
+	The current neural SPARQL machine would be having a strong 	
+	dependency on the vocabulary that it have learned.
+	Also, the present version of the model design has mostly focused on 
+	the fitting of neural machine translation between the  natural 
+	language questions and the SPARQL queries.</p>
+
+<h3 id="12-expanding-the-question">1.2 Expanding The Question:</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>So, what should we do next?
 </code></pre></div></div>
 
-<h3 id="21-semantic-parsing">2.1 Semantic Parsing</h3>
-<p>The question should be parsed to get the synthetic structure by:</p>
+<p>I got some feedback from the researches in NL2SQL that major in deploying reinforcement learning method in training the neural model to get more and more correctness in the returned answers.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[(</span><span class="s1">'Which'</span>, <span class="s1">'JJ'</span><span class="o">)</span>,
- <span class="o">(</span><span class="s1">'movie'</span>, <span class="s1">'NN'</span><span class="o">)</span>,
- <span class="o">(</span><span class="s1">'does'</span>, <span class="s1">'VBZ'</span><span class="o">)</span>,
- <span class="o">(</span><span class="s1">'Audrey'</span>, <span class="s1">'NNP'</span><span class="o">)</span>,
- <span class="o">(</span><span class="s1">'star'</span>, <span class="s1">'VB'</span><span class="o">)</span>,
- <span class="o">(</span><span class="s1">'?'</span>, <span class="s1">'.'</span><span class="o">)]</span>
+<p><img src="https://pic2.zhimg.com/80/v2-c45ddc6df9f5165326d871dcf7f31959_hd.jpg" alt="Figure 1, SEQ2SQL(V Zhong et al.)" /></p>
+
+<p>​																		Figure 1, SEQ2SQL(V Zhong et al.)</p>
+
+<p>The learning of the connection between the the natural language question and the structured query is the major objective function, where the  task is designed to let the query fit as much as possible during the machine translation training.</p>
+
+<p>While parallelly, the researches in NL2SQL have a comparative stronger emphasis on the result that the generated query would return and on the correctness that it would produce, because the correct return of the query is their only goal, not the matching similarity of the queries.</p>
+
+<p>That’s to say, their models tend to build a more direct function from the natural language question through the generation of the structured query finally towards the return answer, based on which this type of algorithms of reinforcement learning get the reward upon the right or wrong of the result of the generated query then learning to let the query generator get the more and more pertinent returned answer.</p>
+
+<p>To sum up, the machine translation based-model is query-driven while the reinforcement learning model that tries to take a step further can be classified as a final-answer-driven method.</p>
+
+<p>However, in this type of final-answer-driven models, there’s a pre-requisite that requires to embed the natural language questions, the structured query, and the answers entities into a calculable form while working with our problem.</p>
+
+<h2 id="2-vectors-embedding">2. Vectors Embedding</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Then, why embed the data?
 </code></pre></div></div>
-<p>then we get the semantic tree like:
-<img src="https://pic2.zhimg.com/80/v2-56675bcbf18f06a3fd2ee116c87a5381_hd.png" alt="Audrey_tree1" /></p>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">('Which</span><span class="w"> </span><span class="err">movie</span><span class="w"> </span><span class="err">does</span><span class="w"> </span><span class="err">&lt;A&gt;</span><span class="w"> </span><span class="err">star</span><span class="w"> </span><span class="err">?'</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="err">'Person'</span><span class="p">]</span><span class="err">)</span><span class="w">
-</span></code></pre></div></div>
+<p>The problem of the restricted limitation of the vocabulary mapping, and the abused vocabulary matching, in my humble opinion, could be traced back to the restriction of the vocabulary that it was able to learning in the training data set.</p>
 
-<blockquote>
-  <p>Problem that I think for I :
-		The semantic parsing is not automated enough that it needs further improvement.</p>
-</blockquote>
+<p>So, how could we remove the limitation away from the current model?</p>
 
-<h3 id="21-query-template">2.1 Query Template</h3>
-<p>Then, based on the work in the last step, we construct the semantic structure for the query template:
-<img src="https://pic1.zhimg.com/80/v2-740e8b38b75543e8584305caeca2cb38_hd.jpg" alt="Audrey_tree2" /></p>
-
-<p>And then, with the help of matching the regex of the question,</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="k">class</span> <span class="nc">Movie</span><span class="p">(</span><span class="n">Particle</span><span class="p">):</span>
-    <span class="n">regex</span> <span class="o">=</span> <span class="n">Question</span><span class="p">(</span><span class="n">Pos</span><span class="p">(</span><span class="s">"DT"</span><span class="p">))</span> <span class="o">+</span> <span class="n">nouns</span>
-    <span class="k">def</span> <span class="nf">interpret</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">match</span><span class="p">):</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">words</span><span class="o">.</span><span class="n">tokens</span>
-        <span class="k">return</span> <span class="n">IsMovie</span><span class="p">()</span> <span class="o">+</span> <span class="n">HasName</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-
-
-<span class="k">class</span> <span class="nc">Actor</span><span class="p">(</span><span class="n">Particle</span><span class="p">):</span>
-    <span class="n">regex</span> <span class="o">=</span> <span class="n">nouns</span>
-    <span class="k">def</span> <span class="nf">interpret</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">match</span><span class="p">):</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">words</span><span class="o">.</span><span class="n">tokens</span>
-        <span class="k">return</span> <span class="n">IsPerson</span><span class="p">()</span> <span class="o">+</span> <span class="n">HasKeyword</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-
-
-<span class="k">class</span> <span class="nc">Director</span><span class="p">(</span><span class="n">Particle</span><span class="p">):</span>
-    <span class="n">regex</span> <span class="o">=</span> <span class="n">nouns</span>
-    <span class="k">def</span> <span class="nf">interpret</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">match</span><span class="p">):</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">words</span><span class="o">.</span><span class="n">tokens</span>
-        <span class="k">return</span> <span class="n">IsPerson</span><span class="p">()</span> <span class="o">+</span> <span class="n">HasKeyword</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-
-
-<span class="k">class</span> <span class="nc">ListMoviesQuestion</span><span class="p">(</span><span class="n">QuestionTemplate</span><span class="p">):</span>
-    <span class="n">regex</span> <span class="o">=</span> <span class="n">Lemma</span><span class="p">(</span><span class="s">"list"</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">Lemma</span><span class="p">(</span><span class="s">"movie"</span><span class="p">)</span> <span class="o">|</span> <span class="n">Lemma</span><span class="p">(</span><span class="s">"film"</span><span class="p">))</span>
-    <span class="k">def</span> <span class="nf">interpret</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">match</span><span class="p">):</span>
-        <span class="n">movie</span> <span class="o">=</span> <span class="n">IsMovie</span><span class="p">()</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="n">NameOf</span><span class="p">(</span><span class="n">movie</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">name</span><span class="p">,</span> <span class="s">"enum"</span>
-
-</code></pre></div></div>
-<p>we can get the query output:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT DISTINCT ?a WHERE <span class="o">{</span>
-   ?a rdf:type dbpedia-owl:Film.
-   ?x0 dbpprop:starring ?b.
-   ?a foaf:name ?x2.
-   ?b rdf:type &lt;A&gt;
-   ?b rdfs:label <span class="s2">"Audrey
-   ?b rdfs:label "</span>Audrey
-   <span class="o">}</span>
-</code></pre></div></div>
+<p>There are two aspects to be paid attention:</p>
 
 <blockquote>
-  <p>Problem that I think for II:
-		We can see, the regex needs to be built from the parsing result.
-		So, when dealing with a totally new question, it risks of disability to immediately figure 
-		out the new regex for the new questions that the model has never faced before.
-		How? With what? Based on what?
-		I must go deeper.
-		The regex is still not immediately created while facing a new genre of  question, this 
-		needs  to be focused.</p>
+  <p>1) Uniqueness and Directivity: The embedding vector must be unique in terms of 
+     representing the entities, otherwise there could be conflicting mapping. And it must be 
+     promising that, in the vector space, each entity-vector pair must be correctly matched in 
+     one unique key-value pair.</p>
 </blockquote>
 
-<h2 id="summing-up-for-week-2">Summing Up For Week 2</h2>
+<blockquote>
+  <p>2) Comprehensive Inclusion: The vector set should, comprehensively and accurately, 
+   comprise all the entities and relation properties in the DBpedia space, with inclusion in the 
+   embedding of the keywords of the query grammars, e.g. “SELECT”,”DISTINCT”,”WHERE”.etc.</p>
+</blockquote>
 
-<p>The Templates Generator component is basically built, 
-however, still far from perfect.
-The next days should delve into the automation about creating the new regexes for the never-processed genres of questions, for which I consider the semantic parsing is the point to break through.</p>
+<p>After the attempts in training a new vector set on the given templates, I figured out that it might be of more efficiency employing the DBpedia embedding vector of the <a href="https://github.com/dbpedia/embeddings">previous projects</a>.</p>
 
-<p>We have certain achievement this week, but still a long way to go.</p>
+<h2 id="references">References</h2>
 
+<p>[1] <a href="https://paperswithcode.com/paper/seq2sql-generating-structured-queries-from">Victor Zhong, Caiming Xiong, Richard Socher</a>  (2017) SEQ2SQL: GENERATING STRUCTURED QUERIES
+FROM NATURAL LANGUAGE USING REINFORCEMENT
+LEARNING</p>
+
+<p>[2] <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Liang%2C+C">Chen Liang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Norouzi%2C+M">Mohammad Norouzi</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Berant%2C+J">Jonathan Berant</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Le%2C+Q">Quoc Le</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Lao%2C+N">Ni Lao</a> (2018) Memory Augmented Policy Optimization for Program Synthesis and Semantic Parsing</p>
 
 
                 <hr style="visibility: hidden;">
@@ -339,19 +304,12 @@ The next days should delve into the automation about creating the new regexes fo
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2019/06/02/Architecture/" data-toggle="tooltip" data-placement="top" title="Architecture">
+                        <a href="/2019/06/23/Week-4/" data-toggle="tooltip" data-placement="top" title="Week 4">
                         Previous<br>
-                        <span>Architecture</span>
+                        <span>Week 4</span>
                         </a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2019/06/16/Week-3/" data-toggle="tooltip" data-placement="top" title="Week 3">
-                        Next<br>
-                        <span>Week 3</span>
-                        </a>
-                    </li>
                     
                 </ul>
 

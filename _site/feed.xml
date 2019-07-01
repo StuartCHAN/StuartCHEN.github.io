@@ -3,11 +3,125 @@
   <channel>
     <title>Stuart Chen's Blog</title>
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
-    <link>https://stuartchan.github.io/</link>
-    <atom:link href="https://stuartchan.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 25 Jun 2019 00:17:02 +0800</pubDate>
-    <lastBuildDate>Tue, 25 Jun 2019 00:17:02 +0800</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Mon, 01 Jul 2019 20:35:13 +0800</pubDate>
+    <lastBuildDate>Mon, 01 Jul 2019 20:35:13 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Week 5</title>
+        <description>&lt;h1 id=&quot;the-week--5&quot;&gt;The Week  5&lt;/h1&gt;
+
+&lt;p&gt;This week I believe it’s a diving.&lt;/p&gt;
+
+&lt;p&gt;I can now see many things, subtle and seemingly extending to somewhere abyssal.&lt;/p&gt;
+
+&lt;p&gt;In this week, I have tried transforming the natural language questions into SPARQL queries via the trained neural SPARQL machine models, which showed the restrictedness in the vocabulary mapping.&lt;/p&gt;
+
+&lt;p&gt;To trace back, I noticed that the Spotlight annotation might focus on the entity recognition based on the word-wise input. Thus, the entity consisting of more than one word could have been missed.&lt;/p&gt;
+
+&lt;p&gt;Also, to make better use of the efforts of the existing templates, it is more efficient to vectorize the new question templates generated in the previous work in order to do the comparison with the existing question templates’ embeddings.&lt;/p&gt;
+
+&lt;p&gt;What’s more, with the helpful advice, the project is moving forward an insightful and pioneering direction.&lt;/p&gt;
+
+&lt;h2 id=&quot;1-issues-analyses&quot;&gt;1. Issues Analyses&lt;/h2&gt;
+
+&lt;h3 id=&quot;11-the-mismatching-while-trained-models-work-with-unprecedented-vocabulary&quot;&gt;1.1 The Mismatching While Trained Models Work With Unprecedented Vocabulary&lt;/h3&gt;
+
+&lt;p&gt;Case 1: Entities Ambiguation
+	For example,
+	when the NSpM model took an input natural question that contains
+	“region”,
+	the model referred it to the “dbr:wineRegion” that it had only
+    learned,
+	which might be biased and divergent to the original sense.&lt;/p&gt;
+
+&lt;p&gt;Case 2: The Abused Mapping
+	That’s to say, when the model handles a vocabulary that is not in 
+	the topic that it was trained, 
+	it would mistakenly place the unprecedented word into the place of 
+	another vocabulary that it had learned, then mismatching to the 
+	value of the replaced vocabulary.&lt;/p&gt;
+
+&lt;p&gt;Case 3: Issue On Reproducibility
+	The models that have attained BLEU could have not perfectly 
+	translated the natural language questions with a new different 
+	vocabulary into the correct query.&lt;/p&gt;
+
+&lt;p&gt;Summing Up:
+	The current neural SPARQL machine would be having a strong 	
+	dependency on the vocabulary that it have learned.
+	Also, the present version of the model design has mostly focused on 
+	the fitting of neural machine translation between the  natural 
+	language questions and the SPARQL queries.&lt;/p&gt;
+
+&lt;h3 id=&quot;12-expanding-the-question&quot;&gt;1.2 Expanding The Question:&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;So, what should we do next?
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I got some feedback from the researches in NL2SQL that major in deploying reinforcement learning method in training the neural model to get more and more correctness in the returned answers.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic2.zhimg.com/80/v2-c45ddc6df9f5165326d871dcf7f31959_hd.jpg&quot; alt=&quot;Figure 1, SEQ2SQL(V Zhong et al.)&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;​																		Figure 1, SEQ2SQL(V Zhong et al.)&lt;/p&gt;
+
+&lt;p&gt;The learning of the connection between the the natural language question and the structured query is the major objective function, where the  task is designed to let the query fit as much as possible during the machine translation training.&lt;/p&gt;
+
+&lt;p&gt;While parallelly, the researches in NL2SQL have a comparative stronger emphasis on the result that the generated query would return and on the correctness that it would produce, because the correct return of the query is their only goal, not the matching similarity of the queries.&lt;/p&gt;
+
+&lt;p&gt;That’s to say, their models tend to build a more direct function from the natural language question through the generation of the structured query finally towards the return answer, based on which this type of algorithms of reinforcement learning get the reward upon the right or wrong of the result of the generated query then learning to let the query generator get the more and more pertinent returned answer.&lt;/p&gt;
+
+&lt;p&gt;To sum up, the machine translation based-model is query-driven while the reinforcement learning model that tries to take a step further can be classified as a final-answer-driven method.&lt;/p&gt;
+
+&lt;p&gt;However, in this type of final-answer-driven models, there’s a pre-requisite that requires to embed the natural language questions, the structured query, and the answers entities into a calculable form while working with our problem.&lt;/p&gt;
+
+&lt;h2 id=&quot;2-vectors-embedding&quot;&gt;2. Vectors Embedding&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Then, why embed the data?
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The problem of the restricted limitation of the vocabulary mapping, and the abused vocabulary matching, in my humble opinion, could be traced back to the restriction of the vocabulary that it was able to learning in the training data set.&lt;/p&gt;
+
+&lt;p&gt;So, how could we remove the limitation away from the current model?&lt;/p&gt;
+
+&lt;p&gt;There are two aspects to be paid attention:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;1) Uniqueness and Directivity: The embedding vector must be unique in terms of 
+     representing the entities, otherwise there could be conflicting mapping. And it must be 
+     promising that, in the vector space, each entity-vector pair must be correctly matched in 
+     one unique key-value pair.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;2) Comprehensive Inclusion: The vector set should, comprehensively and accurately, 
+   comprise all the entities and relation properties in the DBpedia space, with inclusion in the 
+   embedding of the keywords of the query grammars, e.g. “SELECT”,”DISTINCT”,”WHERE”.etc.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;After the attempts in training a new vector set on the given templates, I figured out that it might be of more efficiency employing the DBpedia embedding vector of the &lt;a href=&quot;https://github.com/dbpedia/embeddings&quot;&gt;previous projects&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;p&gt;[1] &lt;a href=&quot;https://paperswithcode.com/paper/seq2sql-generating-structured-queries-from&quot;&gt;Victor Zhong, Caiming Xiong, Richard Socher&lt;/a&gt;  (2017) SEQ2SQL: GENERATING STRUCTURED QUERIES
+FROM NATURAL LANGUAGE USING REINFORCEMENT
+LEARNING&lt;/p&gt;
+
+&lt;p&gt;[2] &lt;a href=&quot;https://arxiv.org/search/cs?searchtype=author&amp;amp;query=Liang%2C+C&quot;&gt;Chen Liang&lt;/a&gt;, &lt;a href=&quot;https://arxiv.org/search/cs?searchtype=author&amp;amp;query=Norouzi%2C+M&quot;&gt;Mohammad Norouzi&lt;/a&gt;, &lt;a href=&quot;https://arxiv.org/search/cs?searchtype=author&amp;amp;query=Berant%2C+J&quot;&gt;Jonathan Berant&lt;/a&gt;, &lt;a href=&quot;https://arxiv.org/search/cs?searchtype=author&amp;amp;query=Le%2C+Q&quot;&gt;Quoc Le&lt;/a&gt;, &lt;a href=&quot;https://arxiv.org/search/cs?searchtype=author&amp;amp;query=Lao%2C+N&quot;&gt;Ni Lao&lt;/a&gt; (2018) Memory Augmented Policy Optimization for Program Synthesis and Semantic Parsing&lt;/p&gt;
+</description>
+        <pubDate>Sun, 30 Jun 2019 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2019/06/30/Week-5/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/06/30/Week-5/</guid>
+        
+        <category>GSoC2019</category>
+        
+        <category>NLP</category>
+        
+        <category>DBpedia</category>
+        
+        
+      </item>
     
       <item>
         <title>Week 4</title>
@@ -97,8 +211,8 @@
 &lt;/blockquote&gt;
 </description>
         <pubDate>Sun, 23 Jun 2019 00:00:00 +0800</pubDate>
-        <link>https://stuartchan.github.io/2019/06/23/Week-4/</link>
-        <guid isPermaLink="true">https://stuartchan.github.io/2019/06/23/Week-4/</guid>
+        <link>http://localhost:4000/2019/06/23/Week-4/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/06/23/Week-4/</guid>
         
         <category>GSoC2019</category>
         
@@ -199,8 +313,8 @@
 &lt;p&gt;For the next week, I will do more works concerning about the dependency parsing which pertains to the automated query template generation with robustness.&lt;/p&gt;
 </description>
         <pubDate>Sun, 16 Jun 2019 00:00:00 +0800</pubDate>
-        <link>https://stuartchan.github.io/2019/06/16/Week-3/</link>
-        <guid isPermaLink="true">https://stuartchan.github.io/2019/06/16/Week-3/</guid>
+        <link>http://localhost:4000/2019/06/16/Week-3/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/06/16/Week-3/</guid>
         
         <category>GSoC2019</category>
         
@@ -348,8 +462,8 @@ The next days should delve into the automation about creating the new regexes fo
 
 </description>
         <pubDate>Sat, 08 Jun 2019 00:00:00 +0800</pubDate>
-        <link>https://stuartchan.github.io/2019/06/08/Week-2/</link>
-        <guid isPermaLink="true">https://stuartchan.github.io/2019/06/08/Week-2/</guid>
+        <link>http://localhost:4000/2019/06/08/Week-2/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/06/08/Week-2/</guid>
         
         <category>GSoC2019</category>
         
@@ -498,8 +612,8 @@ The basic idea is to use the DBpedia entities embedding vectors to encode the qu
 &lt;p&gt;The templates generated in the previous step shall be compared against the tempalets in the Templates Bank as to match the similar one. Then, if matched, it will refer to the similar trained model that contains the matched template; if not matched, it turns to train the model on the new templates, and store the new results into the Templates Bank.&lt;/p&gt;
 </description>
         <pubDate>Sun, 02 Jun 2019 00:00:00 +0800</pubDate>
-        <link>https://stuartchan.github.io/2019/06/02/Architecture/</link>
-        <guid isPermaLink="true">https://stuartchan.github.io/2019/06/02/Architecture/</guid>
+        <link>http://localhost:4000/2019/06/02/Architecture/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/06/02/Architecture/</guid>
         
         <category>GSoC2019</category>
         
@@ -588,8 +702,8 @@ It works on two parts parallel:&lt;/p&gt;
 
 </description>
         <pubDate>Sat, 01 Jun 2019 00:00:00 +0800</pubDate>
-        <link>https://stuartchan.github.io/2019/06/01/Week-1/</link>
-        <guid isPermaLink="true">https://stuartchan.github.io/2019/06/01/Week-1/</guid>
+        <link>http://localhost:4000/2019/06/01/Week-1/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/06/01/Week-1/</guid>
         
         <category>GSoC2019</category>
         
@@ -726,8 +840,8 @@ It should trace back to the &lt;a href=&quot;https://github.com/AKSW/NSpM/blob/m
 &lt;p&gt;**We can see the training results &lt;a href=&quot;https://drive.google.com/drive/folders/1f2cs0Pz4-OmXUQ0nkr3RnOpBi7oE4NWB?usp=sharing&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
         <pubDate>Sun, 26 May 2019 00:00:00 +0800</pubDate>
-        <link>https://stuartchan.github.io/2019/05/26/Bonding/</link>
-        <guid isPermaLink="true">https://stuartchan.github.io/2019/05/26/Bonding/</guid>
+        <link>http://localhost:4000/2019/05/26/Bonding/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/05/26/Bonding/</guid>
         
         <category>GSoC2019</category>
         
@@ -879,8 +993,8 @@ After running&lt;/p&gt;
 &lt;p&gt;[2] Papineni K., Roukos S., Ward T., Zhu W. (2002). BLEU: a method for automatic evaluation of machine translation. Proceedings of the 40th annual meeting on association for computational linguistics.&lt;/p&gt;
 </description>
         <pubDate>Fri, 17 May 2019 00:00:00 +0800</pubDate>
-        <link>https://stuartchan.github.io/2019/05/17/About-The-NSpM/</link>
-        <guid isPermaLink="true">https://stuartchan.github.io/2019/05/17/About-The-NSpM/</guid>
+        <link>http://localhost:4000/2019/05/17/About-The-NSpM/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/05/17/About-The-NSpM/</guid>
         
         <category>GSoC2019</category>
         
