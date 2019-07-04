@@ -5,8 +5,8 @@
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
     <link>https://stuartchan.github.io/</link>
     <atom:link href="https://stuartchan.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 04 Jul 2019 08:22:07 +0800</pubDate>
-    <lastBuildDate>Thu, 04 Jul 2019 08:22:07 +0800</lastBuildDate>
+    <pubDate>Thu, 04 Jul 2019 08:26:15 +0800</pubDate>
+    <lastBuildDate>Thu, 04 Jul 2019 08:26:15 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -47,32 +47,32 @@ the topic that it was trained,
 it would mistakenly place the unprecedented word into the place of 
 another vocabulary that it had learned, then mismatching to the 
 value of the replaced vocabulary.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-For example, 
+&lt;p&gt;For example, 
 if we use the model trained on dbo:Monument templates set 
 to infer the questions of the topic about location that contains the vocabulary 
 that it had not learned in the training data, like:
-the &quot;rdf:type dbo:Place&quot; and the &quot;dbo:location&quot; are the two of the most frequently abused in the inference
-for those vocabulary unprecedented.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+the “rdf:type dbo:Place” and the “dbo:location” are the two of the most frequently abused in the inference
+for those vocabulary unprecedented.&lt;/p&gt;
 
 &lt;p&gt;Case 3: Issue On Reproducibility&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;The models that have attained BLEU could have not perfectly 
 translated the natural language questions with a new different 
 vocabulary into the correct query.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-For example,
+&lt;p&gt;For example,
 I picked out some of the questions in the training set as 
 input to the trained model to test whether it can reproduce 
 the queries that are paired to these original question in the training set,
 like:
-&quot;whom did xu fan marry?&quot;,
-the generated result was &quot;select distinct var_uri where brack_open dbr_Rugrats dbo_composer var_uri&quot;,
-where apparently the &quot;dbr_Rugrats&quot; and &quot;dbo_composer&quot; are not related to the question,
-and the crucial entity about the person named &quot;Xu Fan&quot; and the entity [&quot;dbr_Xu_Fan&quot;](http://live.dbpedia.org/page/Xu_Fan) has not been properly recognized,
-not matching to the correct paired query &quot;select distinct var_uri where brack_open var_uri dbo_spouse dbr_Xu_Fan sep_dot brack_close&quot; in the training set.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+“whom did xu fan marry?”,
+the generated result was “select distinct var_uri where brack_open dbr_Rugrats dbo_composer var_uri”,
+where apparently the “dbr_Rugrats” and “dbo_composer” are not related to the question,
+and the crucial entity about the person named “Xu Fan” and the entity &lt;a href=&quot;http://live.dbpedia.org/page/Xu_Fan&quot;&gt;“dbr_Xu_Fan”&lt;/a&gt; has not been properly recognized,
+not matching to the correct paired query “select distinct var_uri where brack_open var_uri dbo_spouse dbr_Xu_Fan sep_dot brack_close” in the training set.&lt;/p&gt;
 
 &lt;p&gt;Summing Up:&lt;/p&gt;
 
