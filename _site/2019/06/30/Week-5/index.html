@@ -237,12 +237,14 @@ another vocabulary that it had learned, then mismatching to the
 value of the replaced vocabulary.
 </code></pre></div></div>
 
-<p>For example, 
+<ul>
+  <li>For example, 
 if we use the model trained on dbo:Monument templates set 
 to infer the questions of the topic about location that contains the vocabulary 
 that it had not learned in the training data, like:
 the “rdf:type dbo:Place” and the “dbo:location” are the two of the most frequently abused in the inference
-for those vocabulary unprecedented.</p>
+for those vocabulary unprecedented.</li>
+</ul>
 
 <p>Case 3: Issue On Reproducibility</p>
 
@@ -251,16 +253,22 @@ translated the natural language questions with a new different
 vocabulary into the correct query.
 </code></pre></div></div>
 
-<p>For example,
-I picked out some of the questions in the training set as 
+<ul>
+  <li>For example,
+I picked out some of the questions in the training set as
 input to the trained model to test whether it can reproduce 
 the queries that are paired to these original question in the training set,
 like:
-“whom did xu fan marry?”,
-the generated result was “select distinct var_uri where brack_open dbr_Rugrats dbo_composer var_uri”,
+    <blockquote>
+      <p>“whom did xu fan marry?”,
+the generated result was 
+“select distinct var_uri where brack_open dbr_Rugrats dbo_composer var_uri”,
 where apparently the “dbr_Rugrats” and “dbo_composer” are not related to the question,
 and the crucial entity about the person named “Xu Fan” and the entity <a href="http://live.dbpedia.org/page/Xu_Fan">“dbr_Xu_Fan”</a> has not been properly recognized,
 not matching to the correct paired query “select distinct var_uri where brack_open var_uri dbo_spouse dbr_Xu_Fan sep_dot brack_close” in the training set.</p>
+    </blockquote>
+  </li>
+</ul>
 
 <p>Summing Up:</p>
 
@@ -296,10 +304,10 @@ Figure 1, SEQ2SQL(V Zhong et al.) [1]</p>
 <p><img src="https://pbs.twimg.com/media/D-luC0sVAAEQ9i_.png" alt="MAPO,NIPS2018" />
 Figure 2, MAPO(NIPS 2018) [2]</p>
 
-<p>The team[2] applied MAPO to the <a href="https://github.com/salesforce/WikiSQL">WikiSQL dataset</a>. For each sample on the WikiSQL data, 1000 sample programs were generated. Five high-return samples were stored in the Memory Buffer. GloVe embeddings was applied to the strategy function fitting network. LSTM Hidden The unit is 200 and the training is 15000 steps:
+<p>The team[2] applied MAPO to the <a href="https://github.com/salesforce/WikiSQL">WikiSQL dataset</a>. For each sample on the WikiSQL data, 1000 sample programs were generated. Five high-return samples were stored in the Memory Buffer. The <a href="https://nlp.stanford.edu/projects/glove/">GloVe embeddings</a> was applied to the strategy function fitting network. LSTM Hidden The unit is 200 and the training is 15000 steps:
 <img src="https://pbs.twimg.com/media/D-lxATuU4AA29Sy.png" alt="Figure 3, is the figure 2 from MAPO about its performances and experiments" /></p>
 
-<p>The learning of the connection between the the natural language question and the structured query is the major objective function, where the  task is designed to let the query fit as much as possible during the machine translation training.</p>
+<p>The learning of the connection between the the natural language question and the structured query is the major objective function, where the task is designed to let the query fit as much as possible during the machine translation training.</p>
 
 <p>While parallelly, the researches in NL2SQL have a comparative stronger emphasis on the result that the generated query would return and on the correctness that it would produce, because the correct return of the query is their only goal, not the matching similarity of the queries.</p>
 

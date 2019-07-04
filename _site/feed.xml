@@ -5,8 +5,8 @@
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
     <link>https://stuartchan.github.io/</link>
     <atom:link href="https://stuartchan.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 04 Jul 2019 08:26:15 +0800</pubDate>
-    <lastBuildDate>Thu, 04 Jul 2019 08:26:15 +0800</lastBuildDate>
+    <pubDate>Thu, 04 Jul 2019 08:40:34 +0800</pubDate>
+    <lastBuildDate>Thu, 04 Jul 2019 08:40:34 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -49,12 +49,14 @@ another vocabulary that it had learned, then mismatching to the
 value of the replaced vocabulary.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;For example, 
+&lt;ul&gt;
+  &lt;li&gt;For example, 
 if we use the model trained on dbo:Monument templates set 
 to infer the questions of the topic about location that contains the vocabulary 
 that it had not learned in the training data, like:
 the “rdf:type dbo:Place” and the “dbo:location” are the two of the most frequently abused in the inference
-for those vocabulary unprecedented.&lt;/p&gt;
+for those vocabulary unprecedented.&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;Case 3: Issue On Reproducibility&lt;/p&gt;
 
@@ -63,16 +65,22 @@ translated the natural language questions with a new different
 vocabulary into the correct query.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;For example,
-I picked out some of the questions in the training set as 
+&lt;ul&gt;
+  &lt;li&gt;For example,
+I picked out some of the questions in the training set as
 input to the trained model to test whether it can reproduce 
 the queries that are paired to these original question in the training set,
 like:
-“whom did xu fan marry?”,
-the generated result was “select distinct var_uri where brack_open dbr_Rugrats dbo_composer var_uri”,
+    &lt;blockquote&gt;
+      &lt;p&gt;“whom did xu fan marry?”,
+the generated result was 
+“select distinct var_uri where brack_open dbr_Rugrats dbo_composer var_uri”,
 where apparently the “dbr_Rugrats” and “dbo_composer” are not related to the question,
 and the crucial entity about the person named “Xu Fan” and the entity &lt;a href=&quot;http://live.dbpedia.org/page/Xu_Fan&quot;&gt;“dbr_Xu_Fan”&lt;/a&gt; has not been properly recognized,
 not matching to the correct paired query “select distinct var_uri where brack_open var_uri dbo_spouse dbr_Xu_Fan sep_dot brack_close” in the training set.&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;Summing Up:&lt;/p&gt;
 
@@ -108,10 +116,10 @@ Figure 1, SEQ2SQL(V Zhong et al.) [1]&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://pbs.twimg.com/media/D-luC0sVAAEQ9i_.png&quot; alt=&quot;MAPO,NIPS2018&quot; /&gt;
 Figure 2, MAPO(NIPS 2018) [2]&lt;/p&gt;
 
-&lt;p&gt;The team[2] applied MAPO to the &lt;a href=&quot;https://github.com/salesforce/WikiSQL&quot;&gt;WikiSQL dataset&lt;/a&gt;. For each sample on the WikiSQL data, 1000 sample programs were generated. Five high-return samples were stored in the Memory Buffer. GloVe embeddings was applied to the strategy function fitting network. LSTM Hidden The unit is 200 and the training is 15000 steps:
+&lt;p&gt;The team[2] applied MAPO to the &lt;a href=&quot;https://github.com/salesforce/WikiSQL&quot;&gt;WikiSQL dataset&lt;/a&gt;. For each sample on the WikiSQL data, 1000 sample programs were generated. Five high-return samples were stored in the Memory Buffer. The &lt;a href=&quot;https://nlp.stanford.edu/projects/glove/&quot;&gt;GloVe embeddings&lt;/a&gt; was applied to the strategy function fitting network. LSTM Hidden The unit is 200 and the training is 15000 steps:
 &lt;img src=&quot;https://pbs.twimg.com/media/D-lxATuU4AA29Sy.png&quot; alt=&quot;Figure 3, is the figure 2 from MAPO about its performances and experiments&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;The learning of the connection between the the natural language question and the structured query is the major objective function, where the  task is designed to let the query fit as much as possible during the machine translation training.&lt;/p&gt;
+&lt;p&gt;The learning of the connection between the the natural language question and the structured query is the major objective function, where the task is designed to let the query fit as much as possible during the machine translation training.&lt;/p&gt;
 
 &lt;p&gt;While parallelly, the researches in NL2SQL have a comparative stronger emphasis on the result that the generated query would return and on the correctness that it would produce, because the correct return of the query is their only goal, not the matching similarity of the queries.&lt;/p&gt;
 
