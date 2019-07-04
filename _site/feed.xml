@@ -5,8 +5,8 @@
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
     <link>https://stuartchan.github.io/</link>
     <atom:link href="https://stuartchan.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 04 Jul 2019 08:50:21 +0800</pubDate>
-    <lastBuildDate>Thu, 04 Jul 2019 08:50:21 +0800</lastBuildDate>
+    <pubDate>Thu, 04 Jul 2019 08:51:55 +0800</pubDate>
+    <lastBuildDate>Thu, 04 Jul 2019 08:51:55 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -50,13 +50,14 @@ value of the replaced vocabulary.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;For example, 
-if we use the model trained on dbo:Monument templates set 
+  &lt;li&gt;For example,&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;if we use the model trained on dbo:Monument templates set 
 to infer the questions of the topic about location that contains the vocabulary 
 that it had not learned in the training data, like:
 the “rdf:type dbo:Place” and the “dbo:location” are the two of the most frequently abused in the inference
-for those vocabulary unprecedented.&lt;/li&gt;
-&lt;/ul&gt;
+for those vocabulary unprecedented.&lt;/p&gt;
 
 &lt;p&gt;Case 3: Issue On Reproducibility&lt;/p&gt;
 
@@ -66,12 +67,13 @@ vocabulary into the correct query.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;For example,
-I picked out some of the questions in the training set as
+  &lt;li&gt;For example,&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I picked out some of the questions in the training set as
 input to the trained model to test whether it can reproduce 
 the queries that are paired to these original question in the training set,
-like:&lt;/li&gt;
-&lt;/ul&gt;
+like:&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;“whom did xu fan marry?”,&lt;/p&gt;
