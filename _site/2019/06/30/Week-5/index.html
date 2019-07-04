@@ -258,17 +258,22 @@ vocabulary into the correct query.
 I picked out some of the questions in the training set as
 input to the trained model to test whether it can reproduce 
 the queries that are paired to these original question in the training set,
-like:
-    <blockquote>
-      <p>“whom did xu fan marry?”,
-the generated result was 
-“select distinct var_uri where brack_open dbr_Rugrats dbo_composer var_uri”,
-where apparently the “dbr_Rugrats” and “dbo_composer” are not related to the question,
-and the crucial entity about the person named “Xu Fan” and the entity <a href="http://live.dbpedia.org/page/Xu_Fan">“dbr_Xu_Fan”</a> has not been properly recognized,
-not matching to the correct paired query “select distinct var_uri where brack_open var_uri dbo_spouse dbr_Xu_Fan sep_dot brack_close” in the training set.</p>
-    </blockquote>
-  </li>
+like:</li>
 </ul>
+
+<blockquote>
+  <p>“whom did xu fan marry?”,</p>
+</blockquote>
+
+<p>the generated result was</p>
+
+<blockquote>
+  <p>“select distinct var_uri where brack_open dbr_Rugrats dbo_composer var_uri”,</p>
+</blockquote>
+
+<p>where apparently the “dbr_Rugrats” and “dbo_composer” are not related to the question,
+also, the crucial entity about the person named “Xu Fan” and the entity <a href="http://live.dbpedia.org/page/Xu_Fan">“dbr_Xu_Fan”</a> has not been properly recognized,
+not matching to the correct paired query “select distinct var_uri where brack_open var_uri dbo_spouse dbr_Xu_Fan sep_dot brack_close” in the training set.</p>
 
 <p>Summing Up:</p>
 
