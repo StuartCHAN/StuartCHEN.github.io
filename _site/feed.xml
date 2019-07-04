@@ -5,8 +5,8 @@
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
     <link>https://stuartchan.github.io/</link>
     <atom:link href="https://stuartchan.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 04 Jul 2019 08:42:43 +0800</pubDate>
-    <lastBuildDate>Thu, 04 Jul 2019 08:42:43 +0800</lastBuildDate>
+    <pubDate>Thu, 04 Jul 2019 08:46:38 +0800</pubDate>
+    <lastBuildDate>Thu, 04 Jul 2019 08:46:38 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -109,7 +109,7 @@ Figure 1, SEQ2SQL(V Zhong et al.) [1]&lt;/p&gt;
 
 &lt;p&gt;It is worth noting that in reinforcement learning, the parameter update of the strategy function is different from the deep neural network, not based on the loss function, but based on the expected return. The parameter update is in the direction of maximizing the expected return. The expected return can be given by the Reward function.&lt;/p&gt;
 
-&lt;p&gt;Since our task is to generate program statements, we can easily run the generated program in the real environment and compare the result with the label of the weakly supervised training data to get the 0-1 binary return function. The core idea of ??reinforcement learning is to correct the behavior of the agent by interacting with the environment, so as to achieve the effect of “learning”.&lt;/p&gt;
+&lt;p&gt;Since our task is to generate program statements, we can easily run the generated program in the real environment and compare the result with the label of the weakly supervised training data to get the 0-1 binary return function. Its core idea is to correct the behavior of the agent by interacting with the environment, so as to achieve the effect of “learning”.&lt;/p&gt;
 
 &lt;p&gt;Based on the above-mentioned intensive learning ideas, in the specific implementation, MAPO proposed the following innovative solutions. First, in order to improve the efficiency of training, the MAPO algorithm stores the sampled high-reward program into a Memory Buffer. When training the strategy function fitting network, the objective function that maximizes the expected return is divided into two parts, one is The expected return of the sampling program in the Memory Buffer, and the other part is the expected return of the sampling program outside the Buffer, as shown in the following figure.&lt;/p&gt;
 
