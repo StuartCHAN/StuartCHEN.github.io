@@ -5,8 +5,8 @@
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
     <link>https://stuartchan.github.io/</link>
     <atom:link href="https://stuartchan.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 04 Jul 2019 09:03:35 +0800</pubDate>
-    <lastBuildDate>Thu, 04 Jul 2019 09:03:35 +0800</lastBuildDate>
+    <pubDate>Thu, 04 Jul 2019 09:25:55 +0800</pubDate>
+    <lastBuildDate>Thu, 04 Jul 2019 09:25:55 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -87,7 +87,10 @@ like:&lt;/p&gt;
 
 &lt;p&gt;where apparently the “dbr_Rugrats” and “dbo_composer” are not related to the question,
 also, the crucial entity about the person named “Xu Fan” and the entity &lt;a href=&quot;http://live.dbpedia.org/page/Xu_Fan&quot;&gt;“dbr_Xu_Fan”&lt;/a&gt; has not been properly recognized,
-not matching to the correct paired query “select distinct var_uri where brack_open var_uri dbo_spouse dbr_Xu_Fan sep_dot brack_close” in the training set.&lt;/p&gt;
+not matching to the correct paired query&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;“select distinct var_uri where brack_open var_uri dbo_spouse dbr_Xu_Fan sep_dot brack_close” in the training set.&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;p&gt;Summing Up:&lt;/p&gt;
 
