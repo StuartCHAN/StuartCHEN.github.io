@@ -5,8 +5,8 @@
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
     <link>https://stuartchan.github.io/</link>
     <atom:link href="https://stuartchan.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 15 Jul 2019 20:52:46 +0800</pubDate>
-    <lastBuildDate>Mon, 15 Jul 2019 20:52:46 +0800</lastBuildDate>
+    <pubDate>Mon, 15 Jul 2019 20:56:50 +0800</pubDate>
+    <lastBuildDate>Mon, 15 Jul 2019 20:56:50 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -154,15 +154,11 @@
 
 &lt;p&gt;(1) The WMD algorithm uses NBOW (normalized bag-of-words, the normalized word bag model) to represent the distribution P. Where P1 represents the word itself, used to calculate the weight of the word in the current document, wherein the word i appears several times in the associated document, and the feature quantity of P1 is represented by the word vector of the word.&lt;/p&gt;
 
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;(2) The WMD algorithm uses a Word travel cost to calculate the similarity of the word i to the word j, that is, the Euclidean distance of the word vector of the word i and the word j, and the distance value is C(i,j)=&lt;/td&gt;
-      &lt;td&gt;(vecI -vecJ)&lt;/td&gt;
-      &lt;td&gt;. Here, C(i,j) is seen as the price paid for converting the word i into the word j.&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+&lt;p&gt;(2) The WMD algorithm uses a Word travel cost to calculate the similarity of the word i to the word j, that is, the Euclidean distance of the word vector of the word i and the word j, and the distance value is&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;C(i,j)=|(vecI -vecJ)|. 
+  Here, C(i,j) is seen as the price paid for converting the word i into the word j.&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;p&gt;(3) The WMD algorithm uses the Document distance to represent the distance between documents.&lt;/p&gt;
 
