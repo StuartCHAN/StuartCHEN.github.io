@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content=" L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! ">
+    <meta name="keywords"  content="BY, Blog Yeah, Stuart Jiazheng Chen, stuartchan, Machine Learning, NLP, Cognitive Science, Linguistics ">
+    <meta name="theme-color" content="#000000">
+    
+    <title>Week 6 - Stuart Chen | Blog Yeah</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <!-- Safari Webpage Icon    by-BY -->
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://stuartchan.github.io/2019/07/01/Week-6/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Stuart Chen's Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/justin-luebke-90718-unsplash.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/justin-luebke-90718-unsplash.jpg')
+    }
+
+    
+</style>
+<header class="intro-header" >
+    <div class="header-mask"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#GSoC2019" title="GSoC2019">GSoC2019</a>
+                        
+                        <a class="tag" href="/tags/#NLP" title="NLP">NLP</a>
+                        
+                        <a class="tag" href="/tags/#DBpedia" title="DBpedia">DBpedia</a>
+                        
+                    </div>
+                    <h1>Week 6</h1>
+                    
+                    
+                    <h2 class="subheading">Vector Similarity Calculation</h2>
+                    
+                    <span class="meta">Posted by Stuart Chen on July 1, 2019</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<h1 id="the-week--6">The Week  6</h1>
+
+<p>This week we focus on two aspects.</p>
+
+<p>First is the selection of the method for calculating the semantic vectors similarity.</p>
+
+<p>Second is the experiment of doing benchmark evaluation in GERBIL-QA.</p>
+
+<h2 id="1-the-calculation-of--vectors--similarity">1. The Calculation Of  Vectors  Similarity</h2>
+
+<h3 id="11-the-methods-for-measuring-the-vectors">1.1 The Methods for Measuring the Vectors</h3>
+
+<p>Method 1: Cosine Similarity</p>
+
+<p><img src="https://img-my.csdn.net/uploads/201207/20/1342750759_1439.jpg" alt="Cosine Similarity" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">cosine_distance</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span> 
+    <span class="k">if</span> <span class="n">v1</span><span class="o">.</span><span class="nb">all</span><span class="p">()</span> <span class="ow">and</span> <span class="n">v2</span><span class="o">.</span><span class="nb">all</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v2</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+</code></pre></div></div>
+
+<p>Method 2: Manhattan distance</p>
+
+<p>Taxi geometry or Manhattan distance or grid line distance is a vocabulary created by Herman Minkowski, which is the geometric term used in the Euclidean geometric metric space to indicate two points. The sum of the absolute wheelbases on the standard coordinate system.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">manhattan_distance</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>  <span class="c1"># 
+</span>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">v1</span> <span class="o">-</span> <span class="n">v2</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Method 3: Euclidean distance</p>
+
+<p>Defined on two vectors (two points): the Euclidean distance between the points is:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">euclidean_distance</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>  <span class="c1"># 
+</span>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">v1</span> <span class="o">-</span> <span class="n">v2</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<p>Method 4: Euclidean distance standardized</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">euclidean_standardized_distance</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>  <span class="c1"># 
+</span>    <span class="n">v1_v2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">])</span>
+    <span class="n">sk_v1_v2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">v1_v2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">zero_bit</span> <span class="o">=</span> <span class="mf">0.000000001</span>
+    <span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(((</span><span class="n">v1</span> <span class="o">-</span> <span class="n">v2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">sk_v1_v2</span> <span class="o">+</span> <span class="n">zero_bit</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">sk_v1_v2</span><span class="p">)))</span><span class="o">.</span><span class="nb">sum</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">distance</span>
+</code></pre></div></div>
+
+<p>Method 5: Hamming Distance</p>
+
+<p>In information theory, the Hamming distance between two strings of equal length is the number of positions at which the corresponding symbols are different.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">hamming_distance</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">^</span> <span class="nb">int</span><span class="p">(</span><span class="n">v2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">bin</span><span class="p">(</span><span class="n">n</span> <span class="o">&amp;</span> <span class="mh">0xffffffff</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">'1'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Method 6: Chebyshev distance</p>
+
+<p>In mathematics, Chebyshev distance (or Tchebychev distance), maximum metric, or L∞ metric is a metric defined on a vector space where the distance between two vectors is the greatest of their differences along any coordinate dimension. It is named after Pafnuty Chebyshev.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">chebyshev_distance</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>  <span class="c1"># 
+</span>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="nb">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">v1</span> <span class="o">-</span> <span class="n">v2</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Method 7: Minkowski distance</p>
+
+<p>The Minkowski distance is a metric in a normed vector space which can be considered as a generalization of both the Euclidean distance and the Manhattan distance.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">minkowski_distance</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>  <span class="c1"># 
+</span>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">v1</span> <span class="o">-</span> <span class="n">v2</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<p>Method 8: Mahalanobis distance</p>
+
+<p>Defined on two vectors (two points), the two points are in the same distribution. The Mahalanobis distance between the points is:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">mahalanobis_distance</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>  <span class="c1"># 
+</span>    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">])</span>
+    <span class="n">XT</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="c1"># numpy.ndarray.T
+</span>    <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c1"># Covariance matrix between two dimensions
+</span>    <span class="k">try</span><span class="p">:</span>
+        <span class="n">SI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>  <span class="c1"># Inverse matrix of covariance matrix  
+</span>    <span class="k">except</span><span class="p">:</span>
+        <span class="n">SI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+    <span class="c1"># The Mahalanobis distance calculates the distance between two samples. There are 10 samples in total, and there are a total of 45 distances.
+</span>    <span class="n">n</span> <span class="o">=</span> <span class="n">XT</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">distance_all</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="n">delta</span> <span class="o">=</span> <span class="n">XT</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">XT</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">distance_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">SI</span><span class="p">),</span> <span class="n">delta</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+            <span class="n">distance_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">distance_1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">distance_all</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Method 9: Bray Curtis distance</p>
+
+<p>In ecology and biology, the Bray–Curtis dissimilarity is a statistic used to quantify the compositional dissimilarity between two different sites, based on counts at each site.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">bray_curtis_distance</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>  <span class="c1">#  Biological ecological distance
+</span>    <span class="n">up_v1_v2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">v2</span> <span class="o">-</span> <span class="n">v1</span><span class="p">))</span>
+    <span class="n">down_v1_v2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span>
+    <span class="n">zero_bit</span> <span class="o">=</span> <span class="mf">0.000000001</span>
+    <span class="k">return</span> <span class="n">up_v1_v2</span> <span class="o">/</span> <span class="p">(</span><span class="n">down_v1_v2</span> <span class="o">+</span> <span class="n">zero_bit</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Method 10: Pearson correlation</p>
+
+<p>A Pearson correlation is a number between -1 and 1 that indicates the extent to which two variables are linearly related. The Pearson correlation is also known as the “product moment correlation coefficient” (PMCC) or simply “correlation”.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">pearson_correlation_distance</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>  <span class="c1"># 
+</span>    <span class="n">v1_v2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">v1_v2</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Method 11: Jaccard similarity coefficient</p>
+
+<p>The Jaccard index, also known as Intersection over Union and the Jaccard similarity coefficient (originally given the French name coefficient de communauté by Paul Jaccard), is a statistic used for gauging the similarity and diversity of sample sets. If A and B are both empty, we define J(A,B) = 1.</p>
+
+<p><img src="https://img-blog.csdn.net/20180119093515865?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjgzNjM1NA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="Jaccar" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">jaccard_similarity_coefficient_distance</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>  
+    <span class="n">v1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span>
+    <span class="n">v2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span>
+    <span class="n">up</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">double</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">bitwise_and</span><span class="p">((</span><span class="n">v1</span> <span class="o">!=</span> <span class="n">v2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">bitwise_or</span><span class="p">(</span><span class="n">v1</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">v2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="nb">sum</span><span class="p">())</span>
+    <span class="n">zero_bit</span> <span class="o">=</span> <span class="mf">0.000000001</span>
+    <span class="n">down</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">double</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">bitwise_or</span><span class="p">(</span><span class="n">v1</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">v2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="nb">sum</span><span class="p">()</span> <span class="o">+</span> <span class="n">zero_bit</span><span class="p">)</span>
+    <span class="n">jaccard</span> <span class="o">=</span> <span class="n">up</span><span class="o">/</span><span class="n">down</span>
+    <span class="k">return</span> <span class="n">jaccard</span>
+</code></pre></div></div>
+
+<p>Method 12: Word Mover Distance</p>
+
+<p>This is the method for comparing the sentences similarity.</p>
+
+<p>The WMD model is based on the EMD (Earth Mover Distance) model. EMD is the same as Euclidean distance. They are definitions of distance metrics that can be used to measure the distance between two distributions. Its main application in the field of image processing and speech signal processing, WMD model is based on EMD, the scope of the model extends to the field of natural language processing. The detailed principle of EMD is not repeated here.</p>
+
+<p>Matt et al. associate word embedding with EMD to measure document distance. The WMD (word mover’s distance) algorithm and WCD (word centroid distance) and RWMD (relaxed word mover’s distance) algorithms are proposed.</p>
+
+<p>(1) The WMD algorithm uses NBOW (normalized bag-of-words, the normalized word bag model) to represent the distribution P. Where P1 represents the word itself, used to calculate the weight of the word in the current document, wherein the word i appears several times in the associated document, and the feature quantity of P1 is represented by the word vector of the word.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>(2) The WMD algorithm uses a Word travel cost to calculate the similarity of the word i to the word j, that is, the Euclidean distance of the word vector of the word i and the word j, and the distance value is C(i,j)=</td>
+      <td>(vecI -vecJ)</td>
+      <td>. Here, C(i,j) is seen as the price paid for converting the word i into the word j.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>(3) The WMD algorithm uses the Document distance to represent the distance between documents.</p>
+
+<p><img src="https://img-blog.csdn.net/20171114141354849?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXJsaGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="WMD" /></p>
+
+<p>Define the matrix T here. Where Tij (Tij &gt; = 0) indicates how much of the word i in the d document is converted into the word j in the d’ document. In order to ensure that the document d can be converted into the document d’, it is necessary to ensure that the sum of the quantities of all the words in the word d converted to d’ is di, that is, the same reason, it should also satisfy the word j converted into the d’ document in the d document. The total amount is dj, ie. We can define the distance between document d and d’ as the minimum cost of converting all words in d into words in d’.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">word_move_distance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">sentence1_split</span><span class="p">,</span> <span class="n">sentence2_split</span><span class="p">):</span>  <span class="c1"># WORD MOVER DISTANCE, it's the important one 
+</span>    <span class="c1"># model = gensim.models.KeyedVectors.load_word2vec_format(word2_vec_path, unicode_errors='ignore', limit=None)  # ,binary=True)
+</span>    <span class="c1"># model.init_sims(replace=True)
+</span>    <span class="n">distance</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">wmdistance</span><span class="p">(</span><span class="n">sentence1_split</span><span class="p">,</span> <span class="n">sentence2_split</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">distance</span>
+</code></pre></div></div>
+
+<h3 id="12-choose-which-method">1.2 Choose Which Method:</h3>
+
+<p>First, we must liook at the constraints of what we want.</p>
+
+<p>Second, it should be for what purpose.</p>
+
+<p>To answer the first question, we must also keep in mind that we are using the metho on the word vectors.</p>
+
+<p>To the second, we should focus on the distinguishability of the semantic meanings of two phrases in the form of GloVe vectors.</p>
+
+<p>The Method 2(Manhattan distance) is not pertinent to our vector calculation, because we are not mearsuring a path.</p>
+
+<p>The Method 3(Euclidean distance) is for measuring the spatial distance between two points, which might not reflect the similarity between two words.</p>
+
+<p>The Method 5(Hamming Distance) is major in comparing the partial differences of two long string or documents, which might be not suitable for our phrases comparison.</p>
+
+<p>The Method 7(Minkowski distance) is rather closer to the combination of Method 2 and Mehod 1, but is still more pertinent to the calculation of spatial distance.</p>
+
+<p>Method 8(Mahalanobis distance), Method 9(Bray Curtis distance) and Method 10(Pearson correlation) are the metric based on statistic distribution, which might not be suitable for the GloVe vectors’ design ideas to represent the semantic meaning.</p>
+
+<p>Then, the final candidate pool leaves only the method of cosine similarity and the method of jaccard similarity coefficient distance,</p>
+
+<p>Let’s have the experiments:</p>
+<ul>
+  <li>we randomly select a list of one hundred entities with related predicates from the generated training data, to see the precision that the two different mathod works</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th style="text-align: right">Accuracy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Cosine Similarity</td>
+      <td style="text-align: right">53%</td>
+    </tr>
+    <tr>
+      <td>Jaccard Similarity</td>
+      <td style="text-align: right">4%</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+<ul>
+  <li>Analyses of The Result
+Let’s take an example:
+we used the natural language pair &lt;”wife”, “Obama”&gt; with expectation to get the entity pair &lt;dbo:spouse, dbr:Barack_Obama&gt;. 
+So, did they succeed to get the dbo:spouse from “wife”?</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th style="text-align: left">Prediction Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Cosine Similarity</td>
+      <td style="text-align: left">dbo:spouse, dbp:parents</td>
+    </tr>
+    <tr>
+      <td>Jaccard Similarity</td>
+      <td style="text-align: left">dbo:speaker</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The Cosine method can catch more information in the vectors, while the Jaccard catches the distinguished 0-1 binary differences in each bit.</p>
+
+<p>When looking into the two lists of scores that compared the similarity between the target phrase “wife” and the list of candidate strings, we found that:
+    the scores of Jaccard method are mostly greater than 0.99, or otherwise 0;
+    the scores of Jaccard method have an average approximate to 0.5.</p>
+
+<p>And, according to <a href="http://infolab.stanford.edu/~ullman/mmds/ch9.pdf">a tutorial from Stanford</a> [1],</p>
+<blockquote>
+  <p>When utilities are more detailed ratings, the Jaccard distance loses important information.</p>
+</blockquote>
+
+<p>Because Jaccard is mainly used to judge the similarity between sets, he can’t reflect more information like a matrix. A simple example might be, when I make a movie recommendation, I use the data of the user to calculate the similarity between the movies. With Jaccard, I can only use the information “whether I have seen it”, but in Cosine’s calculation, Add the user’s rating information for the movie.</p>
+
+<p>To sum up,</p>
+<blockquote>
+  <p>The Cosine similarity could be used to identify plagiarism, but will not be a good index to identify mirror sites on the internet. Whereas the Jaccard similarity will be a good index to identify mirror sites, but not so great at catching copy pasta plagiarism (within a larger document). [2]</p>
+</blockquote>
+
+<h2 id="references">References</h2>
+
+<p>[1] <a href="http://infolab.stanford.edu/~ullman/">Jeffrey D. Ullman</a> (2017) http://infolab.stanford.edu/~ullman/mmds/ch9.pdf</p>
+
+<p>[2]  OluwaYetty (2018) http://techinpink.com/2017/08/04/implementing-similarity-measures-cosine-similarity-versus-jaccard-similarity/</p>
+
+
+
+                <hr style="visibility: hidden;">
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2019/06/30/Week-5/" data-toggle="tooltip" data-placement="top" title="Week 5">
+                        Previous<br>
+                        <span>Week 5</span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+
+
+                <!--Gitalk评论start  -->
+                
+                <!-- 引入Gitalk评论插件  -->
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+                <div id="gitalk-container"></div>
+                <!-- 引入一个生产md5的js，用于对id值进行处理，防止其过长 -->
+                <!-- Thank DF:https://github.com/NSDingFan/NSDingFan.github.io/issues/3#issuecomment-407496538 -->
+                <script src="/js/md5.min.js"></script>
+                <script type="text/javascript">
+                    var gitalk = new Gitalk({
+                    clientID: 'e33be506a01bfc3d88c4',
+                    clientSecret: '567338a08cfc0064084b90ff5edda80d84052598',
+                    repo: 'stuartchan.github.io',
+                    owner: 'stuartchan',
+                    admin: ['stuartchan'],
+                    distractionFreeMode: true,
+                    id: md5(location.pathname),
+                    });
+                    gitalk.render('gitalk-container');
+                </script>
+                
+                <!-- Gitalk end -->
+
+                
+
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+                				<a href="/tags/#GSoC2019" title="GSoC2019" rel="9">
+                                    GSoC2019
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#NLP" title="NLP" rel="9">
+                                    NLP
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#DBpedia" title="DBpedia" rel="9">
+                                    DBpedia
+                                </a>
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="http://zhengwuyang.com">WY</a></li>
+                    
+                        <li><a href="https://twitter.com/stuartjzchen">Twitter</a></li>
+                    
+                        <li><a href="https://apple.com">Apple</a></li>
+                    
+                        <li><a href="https://developer.apple.com/">Apple Developer</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        // BY Fix:去除标题前的‘#’ issues:<https://github.com/qiubaiying/qiubaiying.github.io/issues/137>
+        // anchors.options = {
+        //   visible: 'always',
+        //   placement: 'right',
+        //   icon: '#'
+        // };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    <!-- add jianshu add target = "_blank" to <a> by BY -->
+                    
+                            <li>
+                                <a target="_blank" href="https://www.jianshu.com/u/chenstuart">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa  fa-stack-1x fa-inverse">简</i>
+                                    </span>
+                                </a>
+                            </li>
+                    
+                    
+                    <li>
+                        <a href="https://twitter.com/stuartjzchen">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/churnng-stuart">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+
+
+                    
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/stuartjzchen">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/stuartchan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Stuart Chen's Blog 2019
+                    <br>
+                    Theme on <a href="https://github.com/StuartCHAN/StuartCHAN.github.io.git">GitHub</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=stuartchan&repo=stuartchan.github.io&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Service Worker -->
+
+<script type="text/javascript">
+    if(navigator.serviceWorker){
+        // For security reasons, a service worker can only control the pages that are in the same directory level or below it. That's why we put sw.js at ROOT level.
+        navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {console.log('Service Worker Registered. ', registration)})
+            .catch((error) => {console.log('ServiceWorker registration failed: ', error)})
+    }
+</script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/ 
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers   
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async('/js/jquery.tagcloud.js',function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;    
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/apple-touch-icon.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
