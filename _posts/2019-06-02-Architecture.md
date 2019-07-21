@@ -18,13 +18,13 @@ tags:
 The model architecture is like:
 
 
-![architecture and pipeline](https://pic3.zhimg.com/80/v2-a9408da7b2103f4018708efdc3e1f6be_hd.jpg)
+![architecture and pipeline](https://res.cloudinary.com/stuarteec/image/upload/v1563696969/Atten_NSPM00_xaghsv.png)
 
 # Pipeline 
 
 ## 1. Question Generation from Natural Language
 
-![QuestionsGeneration](https://pic2.zhimg.com/80/v2-cbcf157a6a472066848f3623789a9565_hd.jpg)
+![QuestionsGeneration](https://res.cloudinary.com/stuarteec/image/upload/v1563696969/Atten_NSPM00.QuestionsGeneration_xrloua.png)
 
 We will use attention mechanism to generate questions from natural language contextual passage. By detecting entities in the passage, it will automatically get questions about the entities.
 
@@ -34,7 +34,7 @@ We use the natural language passage from Wikipedia as input :
 ```
     Audrey Hepburn was a British actress and humanitarian. Recognised as a movie star and fashion icon, Hepburn was active during Hollywood's Golden Age. She was ranked by the American Film Institute as the third-greatest female screen legend in Golden Age Hollywood, and was inducted into the International Best Dressed List Hall of Fame. She rose to star in Roman Holiday in 1953.
 ```
-![](https://pic1.zhimg.com/80/v2-6a37b3b2f4db3949137d90642df08ff4_hd.png)
+![](https://res.cloudinary.com/stuarteec/image/upload/v1563699161/v2-6a37b3b2f4db3949137d90642df08ff4_hd_uu57j6.png)
 
 ### 1.2 Attention Layer with Embedding
 
@@ -111,7 +111,7 @@ Then we get the output question:
 
 ## 2. From Natural Language Questions to Templates
 
-![](https://pic2.zhimg.com/80/v2-a23047e0556d185a03e86f145659d625_hd.jpg)
+![](https://res.cloudinary.com/stuarteec/image/upload/v1563696969/Atten_NSPM00.TemplatesGeneration_rugjls.png)
 
 With the help of semantic parsing, the model extracts the templates from the questions.
 
@@ -155,7 +155,7 @@ SELECT DISTINCT ?a WHERE {
 The Templates Bank is a base where stores the existed templates. 
 The basic idea is to use the DBpedia entities embedding vectors to encode the question templates in order to match the existent templates.
 
-![TemplatesMatching](https://pic1.zhimg.com/80/v2-4a5f6b5e4f26dfb80083e9a3e3c337ec_hd.jpg)
+![TemplatesMatching](https://res.cloudinary.com/stuarteec/image/upload/v1563696969/Atten_NSPM00.TemplatesMatching_shcofp.png)
 
 
 ## 4. Comparison of Newly Generated Templates and the Model Matching

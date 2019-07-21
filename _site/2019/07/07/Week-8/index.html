@@ -10,7 +10,7 @@
     <meta name="keywords"  content="BY, Blog Yeah, Stuart Jiazheng Chen, stuartchan, Machine Learning, NLP, Cognitive Science, Linguistics ">
     <meta name="theme-color" content="#000000">
     
-    <title>Week 6 - Stuart Chen | Blog Yeah</title>
+    <title>Week 8 - Stuart Chen | Blog Yeah</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://stuartchan.github.io/2019/07/07/Week-6/">
+    <link rel="canonical" href="https://stuartchan.github.io/2019/07/07/Week-8/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -176,7 +176,7 @@
                         <a class="tag" href="/tags/#DBpedia" title="DBpedia">DBpedia</a>
                         
                     </div>
-                    <h1>Week 6</h1>
+                    <h1>Week 8</h1>
                     
                     
                     <h2 class="subheading">Vector Similarity Calculation</h2>
@@ -199,13 +199,168 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h1 id="the-week--6">The Week  6</h1>
+				<h1 id="the-tables">The Tables</h1>
 
-<p>This week we focus on two aspects.</p>
+<h2 id="the-scores-for-the-answers">The Scores For The Answers</h2>
 
-<p>First is the selection of the method for calculating the semantic vectors similarity.</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Method</th>
+      <th style="text-align: center">BLEU score</th>
+      <th style="text-align: center">Micro F1</th>
+      <th style="text-align: center">Micro Precision</th>
+      <th style="text-align: center">Micro Recall</th>
+      <th style="text-align: center">Macro F1</th>
+      <th style="text-align: center">Macro Precision</th>
+      <th style="text-align: center">Macro Recall</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">DBNQA</td>
+      <td style="text-align: center">64.55</td>
+      <td style="text-align: center">0.0072</td>
+      <td style="text-align: center">0.0274</td>
+      <td style="text-align: center">0.0041</td>
+      <td style="text-align: center">0.0093</td>
+      <td style="text-align: center">0.0093</td>
+      <td style="text-align: center">0.0093</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">QALD7</td>
+      <td style="text-align: center">80</td>
+      <td style="text-align: center">0.0072</td>
+      <td style="text-align: center">0.0282</td>
+      <td style="text-align: center">0.0041</td>
+      <td style="text-align: center">0.0093</td>
+      <td style="text-align: center">0.0093</td>
+      <td style="text-align: center">0.0093</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">dependency parsing + Spotlight</td>
+      <td style="text-align: center">80</td>
+      <td style="text-align: center">0.0037</td>
+      <td style="text-align: center">0.0179</td>
+      <td style="text-align: center">0.0021</td>
+      <td style="text-align: center">0.0047</td>
+      <td style="text-align: center">0.0047</td>
+      <td style="text-align: center">0.0047</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">dependency parsing + Spotlight + GloVe</td>
+      <td style="text-align: center">80</td>
+      <td style="text-align: center">0.0072</td>
+      <td style="text-align: center">0.027</td>
+      <td style="text-align: center">0.0041</td>
+      <td style="text-align: center">0.0093</td>
+      <td style="text-align: center">0.0093</td>
+      <td style="text-align: center">0.0093</td>
+    </tr>
+  </tbody>
+</table>
 
-<p>Second is the experiment of doing benchmark evaluation in GERBIL-QA.</p>
+<h2 id="the-scores-for-the-answer-type">The Scores For The Answer Type</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Method</th>
+      <th style="text-align: center">BLEU score</th>
+      <th style="text-align: center">Micro F1</th>
+      <th style="text-align: center">Micro Precision</th>
+      <th style="text-align: center">Micro Recall</th>
+      <th style="text-align: center">Macro F1</th>
+      <th style="text-align: center">Macro Precision</th>
+      <th style="text-align: center">Macro Recall</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">DBNQA</td>
+      <td style="text-align: center">64.55</td>
+      <td style="text-align: center">0.6587</td>
+      <td style="text-align: center">0.9167</td>
+      <td style="text-align: center">0.514</td>
+      <td style="text-align: center">0.5163</td>
+      <td style="text-align: center">0.5163</td>
+      <td style="text-align: center">0.5163</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">QALD7</td>
+      <td style="text-align: center">80</td>
+      <td style="text-align: center">0.6587</td>
+      <td style="text-align: center">0.9167</td>
+      <td style="text-align: center">0.514</td>
+      <td style="text-align: center">0.5163</td>
+      <td style="text-align: center">0.5163</td>
+      <td style="text-align: center">0.5163</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">dependency parsing + Spotlight</td>
+      <td style="text-align: center">80</td>
+      <td style="text-align: center">0.6587</td>
+      <td style="text-align: center">0.9167</td>
+      <td style="text-align: center">0.514</td>
+      <td style="text-align: center">0.5163</td>
+      <td style="text-align: center">0.5163</td>
+      <td style="text-align: center">0.5163</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">dependency parsing + Spotlight + GloVe</td>
+      <td style="text-align: center">80</td>
+      <td style="text-align: center">0.6587</td>
+      <td style="text-align: center">0.9167</td>
+      <td style="text-align: center">0.514</td>
+      <td style="text-align: center">0.5163</td>
+      <td style="text-align: center">0.5163</td>
+      <td style="text-align: center">0.5163</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Method</th>
+      <th style="text-align: center">DBQNA BLEU score</th>
+      <th style="text-align: center">DBQNA F1 score</th>
+      <th style="text-align: center">DBQNA Answer Type F1 score</th>
+      <th style="text-align: center">QALD BLEU score</th>
+      <th style="text-align: center">QALD F1 score</th>
+      <th>QALD Answer Type F1 score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">NSpM</td>
+      <td style="text-align: center">64.55</td>
+      <td style="text-align: center">0.0072</td>
+      <td style="text-align: center">0.6587</td>
+      <td style="text-align: center">80</td>
+      <td style="text-align: center">0.0072</td>
+      <td>0.6587</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">dependency parsing + Spotlight</td>
+      <td style="text-align: center">单元格</td>
+      <td style="text-align: center">单元格</td>
+      <td style="text-align: center">单元格</td>
+      <td style="text-align: center">单元格</td>
+      <td style="text-align: center">单元格</td>
+      <td>单元格</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">dependency parsing + Spotlight + vector similarity</td>
+      <td style="text-align: center">单元格</td>
+      <td style="text-align: center">单元格</td>
+      <td style="text-align: center">单元格</td>
+      <td style="text-align: center">单元格</td>
+      <td style="text-align: center">单元格</td>
+      <td>单元格</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="1-the-calculation-of--vectors--similarity">1. The Calculation Of  Vectors  Similarity</h2>
 
@@ -213,7 +368,7 @@
 
 <p>Method 1: Cosine Similarity</p>
 
-<p><img src="https://res.cloudinary.com/stuarteec/image/upload/v1563698534/1342750759_1439_bzka5a.jpg" alt="Cosine Similarity" /></p>
+<p><img src="https://img-my.csdn.net/uploads/201207/20/1342750759_1439.jpg" alt="Cosine Similarity" /></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">cosine_distance</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span> 
     <span class="k">if</span> <span class="n">v1</span><span class="o">.</span><span class="nb">all</span><span class="p">()</span> <span class="ow">and</span> <span class="n">v2</span><span class="o">.</span><span class="nb">all</span><span class="p">():</span>
@@ -320,7 +475,7 @@
 
 <p>The Jaccard index, also known as Intersection over Union and the Jaccard similarity coefficient (originally given the French name coefficient de communauté by Paul Jaccard), is a statistic used for gauging the similarity and diversity of sample sets. If A and B are both empty, we define J(A,B) = 1.</p>
 
-<p><img src="https://res.cloudinary.com/stuarteec/image/upload/v1563698591/20180119093515865_zsct8v.png" alt="Jaccar" /></p>
+<p><img src="https://img-blog.csdn.net/20180119093515865?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjgzNjM1NA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="Jaccar" /></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">jaccard_similarity_coefficient_distance</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>  
     <span class="n">v1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span>
@@ -350,7 +505,7 @@
 
 <p>(3) The WMD algorithm uses the Document distance to represent the distance between documents.</p>
 
-<p><img src="https://res.cloudinary.com/stuarteec/image/upload/v1563698635/20171114141354849_clmc1u.jpg" alt="WMD" /></p>
+<p><img src="https://img-blog.csdn.net/20171114141354849?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXJsaGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="WMD" /></p>
 
 <p>Define the matrix T here. Where Tij (Tij &gt; = 0) indicates how much of the word i in the d document is converted into the word j in the d’ document. In order to ensure that the document d can be converted into the document d’, it is necessary to ensure that the sum of the quantities of all the words in the word d converted to d’ is di, that is, the same reason, it should also satisfy the word j converted into the d’ document in the d document. The total amount is dj, ie. We can define the distance between document d and d’ as the minimum cost of converting all words in d into words in d’.</p>
 
@@ -465,19 +620,12 @@ So, did they succeed to get the dbo:spouse from “wife”?</li>
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2019/06/30/Week-5/" data-toggle="tooltip" data-placement="top" title="Week 5">
+                        <a href="/2019/07/07/Week-6/" data-toggle="tooltip" data-placement="top" title="Week 6">
                         Previous<br>
-                        <span>Week 5</span>
+                        <span>Week 6</span>
                         </a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2019/07/07/Week-8/" data-toggle="tooltip" data-placement="top" title="Week 8">
-                        Next<br>
-                        <span>Week 8</span>
-                        </a>
-                    </li>
                     
                 </ul>
 
