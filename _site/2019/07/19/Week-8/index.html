@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2019/07/19/Week-8/">
+    <link rel="canonical" href="https://stuartchan.github.io/2019/07/19/Week-8/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -203,23 +203,129 @@
 
 <h2 id="the-scores-for-the-answers">The Scores For The Answers</h2>
 
-<p>|Method |BLEU score| Micro F1 |Micro Precision |Micro Recall| Macro F1 |Macro Precision|Macro Recall|
-|:—– | :—-: | :—-: | :—-: | :—-: | :—-: | :—-: | :—-: |
-| DBNQA | 64.55 | 0.0072 | 0.0274 | 0.0041 | 0.0093 |0.0093|0.0093|
-| QALD7 | 80 | 0.0072 | 0.0282 | 0.0041 | 0.0093 |0.0093|0.0093|
-| dependency parsing + Spotlight | 80 | 0.0037 | 0.0179 | 0.0021 | 0.0047 |0.0047|0.0047|
-| dependency parsing + Spotlight + GloVe | 80 | 0.0072 | 0.027 | 0.0041 | 0.0093 |0.0093|0.0093|
-————————————————————————————————</p>
+<p>This is the table for GERBIL evaluation.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Method</th>
+      <th style="text-align: center">BLEU score</th>
+      <th style="text-align: center">Micro F1</th>
+      <th style="text-align: center">Micro Precision</th>
+      <th style="text-align: center">Micro Recall</th>
+      <th style="text-align: center">Macro F1</th>
+      <th style="text-align: center">Macro Precision</th>
+      <th style="text-align: center">Macro Recall</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">DBNQA</td>
+      <td style="text-align: center">64.55</td>
+      <td style="text-align: center">0.0072</td>
+      <td style="text-align: center">0.0274</td>
+      <td style="text-align: center">0.0041</td>
+      <td style="text-align: center">0.0093</td>
+      <td style="text-align: center">0.0093</td>
+      <td style="text-align: center">0.0093</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">QALD7</td>
+      <td style="text-align: center">80</td>
+      <td style="text-align: center">0.0072</td>
+      <td style="text-align: center">0.0282</td>
+      <td style="text-align: center">0.0041</td>
+      <td style="text-align: center">0.0093</td>
+      <td style="text-align: center">0.0093</td>
+      <td style="text-align: center">0.0093</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">dependency parsing + Spotlight</td>
+      <td style="text-align: center">80</td>
+      <td style="text-align: center">0.0037</td>
+      <td style="text-align: center">0.0179</td>
+      <td style="text-align: center">0.0021</td>
+      <td style="text-align: center">0.0047</td>
+      <td style="text-align: center">0.0047</td>
+      <td style="text-align: center">0.0047</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">dependency parsing + Spotlight + GloVe</td>
+      <td style="text-align: center">80</td>
+      <td style="text-align: center">0.0072</td>
+      <td style="text-align: center">0.027</td>
+      <td style="text-align: center">0.0041</td>
+      <td style="text-align: center">0.0093</td>
+      <td style="text-align: center">0.0093</td>
+      <td style="text-align: center">0.0093</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
 
 <h2 id="the-scores-for-the-answer-type">The Scores For The Answer Type</h2>
 
-<p>|Method |BLEU score| Micro F1 |Micro Precision |Micro Recall| Macro F1 |Macro Precision|Macro Recall|
-|:—– | :—-: | :—-: | :—-: | :—-: | :—-: | :—-: | :—-: |
-| DBNQA |64.55|0.6587|0.9167|0.514|0.5163|0.5163|0.5163|
-| QALD7 | 80 | 0.6587|0.9167|0.514|0.5163|0.5163|0.5163	|
-| dependency parsing + Spotlight | 80 | 0.6587|0.9167|0.514|0.5163|0.5163|0.5163|
-| dependency parsing + Spotlight + GloVe | 80 | 0.6587|0.9167|0.514|0.5163|0.5163|0.5163|
-—————————————————————————————-</p>
+<p>This table shows the statistics for answer types evaluation.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Method</th>
+      <th style="text-align: center">BLEU score</th>
+      <th style="text-align: center">Micro F1</th>
+      <th style="text-align: center">Micro Precision</th>
+      <th style="text-align: center">Micro Recall</th>
+      <th style="text-align: center">Macro F1</th>
+      <th style="text-align: center">Macro Precision</th>
+      <th style="text-align: center">Macro Recall</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">DBNQA</td>
+      <td style="text-align: center">64.55</td>
+      <td style="text-align: center">0.6587</td>
+      <td style="text-align: center">0.9167</td>
+      <td style="text-align: center">0.514</td>
+      <td style="text-align: center">0.5163</td>
+      <td style="text-align: center">0.5163</td>
+      <td style="text-align: center">0.5163</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">QALD7</td>
+      <td style="text-align: center">80</td>
+      <td style="text-align: center">0.6587</td>
+      <td style="text-align: center">0.9167</td>
+      <td style="text-align: center">0.514</td>
+      <td style="text-align: center">0.5163</td>
+      <td style="text-align: center">0.5163</td>
+      <td style="text-align: center">0.5163</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">dependency parsing + Spotlight</td>
+      <td style="text-align: center">80</td>
+      <td style="text-align: center">0.6587</td>
+      <td style="text-align: center">0.9167</td>
+      <td style="text-align: center">0.514</td>
+      <td style="text-align: center">0.5163</td>
+      <td style="text-align: center">0.5163</td>
+      <td style="text-align: center">0.5163</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">dependency parsing + Spotlight + GloVe</td>
+      <td style="text-align: center">80</td>
+      <td style="text-align: center">0.6587</td>
+      <td style="text-align: center">0.9167</td>
+      <td style="text-align: center">0.514</td>
+      <td style="text-align: center">0.5163</td>
+      <td style="text-align: center">0.5163</td>
+      <td style="text-align: center">0.5163</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
 
 
 
