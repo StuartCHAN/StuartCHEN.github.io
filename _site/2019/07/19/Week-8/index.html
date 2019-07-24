@@ -10,7 +10,7 @@
     <meta name="keywords"  content="BY, Blog Yeah, Stuart Jiazheng Chen, stuartchan, Machine Learning, NLP, Cognitive Science, Linguistics ">
     <meta name="theme-color" content="#000000">
     
-    <title>Stuart Chen | Blog Yeah</title>
+    <title>Week 8 - Stuart Chen | Blog Yeah</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://stuartchan.github.io/">
+    <link rel="canonical" href="https://stuartchan.github.io/2019/07/19/Week-8/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -148,426 +148,176 @@
 </script>
 
 
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/post-bg-desk.jpg')">
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/v2osk-223786-unsplash.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/v2osk-223786-unsplash.jpg')
+    }
+
+    
+</style>
+<header class="intro-header" >
+    <div class="header-mask"></div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Stuart Chen's Blog</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading"> Le vent se lève, il faut tenter de vivre. </span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#GSoC2019" title="GSoC2019">GSoC2019</a>
+                        
+                        <a class="tag" href="/tags/#NLP" title="NLP">NLP</a>
+                        
+                        <a class="tag" href="/tags/#DBpedia" title="DBpedia">DBpedia</a>
+                        
+                    </div>
+                    <h1>Week 8</h1>
+                    
+                    
+                    <h2 class="subheading">Analyses for Previous Works</h2>
+                    
+                    <span class="meta">Posted by Stuart Chen on July 19, 2019</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-	<div class="row">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<h1 id="the-statistics">The Statistics</h1>
+
+<h2 id="the-scores-for-the-answers">The Scores For The Answers</h2>
+
+<p>|Method |BLEU score| Micro F1 |Micro Precision |Micro Recall| Macro F1 |Macro Precision|Macro Recall|
+|:—– | :—-: | :—-: | :—-: | :—-: | :—-: | :—-: | :—-: |
+| DBNQA | 64.55 | 0.0072 | 0.0274 | 0.0041 | 0.0093 |0.0093|0.0093|
+| QALD7 | 80 | 0.0072 | 0.0282 | 0.0041 | 0.0093 |0.0093|0.0093|
+| dependency parsing + Spotlight | 80 | 0.0037 | 0.0179 | 0.0021 | 0.0047 |0.0047|0.0047|
+| dependency parsing + Spotlight + GloVe | 80 | 0.0072 | 0.027 | 0.0041 | 0.0093 |0.0093|0.0093|
+————————————————————————————————</p>
+
+<h2 id="the-scores-for-the-answer-type">The Scores For The Answer Type</h2>
+
+<p>|Method |BLEU score| Micro F1 |Micro Precision |Micro Recall| Macro F1 |Macro Precision|Macro Recall|
+|:—– | :—-: | :—-: | :—-: | :—-: | :—-: | :—-: | :—-: |
+| DBNQA |64.55|0.6587|0.9167|0.514|0.5163|0.5163|0.5163|
+| QALD7 | 80 | 0.6587|0.9167|0.514|0.5163|0.5163|0.5163	|
+| dependency parsing + Spotlight | 80 | 0.6587|0.9167|0.514|0.5163|0.5163|0.5163|
+| dependency parsing + Spotlight + GloVe | 80 | 0.6587|0.9167|0.514|0.5163|0.5163|0.5163|
+—————————————————————————————-</p>
+
+
+
+                <hr style="visibility: hidden;">
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2019/07/07/Week-6/" data-toggle="tooltip" data-placement="top" title="Week 6">
+                        Previous<br>
+                        <span>Week 6</span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+
+
+                <!--Gitalk评论start  -->
+                
+                <!-- 引入Gitalk评论插件  -->
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+                <div id="gitalk-container"></div>
+                <!-- 引入一个生产md5的js，用于对id值进行处理，防止其过长 -->
+                <!-- Thank DF:https://github.com/NSDingFan/NSDingFan.github.io/issues/3#issuecomment-407496538 -->
+                <script src="/js/md5.min.js"></script>
+                <script type="text/javascript">
+                    var gitalk = new Gitalk({
+                    clientID: 'e33be506a01bfc3d88c4',
+                    clientSecret: '567338a08cfc0064084b90ff5edda80d84052598',
+                    repo: 'stuartchan.github.io',
+                    owner: 'stuartchan',
+                    admin: ['stuartchan'],
+                    distractionFreeMode: true,
+                    id: md5(location.pathname),
+                    });
+                    gitalk.render('gitalk-container');
+                </script>
+                
+                <!-- Gitalk end -->
+
+                
+
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
         
 
-<!-- USE SIDEBAR -->
-    <!-- PostList Container -->
-    		<div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                postlist-container
-            ">
-    			
-<div class="post-preview">
-    <a href="/2019/07/19/Week-8/">
-        <h2 class="post-title">
-            Week 8
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Analyses for Previous Works
-        </h3>
-        
-        <div class="post-content-preview">
-            The Statistics
-
-The Scores For The Answers
-
-|Method |BLEU score| Micro F1 |Micro Precision |Micro Recall| Macro F1 |Macro Precision|Macro Recall|
-|:—– | :—-: | :—-: | :—-: | :—-: | :—-: | :—-: | :—...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Stuart Chen on July 19, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2019/07/07/Week-6/">
-        <h2 class="post-title">
-            Week 6
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Vector Similarity Calculation
-        </h3>
-        
-        <div class="post-content-preview">
-            The Week  6
-
-This week we focus on two aspects.
-
-First is the selection of the method for calculating the semantic vectors similarity.
-
-Second is the experiment of doing benchmark evaluation in GER...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Stuart Chen on July 7, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2019/06/30/Week-5/">
-        <h2 class="post-title">
-            Week 5
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Issues Analyses & Vectors Embedding
-        </h3>
-        
-        <div class="post-content-preview">
-            The Week  5
-
-This week I believe it’s a diving.
-
-I can now see many things, subtle and seemingly extending to somewhere abyssal.
-
-In this week, I have tried transforming the natural language questi...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Stuart Chen on June 30, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2019/06/23/Week-4/">
-        <h2 class="post-title">
-            Week 4
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Pre-evaluation Preparation + Exploring Potential Issues for Current NSpM
-        </h3>
-        
-        <div class="post-content-preview">
-            The Week  4
-
-Hurry up! It’s already the summer now!
-
-We should better prepare for the first evaluation in the next week!
-
-In this week, I have tried another idea to more exhaustively annotate the p...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Stuart Chen on June 23, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2019/06/16/Week-3/">
-        <h2 class="post-title">
-            Week 3
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Improving the Generation Component + Thinking About The Evaluations
-        </h3>
-        
-        <div class="post-content-preview">
-            The Week  3
-
-This week, I have replaced the exited tools with my own innovative and independent modules pertinent to DBpedia. However, after doing so, the problem emerges while doing the BLEU evalu...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Stuart Chen on June 16, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2019/06/08/Week-2/">
-        <h2 class="post-title">
-            Week 2
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Entity Recognition + Template Generation
-        </h3>
-        
-        <div class="post-content-preview">
-            The Week  2
-
-Let’s have a look into this week’s goals:
-
-  
-    
-      Entity Recognition
-    
-    
-      Template Generation
-    
-  
-
-
-1. Entity Recognition
-
-Strategy I
-I had planned to deploy the ...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Stuart Chen on June 8, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2019/06/02/Architecture/">
-        <h2 class="post-title">
-            Architecture
-        </h2>
-        
-        <h3 class="post-subtitle">
-            a glimpse of the silhouette of the architecture
-        </h3>
-        
-        <div class="post-content-preview">
-            The Pipeline of Architecture
-
-The model architecture is like:
-
-
-
-Pipeline
-
-1. Question Generation from Natural Language
-
-
-
-We will use attention mechanism to generate questions from natural languag...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Stuart Chen on June 2, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2019/06/01/Week-1/">
-        <h2 class="post-title">
-            Week 1
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Let's firstly set up the evaluation measure!
-        </h3>
-        
-        <div class="post-content-preview">
-            
-  The Goals for Week 1
-
-
-Let’s have a look into this week’s topics:
-
-  
-    
-      qald evaluation against GERBIL interface
-    
-    
-      building the semantic tree structue for the natural lang...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Stuart Chen on June 1, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2019/05/26/Bonding/">
-        <h2 class="post-title">
-            Bonding
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Let's compose the templates!
-        </h3>
-        
-        <div class="post-content-preview">
-            Introduction
-
-What’s the template? If you ask me to describe it, I will imagine it as the bone of the question structure. If we have a question, like
-
-    What is the elephant lifesapn?
-
-
-if we mar...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Stuart Chen on May 26, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2019/05/17/About-The-NSpM/">
-        <h2 class="post-title">
-            Think About The NSpM
-        </h2>
-        
-        <h3 class="post-subtitle">
-            This is a report about the training of the NSpM model.
-        </h3>
-        
-        <div class="post-content-preview">
-            Introduction
-
-The NSpM model, Neural SPARQL Machines, are a type of LSTM-based Machine Translation Approaches for Question Answering based on external knowledge base in DBpedia and via SPARQL query...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Stuart Chen on May 17, 2019
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-
-    		</div>
     <!-- Sidebar Container -->
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
+        				
                             
-                                <a href="/tags/#GSoC2019" title="GSoC2019" rel="10">
+                				<a href="/tags/#GSoC2019" title="GSoC2019" rel="10">
                                     GSoC2019
                                 </a>
                             
-                        
+        				
                             
-                                <a href="/tags/#NLP" title="NLP" rel="10">
+                				<a href="/tags/#NLP" title="NLP" rel="10">
                                     NLP
                                 </a>
                             
-                        
+        				
                             
-                                <a href="/tags/#DBpedia" title="DBpedia" rel="10">
+                				<a href="/tags/#DBpedia" title="DBpedia" rel="10">
                                     DBpedia
                                 </a>
                             
-                        
-                    </div>
+        				
+        			</div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-                        
-                            <a href="/about">
-                                <img src="/img/about-BY-gentle.jpg"/>
-                            </a>
-                        
-                        
-                            <p> Envolez-vous, pages tout éblouies! </p>
-                        
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            <!-- add jianshu add target = "_blank" to <a> by BY -->
-                            
-                            <li>
-                                <a target="_blank" href="https://www.jianshu.com/u/chenstuart">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa  fa-stack-1x fa-inverse">简</i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a href="https://twitter.com/stuartjzchen">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://www.zhihu.com/people/churnng-stuart">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://www.facebook.com/stuartjzchen">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://github.com/stuartchan">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                        </ul>
-                        
-                            <p>✉️ chen.jiazheng.stuart@foxmail.com</p>
-                        
-                    </div>
-                </section>
                 <!-- Friends Blog -->
                 
                 <hr>
@@ -584,10 +334,50 @@ The NSpM model, Neural SPARQL Machines, are a type of LSTM-based Machine Transla
                     
                 </ul>
                 
-    		</div>
-        
-	</div>
-</div>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        // BY Fix:去除标题前的‘#’ issues:<https://github.com/qiubaiying/qiubaiying.github.io/issues/137>
+        // anchors.options = {
+        //   visible: 'always',
+        //   placement: 'right',
+        //   icon: '#'
+        // };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
 
 
     <!-- Footer -->
@@ -758,6 +548,50 @@ The NSpM model, Neural SPARQL Machines, are a type of LSTM-based Machine Transla
 
 
 <!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;    
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
 
 
 
