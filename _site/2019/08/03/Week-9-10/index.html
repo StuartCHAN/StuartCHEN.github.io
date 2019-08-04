@@ -304,17 +304,26 @@ ________________________________________________________________________________
 <p>Given the detected Class and its belonging templateset, we can use the similarity searching function to get the matched template for the question:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">semantic_search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">texts_processed</span><span class="p">,</span> <span class="n">vectors</span><span class="p">):</span>
+
     <span class="n">query</span> <span class="o">=</span> <span class="n">preprocess_text</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
     <span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s"> Extracting features..."</span><span class="p">)</span>
+
     <span class="n">query_vec</span> <span class="o">=</span> <span class="n">get_features</span><span class="p">(</span><span class="n">query</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
     <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">texts_processed</span><span class="p">):</span>
+
         <span class="n">qvec</span> <span class="o">=</span> <span class="n">vectors</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
         <span class="n">sim</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">query_vec</span><span class="p">,</span> <span class="n">qvec</span><span class="p">)</span>
+
         <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">sim</span><span class="p">,</span> <span class="n">d</span><span class="p">[:</span><span class="mi">100</span><span class="p">],</span> <span class="n">i</span><span class="p">))</span>
         
     <span class="nb">sorted</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c1"># Sorting for getting the most matched one.
-</span>    <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">;</span>
+</span>
+    <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">;</span>
 
 <span class="n">res</span> <span class="o">=</span> <span class="n">semantic_search</span><span class="p">(</span><span class="s">"This is a new sentence. "</span><span class="p">,</span> <span class="n">texts_processed</span><span class="p">,</span> <span class="n">BASE_VECTORS</span><span class="p">)</span>
 
@@ -346,13 +355,20 @@ ________________________________________________________________________________
 <span class="kn">import</span> <span class="nn">os</span>
 
 <span class="n">path</span> <span class="o">=</span> <span class="s">"../data/Bank"</span> <span class="c1">#the Bank directory is located in the neural-qa/data
-</span><span class="n">files</span><span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="c1">#to get all the files/folders names in the dir
-</span><span class="n">templates_pool</span> <span class="o">=</span> <span class="p">[]</span>
+</span>
+<span class="n">files</span><span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="c1">#to get all the files/folders names in the dir
+</span>
+<span class="n">templates_pool</span> <span class="o">=</span> <span class="p">[]</span>
+
 <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span> <span class="c1">#iterate to get the folders
-</span>     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="s">"/"</span><span class="o">+</span><span class="nb">file</span><span class="p">):</span> <span class="c1"># whether a folder 
-</span>          <span class="n">templates_pool</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span> <span class="c1">#get the folder into the templates_pool list
-</span><span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s"> The existing templates pool contains these Classes: </span><span class="se">\n</span><span class="s"> '</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="c1">#display the result
-</span></code></pre></div></div>
+</span>
+     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="s">"/"</span><span class="o">+</span><span class="nb">file</span><span class="p">):</span> <span class="c1"># whether a folder 
+</span>
+          <span class="n">templates_pool</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span> <span class="c1">#get the folder into the templates_pool list
+</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s"> The existing templates pool contains these Classes: </span><span class="se">\n</span><span class="s"> '</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="c1">#display the result
+</span>    
+</code></pre></div></div>
 
 <h3 id="22-allocation-to-the-matched-class-folder">2.2 Allocation To The Matched Class Folder</h3>
 
