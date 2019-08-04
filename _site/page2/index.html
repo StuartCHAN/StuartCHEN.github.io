@@ -10,7 +10,7 @@
     <meta name="keywords"  content="BY, Blog Yeah, Stuart Jiazheng Chen, stuartchan, Machine Learning, NLP, Cognitive Science, Linguistics ">
     <meta name="theme-color" content="#000000">
     
-    <title>Week 4 - Stuart Chen | Blog Yeah</title>
+    <title>Stuart Chen | Blog Yeah</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://stuartchan.github.io/2019/06/23/Week-4/">
+    <link rel="canonical" href="https://stuartchan.github.io/page2/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -148,246 +148,183 @@
 </script>
 
 
-    <!-- Image to hack wechat -->
-<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/sticker-mule-189122-unsplash.jpg" width="0" height="0"> -->
-
-<!-- Post Header -->
-<style type="text/css">
-    header.intro-header{
-        position: relative;
-        background-image: url('/img/sticker-mule-189122-unsplash.jpg')
-    }
-
-    
-</style>
-<header class="intro-header" >
-    <div class="header-mask"></div>
+    <!-- Page Header -->
+<header class="intro-header" style="background-image: url('/img/post-bg-desk.jpg')">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                        <a class="tag" href="/tags/#GSoC2019" title="GSoC2019">GSoC2019</a>
-                        
-                        <a class="tag" href="/tags/#NLP" title="NLP">NLP</a>
-                        
-                        <a class="tag" href="/tags/#DBpedia" title="DBpedia">DBpedia</a>
-                        
-                    </div>
-                    <h1>Week 4</h1>
-                    
-                    
-                    <h2 class="subheading">Pre-evaluation Preparation + Exploring Potential Issues for Current NSpM</h2>
-                    
-                    <span class="meta">Posted by Stuart Chen on June 23, 2019</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>Stuart Chen's Blog</h1>
+                    <!--<hr class="small">-->
+                    <span class="subheading"> Le vent se lève, il faut tenter de vivre. </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-
-    <!-- Post Container -->
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
-
-				<h1 id="the-week--4">The Week  4</h1>
-
-<p>Hurry up! It’s already the summer now!</p>
-
-<p>We should better prepare for the first evaluation in the next week!</p>
-
-<p>In this week, I have tried another idea to more exhaustively annotate the potential etities in the natural language.</p>
-
-<p>Also, I have gone through almost all the existing templates to get profound insights into the running mechanism of the current model.</p>
-
-<p>The connectivity in my country is intermittently irreliable that I created a new module instead of the SPARQLwrapper python libraray in order to get the results from the Virtuoso endpoint.</p>
-
-<blockquote>
-  <ol>
-    <li>
-      <p>The constituency parsing might be more efficient for extracting the structure of a natural language sentence.</p>
-    </li>
-    <li>
-      <p>In the current NSpM model, there might be highly dependent on the restricted NL-SPARQL vocabulary key-value<br />
-  pairs to conduct the neural machne translation from the pre-processed question text to SPARQL query formatted 
-  vocabulary.</p>
-    </li>
-    <li>
-      <p>While training the models, I noticed that if the entities annotation function that maps from the natural<br />
-  language text to the DBpedia entities could be added to improve the entity recognition accuracy, the performance 
-  should have a better upgrade.</p>
-    </li>
-  </ol>
-
-</blockquote>
-
-<h2 id="1-pre-evaluation-preparation">1. Pre-evaluation Preparation</h2>
-
-<h3 id="11-constituency-parsing-might-be-a-good-way-to-get-the-syntactial-structure">1.1 Constituency Parsing might be a good way to get the syntactial structure</h3>
-
-<p>What is it? How is it diffrent from the previous method of dependency parsing?</p>
-
-<p>Syntactic analysis is a very important part of analyzing sentences, including constituency parsing and dependency parsing, which have very large differences.</p>
-
-<p>Let’s take an exemple, the constituency parse tree breaks a text into sub-phrases. Non-terminals in the tree are types of phrases, the terminals are the words in the sentence, and the edges are unlabeled. For a simple sentence “John sees Bill”, a constituency parse would be:</p>
-
-<p><img src="https://res.cloudinary.com/stuarteec/image/upload/v1563699690/v2-448af772ea31d990d0f0b5414e6b1afa_hd_gmbqed.jpg" alt="constituency_parse_tree" /></p>
-
-<p>It might do better in matching the relation between the pair(Object, Verb, Subject). However, it distract the focus from the importance of pairing the pair(Object + Property). So, I stll think dependency parsing is more pertinent to our problem in this aspect.</p>
-
-<h3 id="12-the-self-made-easy-mehod-when-the-sparqlwrapper-does-not-connect">1.2 The Self-made Easy Mehod when the SPARQLwrapper does not connect</h3>
-
-<p>The design goal is to post a request to the Virtuoso endpoint, so we simply do this:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">import</span> <span class="nn">request</span>
-
-    <span class="k">def</span> <span class="nf">getVirtuoso</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
-        <span class="n">data</span><span class="o">=</span><span class="p">{</span>
-                <span class="s">'query'</span><span class="p">:</span><span class="n">query</span><span class="p">,</span>
-                <span class="s">'default-graph-uri'</span><span class="p">:</span><span class="s">'http://dbpedia.org'</span>
-                <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"https://dbpedia.org/sparql"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">content</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-        <span class="k">except</span><span class="p">:</span>
-            <span class="n">content</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
-        <span class="k">return</span> <span class="n">content</span><span class="p">;</span>
-</code></pre></div></div>
-
-<h2 id="2-exploring-potential-issues-for-current-nspm-model">2. Exploring Potential Issues for Current NSpM model</h2>
-
-<h3 id="the-duplicated-issue-for-data-generation-from-templates">The Duplicated Issue For Data Generation From Templates</h3>
-
-<p>While running the given generator.py, the terminal showed that ther was a key be added an additional value.</p>
-
-<p>Then I open the generated dataset file from the generator.py, searching for the redundant key-value pair. There was a vocabulary appeared twice in the dataset, which should be blamed for the duplicated mapping problem.</p>
-
-<p>From this, I have an idea, why not use a comprehensive set of embeddding vector set to represent the vocabulary mapping to the knowledge graph entities in DBpedia?</p>
-
-<p>This might help in two problems:</p>
-
-<blockquote>
-  <p>1) the restrictedness of the vocabulary while the model works with the unprecedentde entity vocabulary that 
-     had not learned in the traing;</p>
-</blockquote>
-
-<blockquote>
-  <p>2) the global representation in the bi-LSTM encoding layer could not accurately handle the recognition of the 
-     entities in natuaral language.</p>
-</blockquote>
-
-
-                <hr style="visibility: hidden;">
-
-                <ul class="pager">
-                    
-                    <li class="previous">
-                        <a href="/2019/06/16/Week-3/" data-toggle="tooltip" data-placement="top" title="Week 3">
-                        Previous<br>
-                        <span>Week 3</span>
-                        </a>
-                    </li>
-                    
-                    
-                    <li class="next">
-                        <a href="/2019/06/30/Week-5/" data-toggle="tooltip" data-placement="top" title="Week 5">
-                        Next<br>
-                        <span>Week 5</span>
-                        </a>
-                    </li>
-                    
-                </ul>
-
-
-                <!--Gitalk评论start  -->
-                
-                <!-- 引入Gitalk评论插件  -->
-                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-                <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
-                <div id="gitalk-container"></div>
-                <!-- 引入一个生产md5的js，用于对id值进行处理，防止其过长 -->
-                <!-- Thank DF:https://github.com/NSDingFan/NSDingFan.github.io/issues/3#issuecomment-407496538 -->
-                <script src="/js/md5.min.js"></script>
-                <script type="text/javascript">
-                    var gitalk = new Gitalk({
-                    clientID: 'e33be506a01bfc3d88c4',
-                    clientSecret: '567338a08cfc0064084b90ff5edda80d84052598',
-                    repo: 'stuartchan.github.io',
-                    owner: 'stuartchan',
-                    admin: ['stuartchan'],
-                    distractionFreeMode: true,
-                    id: md5(location.pathname),
-                    });
-                    gitalk.render('gitalk-container');
-                </script>
-                
-                <!-- Gitalk end -->
-
-                
-
-            </div>  
-
-    <!-- Side Catalog Container -->
-        
-            <div class="
-                col-lg-2 col-lg-offset-0
-                visible-lg-block
-                sidebar-container
-                catalog-container">
-                <div class="side-catalog">
-                    <hr class="hidden-sm hidden-xs">
-                    <h5>
-                        <a class="catalog-toggle" href="#">CATALOG</a>
-                    </h5>
-                    <ul class="catalog-body"></ul>
-                </div>
-            </div>
+<!-- Main Content -->
+<div class="container">
+	<div class="row">
         
 
+<!-- USE SIDEBAR -->
+    <!-- PostList Container -->
+    		<div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                postlist-container
+            ">
+    			
+<div class="post-preview">
+    <a href="/2019/05/17/About-The-NSpM/">
+        <h2 class="post-title">
+            Think About The NSpM
+        </h2>
+        
+        <h3 class="post-subtitle">
+            This is a report about the training of the NSpM model.
+        </h3>
+        
+        <div class="post-content-preview">
+            Introduction
+
+The NSpM model, Neural SPARQL Machines, are a type of LSTM-based Machine Translation Approaches for Question Answering based on external knowledge base in DBpedia and via SPARQL query...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Stuart Chen on May 17, 2019
+    </p>
+</div>
+<hr>
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+    <li class="previous">
+        <a href="/">&larr; Newer Posts</a>
+    </li>
+    
+    
+</ul>
+
+
+    		</div>
     <!-- Sidebar Container -->
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
                 <!-- Featured Tags -->
                 
                 <section>
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-        				
+                        
                             
-                				<a href="/tags/#GSoC2019" title="GSoC2019" rel="11">
+                                <a href="/tags/#GSoC2019" title="GSoC2019" rel="11">
                                     GSoC2019
                                 </a>
                             
-        				
+                        
                             
-                				<a href="/tags/#NLP" title="NLP" rel="11">
+                                <a href="/tags/#NLP" title="NLP" rel="11">
                                     NLP
                                 </a>
                             
-        				
+                        
                             
-                				<a href="/tags/#DBpedia" title="DBpedia" rel="11">
+                                <a href="/tags/#DBpedia" title="DBpedia" rel="11">
                                     DBpedia
                                 </a>
                             
-        				
-        			</div>
+                        
+                    </div>
                 </section>
                 
 
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
+                    <div class="short-about">
+                        
+                            <a href="/about">
+                                <img src="/img/about-BY-gentle.jpg"/>
+                            </a>
+                        
+                        
+                            <p> Envolez-vous, pages tout éblouies! </p>
+                        
+                        <!-- SNS Link -->
+                        <ul class="list-inline">
+                            
+                            <!-- add jianshu add target = "_blank" to <a> by BY -->
+                            
+                            <li>
+                                <a target="_blank" href="https://www.jianshu.com/u/chenstuart">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa  fa-stack-1x fa-inverse">简</i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+                            
+                            <li>
+                                <a href="https://twitter.com/stuartjzchen">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+                            
+                            <li>
+                                <a target="_blank" href="https://www.zhihu.com/people/churnng-stuart">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa  fa-stack-1x fa-inverse">知</i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+                            
+                            
+                            <li>
+                                <a target="_blank" href="https://www.facebook.com/stuartjzchen">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+                            
+                            <li>
+                                <a target="_blank" href="https://github.com/stuartchan">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+                            
+                        </ul>
+                        
+                            <p>✉️ chen.jiazheng.stuart@foxmail.com</p>
+                        
+                    </div>
+                </section>
                 <!-- Friends Blog -->
                 
                 <hr>
@@ -404,50 +341,10 @@
                     
                 </ul>
                 
-            </div>
-        </div>
-    </div>
-</article>
-
-
-
-
-
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script>
-    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
-        // BY Fix:去除标题前的‘#’ issues:<https://github.com/qiubaiying/qiubaiying.github.io/issues/137>
-        // anchors.options = {
-        //   visible: 'always',
-        //   placement: 'right',
-        //   icon: '#'
-        // };
-        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-    })
-</script>
-<style>
-    /* place left on bigger screen */
-    @media all and (min-width: 800px) {
-        .anchorjs-link{
-            position: absolute;
-            left: -0.75em;
-            font-size: 1.1em;
-            margin-top : -0.1em;
-        }
-    }
-</style>
+    		</div>
+        
+	</div>
+</div>
 
 
     <!-- Footer -->
@@ -618,50 +515,6 @@
 
 
 <!-- Side Catalog -->
-
-<script type="text/javascript">
-    function generateCatalog (selector) {
-        var P = $('div.post-container'),a,n,t,l,i,c;
-        a = P.find('h1,h2,h3,h4,h5,h6');
-        a.each(function () {
-            n = $(this).prop('tagName').toLowerCase();
-            i = "#"+$(this).prop('id');
-            t = $(this).text();
-            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
-            l = $('<li class="'+n+'_nav"></li>').append(c);
-            $(selector).append(l);
-        });
-        return true;    
-    }
-
-    generateCatalog(".catalog-body");
-
-    // toggle side catalog
-    $(".catalog-toggle").click((function(e){
-        e.preventDefault();
-        $('.side-catalog').toggleClass("fold")
-    }))
-
-    /*
-     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
-     * Fork by Hux to support padding
-     */
-    async("/js/jquery.nav.js", function () {
-        $('.catalog-body').onePageNav({
-            currentClass: "active",
-            changeHash: !1,
-            easing: "swing",
-            filter: "",
-            scrollSpeed: 700,
-            scrollOffset: 0,
-            scrollThreshold: .2,
-            begin: null,
-            end: null,
-            scrollChange: null,
-            padding: 80
-        });
-    });
-</script>
 
 
 

@@ -10,7 +10,7 @@
     <meta name="keywords"  content="BY, Blog Yeah, Stuart Jiazheng Chen, stuartchan, Machine Learning, NLP, Cognitive Science, Linguistics ">
     <meta name="theme-color" content="#000000">
     
-    <title>Week 4 - Stuart Chen | Blog Yeah</title>
+    <title>Week 9-10 - Stuart Chen | Blog Yeah</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://stuartchan.github.io/2019/06/23/Week-4/">
+    <link rel="canonical" href="https://stuartchan.github.io/2019/08/03/Week-9-10/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -150,13 +150,13 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/sticker-mule-189122-unsplash.jpg" width="0" height="0"> -->
+<!-- <img src="/img/4k-wallpaper-blur-botany-1643409.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/sticker-mule-189122-unsplash.jpg')
+        background-image: url('/img/4k-wallpaper-blur-botany-1643409.jpg')
     }
 
     
@@ -176,12 +176,12 @@
                         <a class="tag" href="/tags/#DBpedia" title="DBpedia">DBpedia</a>
                         
                     </div>
-                    <h1>Week 4</h1>
+                    <h1>Week 9-10</h1>
                     
                     
-                    <h2 class="subheading">Pre-evaluation Preparation + Exploring Potential Issues for Current NSpM</h2>
+                    <h2 class="subheading">Univerasal Sentence Encoder for Template Matching & Templates Bank</h2>
                     
-                    <span class="meta">Posted by Stuart Chen on June 23, 2019</span>
+                    <span class="meta">Posted by Stuart Chen on August 3, 2019</span>
                 </div>
             </div>
         </div>
@@ -199,91 +199,173 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h1 id="the-week--4">The Week  4</h1>
+				<h2 id="preface">Preface</h2>
 
-<p>Hurry up! It’s already the summer now!</p>
+<p>We focus on:</p>
 
-<p>We should better prepare for the first evaluation in the next week!</p>
+<p>1) classifying the new questions by the vector similarity matching based on univeral sentence encoder;</p>
 
-<p>In this week, I have tried another idea to more exhaustively annotate the potential etities in the natural language.</p>
+<p>2) constructure of the Template Bank.</p>
 
-<p>Also, I have gone through almost all the existing templates to get profound insights into the running mechanism of the current model.</p>
+<hr />
 
-<p>The connectivity in my country is intermittently irreliable that I created a new module instead of the SPARQLwrapper python libraray in order to get the results from the Virtuoso endpoint.</p>
+<h2 id="1-templates-matching">1. Templates Matching</h2>
 
-<blockquote>
-  <ol>
-    <li>
-      <p>The constituency parsing might be more efficient for extracting the structure of a natural language sentence.</p>
-    </li>
-    <li>
-      <p>In the current NSpM model, there might be highly dependent on the restricted NL-SPARQL vocabulary key-value<br />
-  pairs to conduct the neural machne translation from the pre-processed question text to SPARQL query formatted 
-  vocabulary.</p>
-    </li>
-    <li>
-      <p>While training the models, I noticed that if the entities annotation function that maps from the natural<br />
-  language text to the DBpedia entities could be added to improve the entity recognition accuracy, the performance 
-  should have a better upgrade.</p>
-    </li>
-  </ol>
+<h3 id="11-universal-sentence-encoder">1.1 Universal Sentence Encoder</h3>
 
-</blockquote>
+<p>The <a href="https://arxiv.org/abs/1803.11175">Universal Sentence Encoder</a> [1] encodes text into vectors of high dimensions that can be used in classifying documents, calculating semantic similarity, topics clustering, and more other natural language processing tasks. With <a href="https://tfhub.dev/google/universal-sentence-encoder">Tensorflow-hub</a>, we deploy the Universal Sentence Encoder to calculate the similarity between the new question and the existing templates to do the matching task.</p>
 
-<h2 id="1-pre-evaluation-preparation">1. Pre-evaluation Preparation</h2>
+<p>The encoder part comes with two variant options, one with <a href="https://arxiv.org/abs/1706.03762">Transformer</a> [2] encoder and the other with <a href="http://cs.umd.edu/~miyyer/pubs/2015_acl_dan.pdf">Deep Averaging Network</a> (DAN) [3]. Both having a necessity for precision and computational resource trading, while the one with the Transformer encoder is of higher accuracy at a cost of computing, it is more intensive in computational terms. And, the other with DNA encoding is less costly computationally but with less precision.</p>
 
-<h3 id="11-constituency-parsing-might-be-a-good-way-to-get-the-syntactial-structure">1.1 Constituency Parsing might be a good way to get the syntactial structure</h3>
+<p>Here we use the Transformer-based sentence embedding to match the question and its closet template.</p>
 
-<p>What is it? How is it diffrent from the previous method of dependency parsing?</p>
+<p>Example,</p>
 
-<p>Syntactic analysis is a very important part of analyzing sentences, including constituency parsing and dependency parsing, which have very large differences.</p>
-
-<p>Let’s take an exemple, the constituency parse tree breaks a text into sub-phrases. Non-terminals in the tree are types of phrases, the terminals are the words in the sentence, and the edges are unlabeled. For a simple sentence “John sees Bill”, a constituency parse would be:</p>
-
-<p><img src="https://res.cloudinary.com/stuarteec/image/upload/v1563699690/v2-448af772ea31d990d0f0b5414e6b1afa_hd_gmbqed.jpg" alt="constituency_parse_tree" /></p>
-
-<p>It might do better in matching the relation between the pair(Object, Verb, Subject). However, it distract the focus from the importance of pairing the pair(Object + Property). So, I stll think dependency parsing is more pertinent to our problem in this aspect.</p>
-
-<h3 id="12-the-self-made-easy-mehod-when-the-sparqlwrapper-does-not-connect">1.2 The Self-made Easy Mehod when the SPARQLwrapper does not connect</h3>
-
-<p>The design goal is to post a request to the Virtuoso endpoint, so we simply do this:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">import</span> <span class="nn">request</span>
-
-    <span class="k">def</span> <span class="nf">getVirtuoso</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
-        <span class="n">data</span><span class="o">=</span><span class="p">{</span>
-                <span class="s">'query'</span><span class="p">:</span><span class="n">query</span><span class="p">,</span>
-                <span class="s">'default-graph-uri'</span><span class="p">:</span><span class="s">'http://dbpedia.org'</span>
-                <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"https://dbpedia.org/sparql"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">content</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-        <span class="k">except</span><span class="p">:</span>
-            <span class="n">content</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
-        <span class="k">return</span> <span class="n">content</span><span class="p">;</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>__________________________________________________________________________________________________
+Layer <span class="o">(</span><span class="nb">type</span><span class="o">)</span>                    Output Shape         Param <span class="c">#     Connected to                     </span>
+<span class="o">==================================================================================================</span>
+input_2 <span class="o">(</span>InputLayer<span class="o">)</span>            <span class="o">(</span>None, 512<span class="o">)</span>          0                                            
+__________________________________________________________________________________________________
+input_3 <span class="o">(</span>InputLayer<span class="o">)</span>            <span class="o">(</span>None, 512<span class="o">)</span>          0                                            
+__________________________________________________________________________________________________
+model_1 <span class="o">(</span>Model<span class="o">)</span>                 <span class="o">(</span>None, 512<span class="o">)</span>          262656      input_2[0][0]                    
+                                                                 input_3[0][0]                    
+__________________________________________________________________________________________________
+lambda_1 <span class="o">(</span>Lambda<span class="o">)</span>               <span class="o">(</span>None, 512<span class="o">)</span>          0           model_1[1][0]                    
+                                                                 model_1[2][0]                    
+__________________________________________________________________________________________________
+dense_2 <span class="o">(</span>Dense<span class="o">)</span>                 <span class="o">(</span>None, 1<span class="o">)</span>            513         lambda_1[0][0]                   
+<span class="o">==================================================================================================</span>
+Total params: 263,169
+Trainable params: 263,169
+Non-trainable params: 0
+__________________________________________________________________________________________________
 </code></pre></div></div>
 
-<h2 id="2-exploring-potential-issues-for-current-nspm-model">2. Exploring Potential Issues for Current NSpM model</h2>
+<h3 id="12-preprocesing">1.2 Preprocesing</h3>
 
-<h3 id="the-duplicated-issue-for-data-generation-from-templates">The Duplicated Issue For Data Generation From Templates</h3>
+<p>The templateset must first be filtered out the stop-words, the punctuations, and then turn into lower case for data regularization.</p>
 
-<p>While running the given generator.py, the terminal showed that ther was a key be added an additional value.</p>
+<h3 id="13-detecting-the-class-of-the-question">1.3 Detecting The Class Of The Question</h3>
 
-<p>Then I open the generated dataset file from the generator.py, searching for the redundant key-value pair. There was a vocabulary appeared twice in the dataset, which should be blamed for the duplicated mapping problem.</p>
+<p>We use the DBpedia Spotlight API to detect the belonging class of the noun subject in the question, which helps to classify the question into its correspondent templateset.</p>
 
-<p>From this, I have an idea, why not use a comprehensive set of embeddding vector set to represent the vocabulary mapping to the knowledge graph entities in DBpedia?</p>
+<p>Why it’s necessary? Because, the sentences get confused or not depends on how close the two classes that they belong to, like the dbo:SportsLeague and dbo:Monument, their topics are not so similar, so they’re not easy to get confused, but when I took the</p>
 
-<p>This might help in two problems:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dbo:Place versus dbo:Monument, the "dbo:Place;;;what is the address of &lt;X&gt;;
+</code></pre></div></div>
 
-<blockquote>
-  <p>1) the restrictedness of the vocabulary while the model works with the unprecedentde entity vocabulary that 
-     had not learned in the traing;</p>
-</blockquote>
+<p>and the</p>
 
-<blockquote>
-  <p>2) the global representation in the bi-LSTM encoding layer could not accurately handle the recognition of the 
-     entities in natuaral language.</p>
-</blockquote>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> dbo:Monument;;;what is the location of &lt;A&gt;;
+</code></pre></div></div>
+
+<p>this case could be easily confused.</p>
+
+<p>In human concepts, the “address” and the “location” might holding the same meaning, while it is not that case in knowledge graph of DBpedia:</p>
+
+<pre><code class="language-sparql">dbo:Place;;;what is the address of &lt;X&gt;;SELECT ?x WHERE { &lt;X&gt; &lt;http://dbpedia.org/ontology/address&gt; ?x };SELECT ?a WHERE { ?a &lt;http://dbpedia.org/ontology/address&gt; [] . ?a a &lt;http://dbpedia.org/ontology/Place&gt; }
+</code></pre>
+
+<pre><code class="language-sparql">dbo:Monument;;;what is the location of &lt;A&gt;;select ?a where { &lt;A&gt; dbo:location ?a };select distinct(?a) where { ?a dbo:location [] }
+</code></pre>
+
+<p>So, for promising the accuracy, we should classify the Classes before matching, like, before classifying these two above, we first classify the new question into a Class then conduct the matching.</p>
+
+<p>It’s not so straightforward that it requires to find the entity type first:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Statue of Liberty --&gt; Place or Monument
+</code></pre></div></div>
+
+<p>However, not every entity belongs to a single upper Class. Some certain entities might belong to multiple Classes, like in</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"which television show were created by joe austen?" 
+</code></pre></div></div>
+
+<p>the</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"joe austen"
+</code></pre></div></div>
+
+<p>is annotated as</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"dbr:Joe_Austen" 
+</code></pre></div></div>
+
+<p>with three upper Classes,</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dbo:Person, dbo:Artist, dbo:Agent, 
+</code></pre></div></div>
+
+<p>and the Spotlight can also indicate the most probable Class in this context is the “dbo:Person” in the return. So, to know to which Class it belongs, we can respectively fetch their lists of properties that its three upper Classes have,  and see in which list of properties the predicate exists.</p>
+
+<h3 id="14--semantic-searching">1.4  Semantic Searching</h3>
+
+<p>Given the detected Class and its belonging templateset, we can use the similarity searching function to get the matched template for the question:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">semantic_search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">texts_processed</span><span class="p">,</span> <span class="n">vectors</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">preprocess_text</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s"> Extracting features..."</span><span class="p">)</span>
+    <span class="n">query_vec</span> <span class="o">=</span> <span class="n">get_features</span><span class="p">(</span><span class="n">query</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">texts_processed</span><span class="p">):</span>
+        <span class="n">qvec</span> <span class="o">=</span> <span class="n">vectors</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+        <span class="n">sim</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">query_vec</span><span class="p">,</span> <span class="n">qvec</span><span class="p">)</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">sim</span><span class="p">,</span> <span class="n">d</span><span class="p">[:</span><span class="mi">100</span><span class="p">],</span> <span class="n">i</span><span class="p">))</span>
+        
+    <span class="nb">sorted</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c1"># Sorting for getting the most matched one.
+</span>    <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">;</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">semantic_search</span><span class="p">(</span><span class="s">"This is a new sentence. "</span><span class="p">,</span> <span class="n">texts_processed</span><span class="p">,</span> <span class="n">BASE_VECTORS</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h2 id="2-templates-bank">2. Templates Bank</h2>
+
+<h3 id="21-the-directory-for-the-bank">2.1 The Directory For The Bank</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-- Bank
+    -- Class 0
+        -- class0.csv
+        -- class0.vectors
+    -- Class 1
+        -- class1.csv 
+        -- class1.vectors
+    -- Class 2
+        -- class2.csv
+        -- class2.vectors
+    -- Class ...
+
+</code></pre></div></div>
+<p>In this directory, the Bank consists of the Classes of DBpedia ontologies, and each Class has its own folder. Its folder contains the templateset CSV and its sentences vectors set.</p>
+
+<p>We use this function to see the existing Classes,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="s">"../data/Bank"</span> <span class="c1">#the Bank directory is located in the neural-qa/data
+</span><span class="n">files</span><span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="c1">#to get all the files/folders names in the dir
+</span><span class="n">templates_pool</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span> <span class="c1">#iterate to get the folders
+</span>     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="s">"/"</span><span class="o">+</span><span class="nb">file</span><span class="p">):</span> <span class="c1"># whether a folder 
+</span>          <span class="n">templates_pool</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span> <span class="c1">#get the folder into the templates_pool list
+</span><span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s"> The existing templates pool contains these Classes: </span><span class="se">\n</span><span class="s"> '</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="c1">#display the result
+</span></code></pre></div></div>
+
+<h3 id="22-allocation-to-the-matched-class-folder">2.2 Allocation To The Matched Class Folder</h3>
+
+<p>From the templates_pool above, we can check whether the Class is existing in the Bank category.</p>
+
+<p>Then, we can load the correspondent templateset and vectors.</p>
+
+<h2 id="referrences">Referrences</h2>
+
+<p>[1] D Cer et al. 2018  Universal Sentence Encoder
+[2] A Vaswani  2017  Attention Is All You Need
+[3] Mohit Iyyer 2015 Deep Averaging Networks</p>
+
 
 
                 <hr style="visibility: hidden;">
@@ -291,19 +373,12 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2019/06/16/Week-3/" data-toggle="tooltip" data-placement="top" title="Week 3">
+                        <a href="/2019/07/19/Week-8/" data-toggle="tooltip" data-placement="top" title="Week 8">
                         Previous<br>
-                        <span>Week 3</span>
+                        <span>Week 8</span>
                         </a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2019/06/30/Week-5/" data-toggle="tooltip" data-placement="top" title="Week 5">
-                        Next<br>
-                        <span>Week 5</span>
-                        </a>
-                    </li>
                     
                 </ul>
 
