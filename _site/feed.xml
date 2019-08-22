@@ -5,8 +5,8 @@
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
     <link>https://stuartchan.github.io/</link>
     <atom:link href="https://stuartchan.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 23 Aug 2019 00:17:11 +0800</pubDate>
-    <lastBuildDate>Fri, 23 Aug 2019 00:17:11 +0800</lastBuildDate>
+    <pubDate>Fri, 23 Aug 2019 00:22:47 +0800</pubDate>
+    <lastBuildDate>Fri, 23 Aug 2019 00:22:47 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -161,14 +161,6 @@ Synset root hypernerm :   &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Synset&l
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;{&quot;subject&quot;:CoreferenceResolution(dbr_Barack_Obama), &quot;predicate&quot;:dbp_parents+synonyms(&quot;parents&quot;), &quot;obeject&quot;:dbr_Barack_Obama_Sr}&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;to match the sentences that are sitable for this RDF triple.&lt;/p&gt;
-
-&lt;h2 id=&quot;referrences&quot;&gt;Referrences&lt;/h2&gt;
-
-&lt;p&gt;[1] D Cer et al. 2018  Universal Sentence Encoder&lt;/p&gt;
-
-&lt;p&gt;[2] A Vaswani  2017  Attention Is All You Need&lt;/p&gt;
-
-&lt;p&gt;[3] Mohit Iyyer 2015 Deep Averaging Networks&lt;/p&gt;
 
 </description>
         <pubDate>Sun, 18 Aug 2019 00:00:00 +0800</pubDate>
