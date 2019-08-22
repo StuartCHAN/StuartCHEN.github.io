@@ -5,12 +5,187 @@
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
     <link>https://stuartchan.github.io/</link>
     <atom:link href="https://stuartchan.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 04 Aug 2019 16:31:34 +0800</pubDate>
-    <lastBuildDate>Sun, 04 Aug 2019 16:31:34 +0800</lastBuildDate>
+    <pubDate>Fri, 23 Aug 2019 00:11:49 +0800</pubDate>
+    <lastBuildDate>Fri, 23 Aug 2019 00:11:49 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
-        <title>Week 9and10</title>
+        <title>Week 11&amp;12</title>
+        <description>&lt;h2 id=&quot;preface&quot;&gt;Preface&lt;/h2&gt;
+
+&lt;p&gt;We focus on:&lt;/p&gt;
+
+&lt;p&gt;1) get the natural language materials from the Wikipedia page for templates generation;&lt;/p&gt;
+
+&lt;p&gt;2) automate the paraphrases for predicates.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;1-wiki-extraction--sentences-filtering&quot;&gt;1. Wiki Extraction &amp;amp; Sentences Filtering&lt;/h2&gt;
+
+&lt;h3 id=&quot;11-wikipedia-articles-extraction&quot;&gt;1.1 Wikipedia Articles Extraction&lt;/h3&gt;
+
+&lt;p&gt;The Wiki pages are the excellent resources for us to get the natural language texts that containing the RDFs in DBpedia.&lt;/p&gt;
+
+&lt;p&gt;We use the library called &lt;a href=&quot;https://github.com/martin-majlis/Wikipedia-API&quot;&gt;Wikipedia-API&lt;/a&gt; to use Python wrapper for Wikipedias’ API, which facilitates extracting texts, sections, links, categories, translations, etc from the pages of Wikipedia. Documentation provides code snippets for the most common use cases.&lt;/p&gt;
+
+&lt;p&gt;For example, a ‘dbr’ should be like: ‘Audrey_Hepburn’, which is the identifier of both the DBPeida entity and the Wiki page.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;extract_page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dbr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# 
+&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;#wiki_wiki = wikipediaapi.Wikipedia( language='en', extract_format=wikipediaapi.ExtractFormat.WIKI )    
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;wiki_wiki&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wikipediaapi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Wikipedia&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'en'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;page_wiki&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wiki_wiki&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dbr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#page_wiki = wiki_wiki.page('Audrey_Hepburn')    
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot; Page - Exists: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;page_wiki&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Page - Exists: True
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;assert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;page_wiki&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;fulltext&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;page_wiki&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;savepath&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;save_page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dbr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fulltext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;savepath&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;12--preprocesing&quot;&gt;1.2  Preprocesing&lt;/h3&gt;
+
+&lt;p&gt;We then use the spaCy to do the sentences segmentation. When using a space-based pre-trained model, the sentences are split based on training data provided during the model’s training procedure.&lt;/p&gt;
+
+&lt;p&gt;And, we also remove the puntuations except the comma in the sentences, because we need to use the comma to decompose the senetences in the part of converting them into questions.&lt;/p&gt;
+
+&lt;p&gt;Then we calculate the average length of the sentences we get and set it as the treshold to filter out those sentences that are too long.&lt;/p&gt;
+
+&lt;h2 id=&quot;2-predicate-paraphrasing--rdf-matching&quot;&gt;2. Predicate-paraphrasing &amp;amp; RDF Matching&lt;/h2&gt;
+
+&lt;h3 id=&quot;21-coreference-resolution&quot;&gt;2.1. Coreference Resolution&lt;/h3&gt;
+
+&lt;p&gt;Resolution of coreference is a well-studied problem in computer linguistics discourse. To obtain the correct interpretation of a text, or even to assess the relative significance of the different topics listed above, pronouns and other reference phrases must be related to the right individuals. Usually, algorithms designed to solve coreferences first look for the closestpre.&lt;/p&gt;
+
+&lt;p&gt;`Coreference Resolution in spaCy with Neural Networks.’&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/huggingface/neuralcoref&quot;&gt;NeuralCoref&lt;/a&gt; is a spaCy 2.1 + pipeline extension that uses a neural network to annotate and resolve coreference clusters. NeuralCoref is ready for production, incorporated into the NLP pipeline of spaCy and can be extended to fresh training datasets.&lt;/p&gt;
+
+&lt;p&gt;It solves the problem of pinpointing the pronounces and indicating the right corefernce of an entity.&lt;/p&gt;
+
+&lt;h3 id=&quot;22-automatic-predicate-paraphrasing&quot;&gt;2.2. Automatic Predicate-paraphrasing&lt;/h3&gt;
+
+&lt;p&gt;At first, we use the API of an online paraphraser to do the part of automatic paraphrasing, which we found that might not be suitable to do the paraphrasing of short phrases like the predicates.&lt;/p&gt;
+
+&lt;p&gt;Then, we use the wordnet via NLTK to take the paraphrasing task.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;nltk.corpus&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wordnet&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;WordNet is the lexical database, equivalent to kind of English language dictionary, specifically intended for the processing of natural language.&lt;/p&gt;
+
+&lt;p&gt;Synset is a unique kind of easy interface to look up phrases in WordNet that is present in NLTK. Synset instances are synonymous word groupings expressing the same concept. Some of the phrases have just one synset, while others have several.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;n&quot;&gt;syn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wordnet&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;synsets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'friend'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Synset name :  &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;syn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; 
+
+&lt;span class=&quot;c1&quot;&gt;# Defining the word 
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Synset meaning : &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;syn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;definition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; 
+
+&lt;span class=&quot;c1&quot;&gt;# list of phrases that use the word in context 
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Synset example : &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;syn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;examples&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Synset name :   friend.n.01
+
+Synset meaning :  a person you know well and regard with affection and trust
+
+Synset example :  &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'he was my best friend at the university'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;To understand how the paraphraser works, we need to konw more about the &lt;code class=&quot;highlighter-rouge&quot;&gt;Hypernyms&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Hyponyms&lt;/code&gt; :&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Hypernyms&lt;/code&gt; are the more abstract terms for the entity that a word describs.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Hyponyms&lt;/code&gt; are the specific terms, we can say that they are the subclasses of the entity.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Synset abstract term :  &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;syn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hypernyms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()[:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; 
+
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Synset specific term :  &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;syn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hypernyms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hyponyms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()[:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; 
+
+&lt;span class=&quot;n&quot;&gt;syn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root_hypernyms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Synset root hypernerm :  &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;syn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root_hypernyms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()[:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Synset name :   friend.n.01
+
+Synset abstract term :   &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Synset&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'person.n.01'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)]&lt;/span&gt;
+
+Synset specific term :   &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Synset&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'abator.n.01'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, Synset&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'abjurer.n.01'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, Synset&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'abomination.n.01'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, Synset&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'abstainer.n.02'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, Synset&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'achiever.n.01'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)]&lt;/span&gt;
+
+Synset root hypernerm :   &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Synset&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'entity.n.01'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;What is the Hypernyms and Hyponyms distinction?&lt;/p&gt;
+
+&lt;p&gt;Hyponymy indicates the connection between a generic (hypernyme) word and a particular (hyponymous) term.&lt;/p&gt;
+
+&lt;p&gt;A hyponym is a word or sentence that has a more particular semantic field than its hypernym.&lt;/p&gt;
+
+&lt;p&gt;A hypernym’s semantic field, also known as a superordinate, is wider than a hyponym’s.&lt;/p&gt;
+
+&lt;p&gt;Then we can get:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;ps&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PorterStemmer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; 
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;paraphrase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;synsets&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wordnet&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;synsets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#synonyms = [[[lemma.name() for lemma in synonym.lemmas()] for synonym in synset.hyponyms()] for synset in synsets ]
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;synonyms&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lemma&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lemma&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;synonym&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lemmas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;synonym&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;synsets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hyponyms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()]&lt;/span&gt;  
+    &lt;span class=&quot;n&quot;&gt;synonymset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;synonym&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;synonyms&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;syn&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;synonym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;syn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;syn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'_'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;' '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;syn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;syn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;syn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;synonymset&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;syn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#synonymset.append(word)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;synonymset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;synonymset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;synonymset&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;synonymset&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then we can do the RDF matching, by given a triple of DBpedia RDF, 
+ e.g. &lt;a href=&quot;http://dbpedia.org/resource/Barack_Obama&quot;&gt;http://dbpedia.org/resource/Barack_Obama&lt;/a&gt;	&lt;a href=&quot;http://dbpedia.org/property/parents&quot;&gt;http://dbpedia.org/property/parents&lt;/a&gt;	&lt;a href=&quot;http://dbpedia.org/resource/Barack_Obama_Sr.&quot;&gt;http://dbpedia.org/resource/Barack_Obama_Sr.&lt;/a&gt; .&lt;/p&gt;
+
+&lt;p&gt;we can have&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;{&quot;subject&quot;:CoreferenceResolution(dbr_Barack_Obama), &quot;predicate&quot;:dbp_parents+synonyms(&quot;parents&quot;), &quot;obeject&quot;:dbr_Barack_Obama_Sr}&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;to match the sentences that are sitable for this RDF triple.&lt;/p&gt;
+
+&lt;h2 id=&quot;referrences&quot;&gt;Referrences&lt;/h2&gt;
+
+&lt;p&gt;[1] D Cer et al. 2018  Universal Sentence Encoder&lt;/p&gt;
+
+&lt;p&gt;[2] A Vaswani  2017  Attention Is All You Need&lt;/p&gt;
+
+&lt;p&gt;[3] Mohit Iyyer 2015 Deep Averaging Networks&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 18 Aug 2019 00:00:00 +0800</pubDate>
+        <link>https://stuartchan.github.io/2019/08/18/Week-11&12/</link>
+        <guid isPermaLink="true">https://stuartchan.github.io/2019/08/18/Week-11&12/</guid>
+        
+        <category>GSoC2019</category>
+        
+        <category>NLP</category>
+        
+        <category>DBpedia</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Week 9&amp;10</title>
         <description>&lt;h2 id=&quot;preface&quot;&gt;Preface&lt;/h2&gt;
 
 &lt;p&gt;We focus on:&lt;/p&gt;
@@ -198,8 +373,8 @@ ________________________________________________________________________________
 
 </description>
         <pubDate>Sat, 03 Aug 2019 00:00:00 +0800</pubDate>
-        <link>https://stuartchan.github.io/2019/08/03/Week-9and10/</link>
-        <guid isPermaLink="true">https://stuartchan.github.io/2019/08/03/Week-9and10/</guid>
+        <link>https://stuartchan.github.io/2019/08/03/Week-9&10/</link>
+        <guid isPermaLink="true">https://stuartchan.github.io/2019/08/03/Week-9&10/</guid>
         
         <category>GSoC2019</category>
         
@@ -1396,144 +1571,6 @@ It works on two parts parallel:&lt;/p&gt;
         <pubDate>Sat, 01 Jun 2019 00:00:00 +0800</pubDate>
         <link>https://stuartchan.github.io/2019/06/01/Week-1/</link>
         <guid isPermaLink="true">https://stuartchan.github.io/2019/06/01/Week-1/</guid>
-        
-        <category>GSoC2019</category>
-        
-        <category>NLP</category>
-        
-        <category>DBpedia</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>Bonding</title>
-        <description>&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
-
-&lt;p&gt;What’s the template? If you ask me to describe it, I will imagine it as the bone of the question structure. If we have a question, like&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    What is the elephant lifesapn?
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;if we mark the word “elephant” as a variable placeholder “Species”, and mak the lifespan as the property “ageRange”, then what can we get?&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    dbo:Species;;;what is &amp;lt;A&amp;gt; lifespan;select ?a where { &amp;lt;A&amp;gt; dbo:ageRange ?a };select distinct(?a) where { ?a dbo:ageRange [] }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Yeah, here is the immitative syntactical silhouette of a question or sentence.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/1200/1*QMgA0UViZMW7LUjRhil9yQ.jpeg&quot; alt=&quot;alt text&quot; title=&quot;DBpedia RDF&quot; /&gt;
-&lt;img src=&quot;https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/f_auto,q_auto,w_1100/v1555924214/shape/mentalfloss/451244723_0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;the-templates-are-so-important&quot;&gt;The templates are so important!&lt;/h1&gt;
-
-&lt;p&gt;It is the base that we get our training data in the NSpM model.&lt;/p&gt;
-
-&lt;h2 id=&quot;ok-we-go-to-the-experiment-now&quot;&gt;OK, we go to the experiment now.&lt;/h2&gt;
-
-&lt;p&gt;The templates about the &lt;a href=&quot;http://mappings.dbpedia.org/server/ontology/classes/Species&quot;&gt;ontology of species&lt;/a&gt; in DBpedia can be found &lt;a href=&quot;https://docs.google.com/spreadsheets/d/1o7mpc7TuJOBnMb4CmtC2FE1wsVrYUVMQR7fy0EOSSqo/edit?usp=sharing&quot;&gt;here&lt;/a&gt;, and these are the &lt;a href=&quot;https://drive.google.com/drive/folders/1J7olhKwObf4yMVaiO2vATixI2QnuZVY1?usp=sharing&quot;&gt;generated training data&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;experiments-records&quot;&gt;Experiments Records&lt;/h2&gt;
-
-&lt;p&gt;I used the Species data that had been generated in previous step, and get the records like this:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Dataset&lt;/th&gt;
-      &lt;th&gt;Examples per template&lt;/th&gt;
-      &lt;th&gt;Training size&lt;/th&gt;
-      &lt;th&gt;Average examples per instance&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;dbo:Species&lt;/td&gt;
-      &lt;td&gt;39&lt;/td&gt;
-      &lt;td&gt;12000&lt;/td&gt;
-      &lt;td&gt;307.69&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;The experimentation for dbo:Species was also conducted on a virtual cloud server with the GPU of GTX1080, 480GB SSD, and E5-2690 v3 24-core CPU of 64G, with basical setting for both comparative groups were Ubuntu 16 system with TensorFlow 1.3.0. The testing for the NMT model at was mainly displayed at three different times, i.e. at the 2,000th, 1,000th, and 12,000th iteration.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Dataset&lt;/th&gt;
-      &lt;th&gt;BLEU 2k steps&lt;/th&gt;
-      &lt;th&gt;BLEU 10k steps&lt;/th&gt;
-      &lt;th&gt;BLEU 12k steps&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;dbo:Species&lt;/td&gt;
-      &lt;td&gt;60.2 (May 25 07:24:53 2019)&lt;/td&gt;
-      &lt;td&gt;84.3 (May 25 08:39:16 2019)&lt;/td&gt;
-      &lt;td&gt;89.2 (May 25 08:54:56 2019)&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&quot;analyses&quot;&gt;Analyses&lt;/h2&gt;
-
-&lt;p&gt;However, I saught a problem, you see the dev bleu and the test bleu don’t match 
-&lt;img src=&quot;https://dbpedia.slack.com/files/UJA85N9G9/FJNK43M3M/image.png&quot; alt=&quot;alt text&quot; title=&quot;a screenshot when the 2,000th step&quot; /&gt;
-What’s the problem?
-The training has been interrupted a few times when the previous training steps displays the bleu dev is approaching 60 while the external bleu test records it still as 0. I have restarted the training several times, but it goes on to be like that. Maybe it was because the number of global steps was still below 2k steps? Here will show a piece of the record:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;External evaluation, global step 1000
-decoding to output /data/DBPEDIA/neural-qa/data/annotations_Species/output/output_dev.
-2019-05-25 07:20:16.906704: W tensorflow/core/framework/op_kernel.cc:1192] Out of range: End of sequence
-        [[Node: IteratorGetNext = IteratorGetNext[output_shapes=[[?,?], [?]], output_types=[DT_INT32, DT_INT32], _device=&quot;/job:localhost/replica:0/task:0/cpu:0&quot;](Iterator)]]
-2019-05-25 07:20:16.906708: W tensorflow/core/framework/op_kernel.cc:1192] Out of range: End of sequence
-        [[Node: IteratorGetNext = IteratorGetNext[output_shapes=[[?,?], [?]], output_types=[DT_INT32, DT_INT32], _device=&quot;/job:localhost/replica:0/task:0/cpu:0&quot;](Iterator)]]
-done, num sentences 1200, time 1s, Sat May 25 07:20:16 2019.
-bleu dev: 59.3
-saving hparams to /data/DBPEDIA/neural-qa/data/annotations_Species/output/hparams
-External evaluation, global step 1000
-decoding to output /data/DBPEDIA/neural-qa/data/annotations_Species/output/output_test.
-2019-05-25 07:20:18.993003: W tensorflow/core/framework/op_kernel.cc:1192] Out of range: End of sequence
-        [[Node: IteratorGetNext = IteratorGetNext[output_shapes=[[?,?], [?]], output_types=[DT_INT32, DT_INT32], _device=&quot;/job:localhost/replica:0/task:0/cpu:0&quot;](Iterator)]]
-2019-05-25 07:20:18.993082: W tensorflow/core/framework/op_kernel.cc:1192] Out of range: End of sequence
-        [[Node: IteratorGetNext = IteratorGetNext[output_shapes=[[?,?], [?]], output_types=[DT_INT32, DT_INT32], _device=&quot;/job:localhost/replica:0/task:0/cpu:0&quot;](Iterator)]]
-done, num sentences 0, time 0s, Sat May 25 07:20:18 2019.
-bleu test: 0.0
-saving hparams to /data/DBPEDIA/neural-qa/data/annotations_Species/output/hparams
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;how-to-fix-the-zerodivisionerror&quot;&gt;How to fix the ZeroDivisionError?&lt;/h2&gt;
-&lt;p&gt;We found that the log shows 0 sentences in test set, as a result this turns out to be zero.
-So, we should change the argument values while spliting the data_.* files into train_., dev_., and test_.* .
-It should trace back to the &lt;a href=&quot;https://github.com/AKSW/NSpM/blob/master/split_in_train_dev_test.py&quot;&gt;NSpM/split_in_train_dev_test.py&lt;/a&gt; file, and I think it was due to percentage that it set:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    TRAINING_PERCENTAGE = 90
-    TEST_PERCENTAGE = 0
-    DEV_PERCENTAGE = 10
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Here we can see the developper tried to build the datasets based on the 10-fold cross-validation method. However, it is neglect about he situation where the number of total training templates might not be numerous enough.&lt;/p&gt;
-
-&lt;p&gt;How to better the spliting?&lt;/p&gt;
-
-&lt;p&gt;If the test set contains zero sentence, it is possible to try selecting 10 percent from the training data and 10 percent from the testing data to manually build one after generating and a check. The the ratio would be&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    TRAINING_PERCENTAGE : TEST_PERCENTAGE : DEV_PERCENTAGE = 90 : 10 : 10
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;with&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    TEST _fromTRAINING : TEST_fromDEV = 9 : 1
-    TEST _fromTRAINING + TEST_fromDEV = TEST_PERCENTAGE
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;**We can see the training results &lt;a href=&quot;https://drive.google.com/drive/folders/1f2cs0Pz4-OmXUQ0nkr3RnOpBi7oE4NWB?usp=sharing&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 26 May 2019 00:00:00 +0800</pubDate>
-        <link>https://stuartchan.github.io/2019/05/26/Bonding/</link>
-        <guid isPermaLink="true">https://stuartchan.github.io/2019/05/26/Bonding/</guid>
         
         <category>GSoC2019</category>
         

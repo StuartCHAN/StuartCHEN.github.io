@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content=" L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! ">
+    <meta name="keywords"  content="BY, Blog Yeah, Stuart Jiazheng Chen, stuartchan, Machine Learning, NLP, Cognitive Science, Linguistics ">
+    <meta name="theme-color" content="#000000">
+    
+    <title>Week 11&12 - Stuart Chen | Blog Yeah</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <!-- Safari Webpage Icon    by-BY -->
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://stuartchan.github.io/2019/08/18/Week-11&12/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Stuart Chen's Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/meric-dagli-7NBO76G5JsE-unsplash.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/meric-dagli-7NBO76G5JsE-unsplash.jpg')
+    }
+
+    
+</style>
+<header class="intro-header" >
+    <div class="header-mask"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#GSoC2019" title="GSoC2019">GSoC2019</a>
+                        
+                        <a class="tag" href="/tags/#NLP" title="NLP">NLP</a>
+                        
+                        <a class="tag" href="/tags/#DBpedia" title="DBpedia">DBpedia</a>
+                        
+                    </div>
+                    <h1>Week 11&12</h1>
+                    
+                    
+                    <h2 class="subheading">Wiki Extraction & Sentences Filtering</h2>
+                    
+                    <span class="meta">Posted by Stuart Chen on August 18, 2019</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<h2 id="preface">Preface</h2>
+
+<p>We focus on:</p>
+
+<p>1) get the natural language materials from the Wikipedia page for templates generation;</p>
+
+<p>2) automate the paraphrases for predicates.</p>
+
+<hr />
+
+<h2 id="1-wiki-extraction--sentences-filtering">1. Wiki Extraction &amp; Sentences Filtering</h2>
+
+<h3 id="11-wikipedia-articles-extraction">1.1 Wikipedia Articles Extraction</h3>
+
+<p>The Wiki pages are the excellent resources for us to get the natural language texts that containing the RDFs in DBpedia.</p>
+
+<p>We use the library called <a href="https://github.com/martin-majlis/Wikipedia-API">Wikipedia-API</a> to use Python wrapper for Wikipedias’ API, which facilitates extracting texts, sections, links, categories, translations, etc from the pages of Wikipedia. Documentation provides code snippets for the most common use cases.</p>
+
+<p>For example, a ‘dbr’ should be like: ‘Audrey_Hepburn’, which is the identifier of both the DBPeida entity and the Wiki page.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">extract_page</span><span class="p">(</span><span class="n">dbr</span><span class="p">,</span> <span class="n">clas</span><span class="p">):</span>
+    <span class="c1"># 
+</span>    <span class="c1">#wiki_wiki = wikipediaapi.Wikipedia( language='en', extract_format=wikipediaapi.ExtractFormat.WIKI )    
+</span>    <span class="n">wiki_wiki</span> <span class="o">=</span> <span class="n">wikipediaapi</span><span class="o">.</span><span class="n">Wikipedia</span><span class="p">(</span><span class="s">'en'</span><span class="p">)</span>
+    <span class="n">page_wiki</span> <span class="o">=</span> <span class="n">wiki_wiki</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">dbr</span><span class="p">)</span>
+    <span class="c1">#page_wiki = wiki_wiki.page('Audrey_Hepburn')    
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">" Page - Exists: </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">page_wiki</span><span class="o">.</span><span class="n">exists</span><span class="p">())</span>
+    <span class="c1"># Page - Exists: True
+</span>    <span class="k">assert</span><span class="p">(</span><span class="n">page_wiki</span><span class="o">.</span><span class="n">exists</span><span class="p">())</span>
+    <span class="n">fulltext</span> <span class="o">=</span> <span class="n">page_wiki</span><span class="o">.</span><span class="n">text</span>
+    <span class="n">savepath</span> <span class="o">=</span> <span class="n">save_page</span><span class="p">(</span><span class="n">dbr</span><span class="p">,</span> <span class="n">fulltext</span><span class="p">,</span> <span class="n">clas</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">savepath</span>
+
+</code></pre></div></div>
+
+<h3 id="12--preprocesing">1.2  Preprocesing</h3>
+
+<p>We then use the spaCy to do the sentences segmentation. When using a space-based pre-trained model, the sentences are split based on training data provided during the model’s training procedure.</p>
+
+<p>And, we also remove the puntuations except the comma in the sentences, because we need to use the comma to decompose the senetences in the part of converting them into questions.</p>
+
+<p>Then we calculate the average length of the sentences we get and set it as the treshold to filter out those sentences that are too long.</p>
+
+<h2 id="2-predicate-paraphrasing--rdf-matching">2. Predicate-paraphrasing &amp; RDF Matching</h2>
+
+<h3 id="21-coreference-resolution">2.1. Coreference Resolution</h3>
+
+<p>Resolution of coreference is a well-studied problem in computer linguistics discourse. To obtain the correct interpretation of a text, or even to assess the relative significance of the different topics listed above, pronouns and other reference phrases must be related to the right individuals. Usually, algorithms designed to solve coreferences first look for the closestpre.</p>
+
+<p>`Coreference Resolution in spaCy with Neural Networks.’</p>
+
+<p><a href="https://github.com/huggingface/neuralcoref">NeuralCoref</a> is a spaCy 2.1 + pipeline extension that uses a neural network to annotate and resolve coreference clusters. NeuralCoref is ready for production, incorporated into the NLP pipeline of spaCy and can be extended to fresh training datasets.</p>
+
+<p>It solves the problem of pinpointing the pronounces and indicating the right corefernce of an entity.</p>
+
+<h3 id="22-automatic-predicate-paraphrasing">2.2. Automatic Predicate-paraphrasing</h3>
+
+<p>At first, we use the API of an online paraphraser to do the part of automatic paraphrasing, which we found that might not be suitable to do the paraphrasing of short phrases like the predicates.</p>
+
+<p>Then, we use the wordnet via NLTK to take the paraphrasing task.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">wordnet</span>
+</code></pre></div></div>
+
+<p>WordNet is the lexical database, equivalent to kind of English language dictionary, specifically intended for the processing of natural language.</p>
+
+<p>Synset is a unique kind of easy interface to look up phrases in WordNet that is present in NLTK. Synset instances are synonymous word groupings expressing the same concept. Some of the phrases have just one synset, while others have several.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">syn</span> <span class="o">=</span> <span class="n">wordnet</span><span class="o">.</span><span class="n">synsets</span><span class="p">(</span><span class="s">'friend'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"Synset name :  "</span><span class="p">,</span> <span class="n">syn</span><span class="o">.</span><span class="n">name</span><span class="p">())</span> 
+
+<span class="c1"># Defining the word 
+</span><span class="k">print</span> <span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Synset meaning : "</span><span class="p">,</span> <span class="n">syn</span><span class="o">.</span><span class="n">definition</span><span class="p">())</span> 
+
+<span class="c1"># list of phrases that use the word in context 
+</span><span class="k">print</span> <span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Synset example : "</span><span class="p">,</span> <span class="n">syn</span><span class="o">.</span><span class="n">examples</span><span class="p">())</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Synset name :   friend.n.01
+
+Synset meaning :  a person you know well and regard with affection and trust
+
+Synset example :  <span class="o">[</span><span class="s1">'he was my best friend at the university'</span><span class="o">]</span>
+</code></pre></div></div>
+
+<p>To understand how the paraphraser works, we need to konw more about the <code class="highlighter-rouge">Hypernyms</code> and <code class="highlighter-rouge">Hyponyms</code> :</p>
+
+<p><code class="highlighter-rouge">Hypernyms</code> are the more abstract terms for the entity that a word describs.</p>
+
+<p><code class="highlighter-rouge">Hyponyms</code> are the specific terms, we can say that they are the subclasses of the entity.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">print</span> <span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Synset abstract term :  "</span><span class="p">,</span> <span class="n">syn</span><span class="o">.</span><span class="n">hypernyms</span><span class="p">()[:</span><span class="mi">5</span><span class="p">])</span> 
+
+<span class="k">print</span> <span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Synset specific term :  "</span><span class="p">,</span>  <span class="n">syn</span><span class="o">.</span><span class="n">hypernyms</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hyponyms</span><span class="p">()[:</span><span class="mi">5</span><span class="p">])</span> 
+
+<span class="n">syn</span><span class="o">.</span><span class="n">root_hypernyms</span><span class="p">()</span> 
+<span class="k">print</span> <span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Synset root hypernerm :  "</span><span class="p">,</span> <span class="n">syn</span><span class="o">.</span><span class="n">root_hypernyms</span><span class="p">()[:</span><span class="mi">5</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Synset name :   friend.n.01
+
+Synset abstract term :   <span class="o">[</span>Synset<span class="o">(</span><span class="s1">'person.n.01'</span><span class="o">)]</span>
+
+Synset specific term :   <span class="o">[</span>Synset<span class="o">(</span><span class="s1">'abator.n.01'</span><span class="o">)</span>, Synset<span class="o">(</span><span class="s1">'abjurer.n.01'</span><span class="o">)</span>, Synset<span class="o">(</span><span class="s1">'abomination.n.01'</span><span class="o">)</span>, Synset<span class="o">(</span><span class="s1">'abstainer.n.02'</span><span class="o">)</span>, Synset<span class="o">(</span><span class="s1">'achiever.n.01'</span><span class="o">)]</span>
+
+Synset root hypernerm :   <span class="o">[</span>Synset<span class="o">(</span><span class="s1">'entity.n.01'</span><span class="o">)]</span>
+</code></pre></div></div>
+
+<p>What is the Hypernyms and Hyponyms distinction?</p>
+
+<p>Hyponymy indicates the connection between a generic (hypernyme) word and a particular (hyponymous) term.</p>
+
+<p>A hyponym is a word or sentence that has a more particular semantic field than its hypernym.</p>
+
+<p>A hypernym’s semantic field, also known as a superordinate, is wider than a hyponym’s.</p>
+
+<p>Then we can get:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ps</span> <span class="o">=</span> <span class="n">PorterStemmer</span><span class="p">()</span> 
+
+<span class="k">def</span> <span class="nf">paraphrase</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+    <span class="n">word</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">word</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">synsets</span> <span class="o">=</span> <span class="n">wordnet</span><span class="o">.</span><span class="n">synsets</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="c1">#synonyms = [[[lemma.name() for lemma in synonym.lemmas()] for synonym in synset.hyponyms()] for synset in synsets ]
+</span>    <span class="n">synonyms</span> <span class="o">=</span> <span class="p">[[</span><span class="n">lemma</span><span class="o">.</span><span class="n">name</span><span class="p">()</span> <span class="k">for</span> <span class="n">lemma</span> <span class="ow">in</span> <span class="n">synonym</span><span class="o">.</span><span class="n">lemmas</span><span class="p">()]</span> <span class="k">for</span> <span class="n">synonym</span> <span class="ow">in</span> <span class="n">synsets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hyponyms</span><span class="p">()]</span>  
+    <span class="n">synonymset</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">synonym</span> <span class="ow">in</span> <span class="n">synonyms</span> <span class="p">:</span>
+        <span class="k">for</span> <span class="n">syn</span> <span class="ow">in</span> <span class="n">synonym</span><span class="p">:</span>
+            <span class="n">syn</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">syn</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'_'</span><span class="p">,</span> <span class="s">' '</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">syn</span><span class="o">.</span><span class="n">split</span><span class="p">())</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">syn</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">syn</span><span class="p">)</span>
+            <span class="n">synonymset</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">syn</span><span class="p">)</span> <span class="p">;</span>
+    <span class="c1">#synonymset.append(word)
+</span>    <span class="n">synonymset</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">synonymset</span><span class="p">))</span>
+    <span class="n">synonymset</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">word</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">synonymset</span>
+
+</code></pre></div></div>
+
+<p>Then we can do the RDF matching, by given a triple of DBpedia RDF, 
+ e.g. <a href="http://dbpedia.org/resource/Barack_Obama">http://dbpedia.org/resource/Barack_Obama</a>	<a href="http://dbpedia.org/property/parents">http://dbpedia.org/property/parents</a>	<a href="http://dbpedia.org/resource/Barack_Obama_Sr.">http://dbpedia.org/resource/Barack_Obama_Sr.</a> .</p>
+
+<p>we can have</p>
+
+<p><code class="highlighter-rouge">{"subject":CoreferenceResolution(dbr_Barack_Obama), "predicate":dbp_parents+synonyms("parents"), "obeject":dbr_Barack_Obama_Sr}</code></p>
+
+<p>to match the sentences that are sitable for this RDF triple.</p>
+
+<h2 id="referrences">Referrences</h2>
+
+<p>[1] D Cer et al. 2018  Universal Sentence Encoder</p>
+
+<p>[2] A Vaswani  2017  Attention Is All You Need</p>
+
+<p>[3] Mohit Iyyer 2015 Deep Averaging Networks</p>
+
+
+
+                <hr style="visibility: hidden;">
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2019/08/03/Week-9&10/" data-toggle="tooltip" data-placement="top" title="Week 9&10">
+                        Previous<br>
+                        <span>Week 9&10</span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+
+
+                <!--Gitalk评论start  -->
+                
+                <!-- 引入Gitalk评论插件  -->
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+                <div id="gitalk-container"></div>
+                <!-- 引入一个生产md5的js，用于对id值进行处理，防止其过长 -->
+                <!-- Thank DF:https://github.com/NSDingFan/NSDingFan.github.io/issues/3#issuecomment-407496538 -->
+                <script src="/js/md5.min.js"></script>
+                <script type="text/javascript">
+                    var gitalk = new Gitalk({
+                    clientID: 'e33be506a01bfc3d88c4',
+                    clientSecret: '567338a08cfc0064084b90ff5edda80d84052598',
+                    repo: 'stuartchan.github.io',
+                    owner: 'stuartchan',
+                    admin: ['stuartchan'],
+                    distractionFreeMode: true,
+                    id: md5(location.pathname),
+                    });
+                    gitalk.render('gitalk-container');
+                </script>
+                
+                <!-- Gitalk end -->
+
+                
+
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+                				<a href="/tags/#GSoC2019" title="GSoC2019" rel="12">
+                                    GSoC2019
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#NLP" title="NLP" rel="12">
+                                    NLP
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#DBpedia" title="DBpedia" rel="12">
+                                    DBpedia
+                                </a>
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="http://zhengwuyang.com">WY</a></li>
+                    
+                        <li><a href="https://twitter.com/stuartjzchen">Twitter</a></li>
+                    
+                        <li><a href="https://apple.com">Apple</a></li>
+                    
+                        <li><a href="https://developer.apple.com/">Apple Developer</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        // BY Fix:去除标题前的‘#’ issues:<https://github.com/qiubaiying/qiubaiying.github.io/issues/137>
+        // anchors.options = {
+        //   visible: 'always',
+        //   placement: 'right',
+        //   icon: '#'
+        // };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    <!-- add jianshu add target = "_blank" to <a> by BY -->
+                    
+                            <li>
+                                <a target="_blank" href="https://www.jianshu.com/u/chenstuart">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa  fa-stack-1x fa-inverse">简</i>
+                                    </span>
+                                </a>
+                            </li>
+                    
+                    
+                    <li>
+                        <a href="https://twitter.com/stuartjzchen">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/churnng-stuart">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+
+
+                    
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/stuartjzchen">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/stuartchan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Stuart Chen's Blog 2019
+                    <br>
+                    Theme on <a href="https://github.com/StuartCHAN/StuartCHAN.github.io.git">GitHub</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=stuartchan&repo=stuartchan.github.io&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Service Worker -->
+
+<script type="text/javascript">
+    if(navigator.serviceWorker){
+        // For security reasons, a service worker can only control the pages that are in the same directory level or below it. That's why we put sw.js at ROOT level.
+        navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {console.log('Service Worker Registered. ', registration)})
+            .catch((error) => {console.log('ServiceWorker registration failed: ', error)})
+    }
+</script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/ 
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers   
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async('/js/jquery.tagcloud.js',function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;    
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/apple-touch-icon.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
