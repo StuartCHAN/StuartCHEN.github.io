@@ -5,8 +5,8 @@
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
     <link>https://stuartchan.github.io/</link>
     <atom:link href="https://stuartchan.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 23 Aug 2019 00:11:49 +0800</pubDate>
-    <lastBuildDate>Fri, 23 Aug 2019 00:11:49 +0800</lastBuildDate>
+    <pubDate>Fri, 23 Aug 2019 00:15:43 +0800</pubDate>
+    <lastBuildDate>Fri, 23 Aug 2019 00:15:43 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -386,7 +386,7 @@ ________________________________________________________________________________
       </item>
     
       <item>
-        <title>Week 8</title>
+        <title>Week 7&amp;8</title>
         <description>&lt;h1 id=&quot;the-statistics&quot;&gt;The Statistics&lt;/h1&gt;
 
 &lt;h2 id=&quot;the-scores-for-the-answers&quot;&gt;The Scores For The Answers&lt;/h2&gt;
@@ -517,8 +517,8 @@ ________________________________________________________________________________
 
 </description>
         <pubDate>Fri, 19 Jul 2019 00:00:00 +0800</pubDate>
-        <link>https://stuartchan.github.io/2019/07/19/Week-8/</link>
-        <guid isPermaLink="true">https://stuartchan.github.io/2019/07/19/Week-8/</guid>
+        <link>https://stuartchan.github.io/2019/07/19/Week-7&8/</link>
+        <guid isPermaLink="true">https://stuartchan.github.io/2019/07/19/Week-7&8/</guid>
         
         <category>GSoC2019</category>
         
