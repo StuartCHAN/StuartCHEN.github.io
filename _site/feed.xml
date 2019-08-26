@@ -3,10 +3,10 @@
   <channel>
     <title>Stuart Chen's Blog</title>
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
-    <link>https://stuartchan.github.io/</link>
-    <atom:link href="https://stuartchan.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 23 Aug 2019 00:22:47 +0800</pubDate>
-    <lastBuildDate>Fri, 23 Aug 2019 00:22:47 +0800</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Mon, 26 Aug 2019 18:51:12 +0800</pubDate>
+    <lastBuildDate>Mon, 26 Aug 2019 18:51:12 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -164,8 +164,8 @@ Synset root hypernerm :   &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Synset&l
 
 </description>
         <pubDate>Sun, 18 Aug 2019 00:00:00 +0800</pubDate>
-        <link>https://stuartchan.github.io/2019/08/18/Week-11&12/</link>
-        <guid isPermaLink="true">https://stuartchan.github.io/2019/08/18/Week-11&12/</guid>
+        <link>http://localhost:4000/2019/08/18/Week-11&12/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/08/18/Week-11&12/</guid>
         
         <category>GSoC2019</category>
         
@@ -365,8 +365,8 @@ ________________________________________________________________________________
 
 </description>
         <pubDate>Sat, 03 Aug 2019 00:00:00 +0800</pubDate>
-        <link>https://stuartchan.github.io/2019/08/03/Week-9&10/</link>
-        <guid isPermaLink="true">https://stuartchan.github.io/2019/08/03/Week-9&10/</guid>
+        <link>http://localhost:4000/2019/08/03/Week-9&10/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/08/03/Week-9&10/</guid>
         
         <category>GSoC2019</category>
         
@@ -509,8 +509,8 @@ ________________________________________________________________________________
 
 </description>
         <pubDate>Fri, 19 Jul 2019 00:00:00 +0800</pubDate>
-        <link>https://stuartchan.github.io/2019/07/19/Week-7&8/</link>
-        <guid isPermaLink="true">https://stuartchan.github.io/2019/07/19/Week-7&8/</guid>
+        <link>http://localhost:4000/2019/07/19/Week-7&8/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/07/19/Week-7&8/</guid>
         
         <category>GSoC2019</category>
         
@@ -784,8 +784,8 @@ So, did they succeed to get the dbo:spouse from “wife”?&lt;/li&gt;
 
 </description>
         <pubDate>Sun, 07 Jul 2019 00:00:00 +0800</pubDate>
-        <link>https://stuartchan.github.io/2019/07/07/Week-6/</link>
-        <guid isPermaLink="true">https://stuartchan.github.io/2019/07/07/Week-6/</guid>
+        <link>http://localhost:4000/2019/07/07/Week-6/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/07/07/Week-6/</guid>
         
         <category>GSoC2019</category>
         
@@ -969,8 +969,8 @@ LEARNING&lt;/p&gt;
 
 </description>
         <pubDate>Sun, 30 Jun 2019 00:00:00 +0800</pubDate>
-        <link>https://stuartchan.github.io/2019/06/30/Week-5/</link>
-        <guid isPermaLink="true">https://stuartchan.github.io/2019/06/30/Week-5/</guid>
+        <link>http://localhost:4000/2019/06/30/Week-5/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/06/30/Week-5/</guid>
         
         <category>GSoC2019</category>
         
@@ -1070,8 +1070,8 @@ LEARNING&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
         <pubDate>Sun, 23 Jun 2019 00:00:00 +0800</pubDate>
-        <link>https://stuartchan.github.io/2019/06/23/Week-4/</link>
-        <guid isPermaLink="true">https://stuartchan.github.io/2019/06/23/Week-4/</guid>
+        <link>http://localhost:4000/2019/06/23/Week-4/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/06/23/Week-4/</guid>
         
         <category>GSoC2019</category>
         
@@ -1172,8 +1172,8 @@ LEARNING&lt;/p&gt;
 &lt;p&gt;For the next week, I will do more works concerning about the dependency parsing which pertains to the automated query template generation with robustness.&lt;/p&gt;
 </description>
         <pubDate>Sun, 16 Jun 2019 00:00:00 +0800</pubDate>
-        <link>https://stuartchan.github.io/2019/06/16/Week-3/</link>
-        <guid isPermaLink="true">https://stuartchan.github.io/2019/06/16/Week-3/</guid>
+        <link>http://localhost:4000/2019/06/16/Week-3/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/06/16/Week-3/</guid>
         
         <category>GSoC2019</category>
         
@@ -1321,8 +1321,8 @@ The next days should delve into the automation about creating the new regexes fo
 
 </description>
         <pubDate>Sat, 08 Jun 2019 00:00:00 +0800</pubDate>
-        <link>https://stuartchan.github.io/2019/06/08/Week-2/</link>
-        <guid isPermaLink="true">https://stuartchan.github.io/2019/06/08/Week-2/</guid>
+        <link>http://localhost:4000/2019/06/08/Week-2/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/06/08/Week-2/</guid>
         
         <category>GSoC2019</category>
         
@@ -1339,15 +1339,15 @@ The next days should delve into the automation about creating the new regexes fo
 
 &lt;p&gt;The model architecture is like:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://res.cloudinary.com/stuarteec/image/upload/v1563696969/Atten_NSPM00_xaghsv.png&quot; alt=&quot;architecture and pipeline&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://res.cloudinary.com/stuarteec/image/upload/v1566790535/Atten_NSPM00.v02_y762nv.png&quot; alt=&quot;architecture and pipeline&quot; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;pipeline&quot;&gt;Pipeline&lt;/h1&gt;
 
 &lt;h2 id=&quot;1-question-generation-from-natural-language&quot;&gt;1. Question Generation from Natural Language&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://res.cloudinary.com/stuarteec/image/upload/v1563696969/Atten_NSPM00.QuestionsGeneration_xrloua.png&quot; alt=&quot;QuestionsGeneration&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://res.cloudinary.com/stuarteec/image/upload/v1566791144/Atten_NSPM00.v02_2_ep2wsi.png&quot; alt=&quot;QuestionsGeneration&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;We will use attention mechanism to generate questions from natural language contextual passage. By detecting entities in the passage, it will automatically get questions about the entities.&lt;/p&gt;
+&lt;p&gt;To generate the templates from the text extracted from Wikipedia, we need first to get the sentences containing RDFs.&lt;/p&gt;
 
 &lt;h3 id=&quot;11-input-from-natural-language&quot;&gt;1.1 Input from Natural Language&lt;/h3&gt;
 
@@ -1356,123 +1356,77 @@ The next days should delve into the automation about creating the new regexes fo
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;&lt;img src=&quot;https://res.cloudinary.com/stuarteec/image/upload/v1563699161/v2-6a37b3b2f4db3949137d90642df08ff4_hd_uu57j6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;12-attention-layer-with-embedding&quot;&gt;1.2 Attention Layer with Embedding&lt;/h3&gt;
+&lt;h3 id=&quot;12-pre-processing--rdf-filtering-with-paraphrases&quot;&gt;1.2 Pre-processing &amp;amp; RDF filtering with paraphrases&lt;/h3&gt;
 
-&lt;p&gt;The passage goes through attention layer with embedding:&lt;/p&gt;
+&lt;p&gt;The passage goes through the &lt;code class=&quot;highlighter-rouge&quot;&gt;pre-processing&lt;/code&gt; to remove the redundant characters and punctuations.&lt;/p&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# T stands for time_steps, timing length
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;embedding_attention_seq2seq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encoder_inputs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# [T, batch_size]
-&lt;/span&gt;                             	&lt;span class=&quot;n&quot;&gt;Decoder_inputs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# [T, batch_size]
-&lt;/span&gt;                             	&lt;span class=&quot;n&quot;&gt;Cell&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                             	&lt;span class=&quot;n&quot;&gt;Num_encoder_symbols&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                             	&lt;span class=&quot;n&quot;&gt;Num_decoder_symbols&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                             	&lt;span class=&quot;n&quot;&gt;Embeddding_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                             	&lt;span class=&quot;n&quot;&gt;Num_heads&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# attention of the number of taps
-&lt;/span&gt;                             	&lt;span class=&quot;n&quot;&gt;Output_projection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#decoder's projection matrix
-&lt;/span&gt;                             	&lt;span class=&quot;n&quot;&gt;Feed_previous&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                             	&lt;span class=&quot;n&quot;&gt;Dtype&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                             	&lt;span class=&quot;n&quot;&gt;Scope&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                             	&lt;span class=&quot;n&quot;&gt;Initial_state_attention&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+&lt;p&gt;The cleaned passage will go into the part of neural coreferrences resolutions by spaCy and neuralcoref to confirm the subject’s words of the topic, like:&lt;/p&gt;
 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;encoder_cell&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rnn_cell&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;EmbeddingWrapper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;cell&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;embedding_classes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num_encoder_symbols&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;embeddding_size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;embedding_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;encoder_outputs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;encoder_state&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rnn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rnn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;encoder_cell&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;encoder_inputs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dtype&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dtype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Barack Obama&lt;/code&gt;–&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;he&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;him&lt;/code&gt; ;&lt;/p&gt;
 
-&lt;span class=&quot;n&quot;&gt;top_states&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array_ops&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reshape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cell&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;output_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; \
-                  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;encoder_outputs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; 
-&lt;span class=&quot;n&quot;&gt;attention_states&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array_ops&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;concat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;top_states&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+&lt;p&gt;then, we use the wordnet via nltk to paraphrase the verbal forms of the predicate word,&lt;/p&gt;
 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;embedding_attention_decoder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decoder_inputs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                &lt;span class=&quot;n&quot;&gt;initial_state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                &lt;span class=&quot;n&quot;&gt;attention_states&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                &lt;span class=&quot;n&quot;&gt;cell&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                &lt;span class=&quot;n&quot;&gt;num_symbols&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                &lt;span class=&quot;n&quot;&gt;embeddding_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                &lt;span class=&quot;n&quot;&gt;num_heads&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                &lt;span class=&quot;n&quot;&gt;output_size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                &lt;span class=&quot;n&quot;&gt;output_projection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                &lt;span class=&quot;n&quot;&gt;feed_previous&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                &lt;span class=&quot;n&quot;&gt;update_embedding_for_previous&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                &lt;span class=&quot;n&quot;&gt;dtype&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                &lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                &lt;span class=&quot;n&quot;&gt;initial_state_attention&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# core code
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;embedding&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;variable_scope&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;embedding&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                            &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num_symbols&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;embedding_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;loop_function&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_extract_argmax_and_embed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;embedding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;output_projection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;update_embedding_for_previous&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;feed_previous&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;emb_inp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;embeddding_ops&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;embedding_lookup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;embedding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;decoder_inputs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;# T * [batch_size, embedding_size]
-&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attention_decoder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;emb_inp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;initial_state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;attention_states&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;cell&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;output_size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;output_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;num_heads&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num_heads&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;loop_function&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;loop_function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;initial_state_attention&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;initial_state_attention&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;dbo:parent&lt;/code&gt; –lemmatize–&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;parent&lt;/code&gt; –paraphrase–&amp;gt; [ &lt;code class=&quot;highlighter-rouge&quot;&gt;father&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;mother&lt;/code&gt;, … ]&lt;/p&gt;
 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;which can facilate the pinpointing of the RDF and filter out those sentences that can match the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt; coreference(subject), paraphrase(predicate), object &amp;gt;&lt;/code&gt; triple.&lt;/p&gt;
+
 &lt;h3 id=&quot;13-output-the-question&quot;&gt;1.3 Output The Question&lt;/h3&gt;
-&lt;p&gt;Then we get the output question:&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &quot;Which movie does Audrey Hepburn star ?&quot;
+
+&lt;p&gt;Then we get the output question, for example:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;s2&quot;&gt;&quot; The &amp;lt;father&amp;gt; of &amp;lt;Barack&amp;gt; is &amp;lt;Obama Sr&amp;gt;. &quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;2-from-natural-language-questions-to-templates&quot;&gt;2. From Natural Language Questions to Templates&lt;/h2&gt;
+&lt;p&gt;after which, we use the DBpedia-Spotlight API to detect the category of the entity, whether to classify it by using which interogative word to ask the question, e.g.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://res.cloudinary.com/stuarteec/image/upload/v1563696969/Atten_NSPM00.TemplatesGeneration_rugjls.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Obama Sr&lt;/code&gt; –spotlight–&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;dbo:Person&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;With the help of semantic parsing, the model extracts the templates from the questions.&lt;/p&gt;
+&lt;p&gt;then we can pick the &lt;code class=&quot;highlighter-rouge&quot;&gt;who&lt;/code&gt; from the list of interogative words [&lt;code class=&quot;highlighter-rouge&quot;&gt;who&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;what&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;where&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;which&lt;/code&gt;] for questioning.&lt;/p&gt;
 
-&lt;h3 id=&quot;21-entity-annotation&quot;&gt;2.1 Entity Annotation&lt;/h3&gt;
-&lt;p&gt;With the help of DBpedia’s application Spotlight, the model is able to detect the entities in the question:&lt;/p&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;se&quot;&gt;\e&lt;/span&gt;xamples&lt;span class=&quot;se&quot;&gt;\d&lt;/span&gt;bpedia&amp;gt;python annotation.py &lt;span class=&quot;s2&quot;&gt;&quot;Which movie does Audrey Hepburn star ?&quot;&lt;/span&gt;
+&lt;p&gt;The output question will be converted to like:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;s2&quot;&gt;&quot; who is the father of &amp;lt;dbr:Barack_Obama&amp;gt; ? &quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'Audrey&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Hepburn'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'@URI'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;//dbpedia.org/resource/Audrey_Hepburn'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'Ref'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'Audrey_Hepburn'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'Schema'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'Person'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'DBpedia'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'Person'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'Agent'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]}}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;the&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;('Which&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;movie&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;does&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;A&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;star&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;?'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'Person'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h3 id=&quot;22-template-generation-with-semantic-parsing&quot;&gt;2.2 Template Generation With Semantic Parsing&lt;/h3&gt;
-&lt;p&gt;We deploy the method of semantic parser to get the core structure of a question for query generation:&lt;/p&gt;
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;question&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Which movie does Audrey Hepburn star ?&quot;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;semantic_parser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;question&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;regex&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;match_regex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;p&gt;which will be: &lt;code class=&quot;highlighter-rouge&quot;&gt;dbo:Person;;; who is the father of &amp;lt;A&amp;gt; ;&lt;/code&gt; with the annotation of Spotlight.&lt;/p&gt;
+
+&lt;h2 id=&quot;2-matching-the-new-template-question-with-existing-templateset-to-see-whether-theres-already-a-similar-template-for-this-question&quot;&gt;2. Matching the new template question with existing templateset to see whether there’s already a similar template for this question&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://res.cloudinary.com/stuarteec/image/upload/v1566791144/Atten_NSPM00.v02_4_f7jrnt.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;With the help of the product of Universal Sentence Encoder by importing TensorFlow-hub, the model calculate the vector similarity between the existing templates and these new questions.&lt;/p&gt;
+
+&lt;p&gt;If the similarity score can pass the treshold, the system automatically fetch the matched item’s template query to concatenate into the new question;&lt;/p&gt;
+
+&lt;p&gt;else if the treshold doesn’t pass that there is no similar question for this new question, the system will also generate the query based on the annotation triple and the regex to buid a template query for it.&lt;/p&gt;
+
+&lt;h2 id=&quot;4-transformer-with-entities-annoatated&quot;&gt;4. Transformer with Entities Annoatated&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://res.cloudinary.com/stuarteec/image/upload/v1566816472/atten_figure1_mrubms.png&quot; alt=&quot;Attention is all we need&quot; title=&quot;Attention Is All You Need .Figure 1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For the prominent performance in neural machine translation task of Transformer with attention mechanism, it can be one state-of-the-art neural model to do the natural language to SPARQL task.&lt;/p&gt;
+
+&lt;p&gt;First, we have a look at the training data, which consist of two parts, namely, &lt;code class=&quot;highlighter-rouge&quot;&gt;data.en&lt;/code&gt; the source data where there’re the natural language questions with entities annoated, and &lt;code class=&quot;highlighter-rouge&quot;&gt;data.sparql&lt;/code&gt; the target data where there’re the correspondent SPARQL queries.&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;In data.en:
+    what is the total population of dbr_Barranca_de_Otates?
+    who painted the dbr_Jekyll_+_Hyde?
+    what is the total population of dbr_Lemithou?
+    when did dbr_Haunting_of_Cassie_Palmer creator die?
+    ...
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;regex
-&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;Question&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Pos&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;DT&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; + nouns&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Pos&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;NN&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; | Pos&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;NNS&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; | Pos&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;NNP&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; | Pos&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;NNPS&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;given thes above, the query template is generated:&lt;/p&gt;
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;'query'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;IsMovie()&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;HasName(name)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;then, we can get the primitive query template:&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SELECT DISTINCT ?a WHERE {
-   ?a rdf:type dbpedia-owl:Film.
-   ?x0 dbpprop:starring ?b.
-   ?a foaf:name ?x2.
-   ?b rdf:type &amp;lt;A&amp;gt;
-   ?b rdfs:label &quot;Audrey
-   ?b rdfs:label &quot;Audrey}
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;In data.sparql:
+    select var_uri where brack_open dbr_Barranca_de_Otates dbo_populationTotal var_uri sep_dot brack_close
+    select distinct var_uri where brack_open dbr_Jekyll_+_Hyde dbp_artist var_uri sep_dot brack_close
+    select var_uri where brack_open dbr_Lemithou dbo_populationTotal var_uri sep_dot brack_close
+    select distinct var_date where brack_open dbr_Haunting_of_Cassie_Palmer dbo_creator var_x sep_dot var_x dbo_deathDate var_date sep_dot brack_close
+    ...
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;3-construction-of-the-templates-bank&quot;&gt;3. Construction of the Templates Bank&lt;/h2&gt;
-&lt;p&gt;The Templates Bank is a base where stores the existed templates. 
-The basic idea is to use the DBpedia entities embedding vectors to encode the question templates in order to match the existent templates.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://res.cloudinary.com/stuarteec/image/upload/v1563696969/Atten_NSPM00.TemplatesMatching_shcofp.png&quot; alt=&quot;TemplatesMatching&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;4-comparison-of-newly-generated-templates-and-the-model-matching&quot;&gt;4. Comparison of Newly Generated Templates and the Model Matching&lt;/h2&gt;
-&lt;p&gt;The templates generated in the previous step shall be compared against the tempalets in the Templates Bank as to match the similar one. Then, if matched, it will refer to the similar trained model that contains the matched template; if not matched, it turns to train the model on the new templates, and store the new results into the Templates Bank.&lt;/p&gt;
 </description>
         <pubDate>Sun, 02 Jun 2019 00:00:00 +0800</pubDate>
-        <link>https://stuartchan.github.io/2019/06/02/Architecture/</link>
-        <guid isPermaLink="true">https://stuartchan.github.io/2019/06/02/Architecture/</guid>
+        <link>http://localhost:4000/2019/06/02/Architecture/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/06/02/Architecture/</guid>
         
         <category>GSoC2019</category>
         
@@ -1561,8 +1515,8 @@ It works on two parts parallel:&lt;/p&gt;
 
 </description>
         <pubDate>Sat, 01 Jun 2019 00:00:00 +0800</pubDate>
-        <link>https://stuartchan.github.io/2019/06/01/Week-1/</link>
-        <guid isPermaLink="true">https://stuartchan.github.io/2019/06/01/Week-1/</guid>
+        <link>http://localhost:4000/2019/06/01/Week-1/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/06/01/Week-1/</guid>
         
         <category>GSoC2019</category>
         

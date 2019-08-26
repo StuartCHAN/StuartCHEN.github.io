@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://stuartchan.github.io/2019/06/02/Architecture/">
+    <link rel="canonical" href="http://localhost:4000/2019/06/02/Architecture/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -203,15 +203,15 @@
 
 <p>The model architecture is like:</p>
 
-<p><img src="https://res.cloudinary.com/stuarteec/image/upload/v1563696969/Atten_NSPM00_xaghsv.png" alt="architecture and pipeline" /></p>
+<p><img src="https://res.cloudinary.com/stuarteec/image/upload/v1566790535/Atten_NSPM00.v02_y762nv.png" alt="architecture and pipeline" /></p>
 
 <h1 id="pipeline">Pipeline</h1>
 
 <h2 id="1-question-generation-from-natural-language">1. Question Generation from Natural Language</h2>
 
-<p><img src="https://res.cloudinary.com/stuarteec/image/upload/v1563696969/Atten_NSPM00.QuestionsGeneration_xrloua.png" alt="QuestionsGeneration" /></p>
+<p><img src="https://res.cloudinary.com/stuarteec/image/upload/v1566791144/Atten_NSPM00.v02_2_ep2wsi.png" alt="QuestionsGeneration" /></p>
 
-<p>We will use attention mechanism to generate questions from natural language contextual passage. By detecting entities in the passage, it will automatically get questions about the entities.</p>
+<p>To generate the templates from the text extracted from Wikipedia, we need first to get the sentences containing RDFs.</p>
 
 <h3 id="11-input-from-natural-language">1.1 Input from Natural Language</h3>
 
@@ -220,119 +220,73 @@
 </code></pre></div></div>
 <p><img src="https://res.cloudinary.com/stuarteec/image/upload/v1563699161/v2-6a37b3b2f4db3949137d90642df08ff4_hd_uu57j6.png" alt="" /></p>
 
-<h3 id="12-attention-layer-with-embedding">1.2 Attention Layer with Embedding</h3>
+<h3 id="12-pre-processing--rdf-filtering-with-paraphrases">1.2 Pre-processing &amp; RDF filtering with paraphrases</h3>
 
-<p>The passage goes through attention layer with embedding:</p>
+<p>The passage goes through the <code class="highlighter-rouge">pre-processing</code> to remove the redundant characters and punctuations.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># T stands for time_steps, timing length
-</span><span class="k">def</span> <span class="nf">embedding_attention_seq2seq</span><span class="p">(</span><span class="n">encoder_inputs</span><span class="p">,</span> <span class="c1"># [T, batch_size]
-</span>                             	<span class="n">Decoder_inputs</span><span class="p">,</span> <span class="c1"># [T, batch_size]
-</span>                             	<span class="n">Cell</span><span class="p">,</span>
-                             	<span class="n">Num_encoder_symbols</span><span class="p">,</span>
-                             	<span class="n">Num_decoder_symbols</span><span class="p">,</span>
-                             	<span class="n">Embeddding_size</span><span class="p">,</span>
-                             	<span class="n">Num_heads</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># attention of the number of taps
-</span>                             	<span class="n">Output_projection</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="c1">#decoder's projection matrix
-</span>                             	<span class="n">Feed_previous</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-                             	<span class="n">Dtype</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                             	<span class="n">Scope</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                             	<span class="n">Initial_state_attention</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<p>The cleaned passage will go into the part of neural coreferrences resolutions by spaCy and neuralcoref to confirm the subject’s words of the topic, like:</p>
 
-</code></pre></div></div>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">encoder_cell</span> <span class="o">=</span> <span class="n">rnn_cell</span><span class="o">.</span><span class="n">EmbeddingWrapper</span><span class="p">(</span>
-        <span class="n">cell</span><span class="p">,</span> <span class="n">embedding_classes</span><span class="o">=</span><span class="n">num_encoder_symbols</span><span class="p">,</span>
-        <span class="n">embeddding_size</span><span class="o">=</span><span class="n">embedding_size</span><span class="p">)</span>
-<span class="n">encoder_outputs</span><span class="p">,</span> <span class="n">encoder_state</span> <span class="o">=</span> <span class="n">rnn</span><span class="o">.</span><span class="n">rnn</span><span class="p">(</span>
-        <span class="n">encoder_cell</span><span class="p">,</span> <span class="n">encoder_inputs</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span> 
+<p><code class="highlighter-rouge">Barack Obama</code>–&gt; <code class="highlighter-rouge">he</code> or <code class="highlighter-rouge">him</code> ;</p>
 
-<span class="n">top_states</span> <span class="o">=</span> <span class="p">[</span><span class="n">array_ops</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cell</span><span class="o">.</span><span class="n">output_size</span><span class="p">])</span> \
-                  <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">encoder_outputs</span><span class="p">]</span> 
-<span class="n">attention_states</span> <span class="o">=</span> <span class="n">array_ops</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">top_states</span><span class="p">)</span> 
+<p>then, we use the wordnet via nltk to paraphrase the verbal forms of the predicate word,</p>
 
-</code></pre></div></div>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">embedding_attention_decoder</span><span class="p">(</span><span class="n">decoder_inputs</span><span class="p">,</span>
-                                <span class="n">initial_state</span><span class="p">,</span>
-                                <span class="n">attention_states</span><span class="p">,</span>
-                                <span class="n">cell</span><span class="p">,</span>
-                                <span class="n">num_symbols</span><span class="p">,</span>
-                                <span class="n">embeddding_size</span><span class="p">,</span>
-                                <span class="n">num_heads</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                                <span class="n">output_size</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                                <span class="n">output_projection</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                                <span class="n">feed_previous</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-                                <span class="n">update_embedding_for_previous</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-                                <span class="n">dtype</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                                <span class="n">scope</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                                <span class="n">initial_state_attention</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-<span class="c1"># core code
-</span>    <span class="n">embedding</span> <span class="o">=</span> <span class="n">variable_scope</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s">"embedding"</span><span class="p">,</span>
-                                            <span class="p">[</span><span class="n">num_symbols</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">])</span>
-    <span class="n">loop_function</span> <span class="o">=</span> <span class="n">_extract_argmax_and_embed</span><span class="p">(</span>
-        <span class="n">embedding</span><span class="p">,</span> <span class="n">output_projection</span><span class="p">,</span>
-        <span class="n">update_embedding_for_previous</span><span class="p">)</span> <span class="k">if</span> <span class="n">feed_previous</span> <span class="k">else</span> <span class="bp">None</span>
-    <span class="n">emb_inp</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">embeddding_ops</span><span class="o">.</span><span class="n">embedding_lookup</span><span class="p">(</span><span class="n">embedding</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">decoder_inputs</span><span class="p">]</span>
-    <span class="c1"># T * [batch_size, embedding_size]
-</span>    <span class="k">return</span> <span class="n">attention_decoder</span><span class="p">(</span>
-        <span class="n">emb_inp</span><span class="p">,</span>
-        <span class="n">initial_state</span><span class="p">,</span>
-        <span class="n">attention_states</span><span class="p">,</span>
-        <span class="n">cell</span><span class="p">,</span>
-        <span class="n">output_size</span><span class="o">=</span><span class="n">output_size</span><span class="p">,</span>
-        <span class="n">num_heads</span><span class="o">=</span><span class="n">num_heads</span><span class="p">,</span>
-        <span class="n">loop_function</span><span class="o">=</span><span class="n">loop_function</span><span class="p">,</span>
-        <span class="n">initial_state_attention</span><span class="o">=</span><span class="n">initial_state_attention</span><span class="p">)</span>
+<p><code class="highlighter-rouge">dbo:parent</code> –lemmatize–&gt; <code class="highlighter-rouge">parent</code> –paraphrase–&gt; [ <code class="highlighter-rouge">father</code>, <code class="highlighter-rouge">mother</code>, … ]</p>
 
-</code></pre></div></div>
+<p>which can facilate the pinpointing of the RDF and filter out those sentences that can match the <code class="highlighter-rouge">&lt; coreference(subject), paraphrase(predicate), object &gt;</code> triple.</p>
+
 <h3 id="13-output-the-question">1.3 Output The Question</h3>
-<p>Then we get the output question:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    "Which movie does Audrey Hepburn star ?"
+
+<p>Then we get the output question, for example:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="s2">" The &lt;father&gt; of &lt;Barack&gt; is &lt;Obama Sr&gt;. "</span>
 </code></pre></div></div>
 
-<h2 id="2-from-natural-language-questions-to-templates">2. From Natural Language Questions to Templates</h2>
+<p>after which, we use the DBpedia-Spotlight API to detect the category of the entity, whether to classify it by using which interogative word to ask the question, e.g.</p>
 
-<p><img src="https://res.cloudinary.com/stuarteec/image/upload/v1563696969/Atten_NSPM00.TemplatesGeneration_rugjls.png" alt="" /></p>
+<p><code class="highlighter-rouge">Obama Sr</code> –spotlight–&gt; <code class="highlighter-rouge">dbo:Person</code></p>
 
-<p>With the help of semantic parsing, the model extracts the templates from the questions.</p>
+<p>then we can pick the <code class="highlighter-rouge">who</code> from the list of interogative words [<code class="highlighter-rouge">who</code>, <code class="highlighter-rouge">what</code>, <code class="highlighter-rouge">where</code>, <code class="highlighter-rouge">which</code>] for questioning.</p>
 
-<h3 id="21-entity-annotation">2.1 Entity Annotation</h3>
-<p>With the help of DBpedia’s application Spotlight, the model is able to detect the entities in the question:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\e</span>xamples<span class="se">\d</span>bpedia&gt;python annotation.py <span class="s2">"Which movie does Audrey Hepburn star ?"</span>
+<p>The output question will be converted to like:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="s2">" who is the father of &lt;dbr:Barack_Obama&gt; ? "</span>
 </code></pre></div></div>
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="err">'Audrey</span><span class="w"> </span><span class="err">Hepburn'</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">'@URI'</span><span class="p">:</span><span class="w"> </span><span class="err">'http</span><span class="p">:</span><span class="err">//dbpedia.org/resource/Audrey_Hepburn'</span><span class="p">,</span><span class="w"> </span><span class="err">'Ref'</span><span class="p">:</span><span class="w"> </span><span class="err">'Audrey_Hepburn'</span><span class="p">,</span><span class="w"> </span><span class="err">'Schema'</span><span class="p">:</span><span class="w"> </span><span class="err">'Person'</span><span class="p">,</span><span class="w"> </span><span class="err">'DBpedia'</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">'Person'</span><span class="p">,</span><span class="w"> </span><span class="err">'Agent'</span><span class="p">]}}</span><span class="w">
-</span><span class="err">the</span><span class="w"> </span><span class="err">template</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">('Which</span><span class="w"> </span><span class="err">movie</span><span class="w"> </span><span class="err">does</span><span class="w"> </span><span class="err">&lt;A&gt;</span><span class="w"> </span><span class="err">star</span><span class="w"> </span><span class="err">?'</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="err">'Person'</span><span class="p">]</span><span class="err">)</span><span class="w">
-</span></code></pre></div></div>
-<h3 id="22-template-generation-with-semantic-parsing">2.2 Template Generation With Semantic Parsing</h3>
-<p>We deploy the method of semantic parser to get the core structure of a question for query generation:</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">question</span> <span class="o">=</span> <span class="s">"Which movie does Audrey Hepburn star ?"</span>
-<span class="n">parser</span> <span class="o">=</span> <span class="n">semantic_parser</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
-<span class="n">regex</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">match_regex</span><span class="p">()</span>
+<p>which will be: <code class="highlighter-rouge">dbo:Person;;; who is the father of &lt;A&gt; ;</code> with the annotation of Spotlight.</p>
+
+<h2 id="2-matching-the-new-template-question-with-existing-templateset-to-see-whether-theres-already-a-similar-template-for-this-question">2. Matching the new template question with existing templateset to see whether there’s already a similar template for this question</h2>
+
+<p><img src="https://res.cloudinary.com/stuarteec/image/upload/v1566791144/Atten_NSPM00.v02_4_f7jrnt.png" alt="" /></p>
+
+<p>With the help of the product of Universal Sentence Encoder by importing TensorFlow-hub, the model calculate the vector similarity between the existing templates and these new questions.</p>
+
+<p>If the similarity score can pass the treshold, the system automatically fetch the matched item’s template query to concatenate into the new question;</p>
+
+<p>else if the treshold doesn’t pass that there is no similar question for this new question, the system will also generate the query based on the annotation triple and the regex to buid a template query for it.</p>
+
+<h2 id="4-transformer-with-entities-annoatated">4. Transformer with Entities Annoatated</h2>
+
+<p><img src="https://res.cloudinary.com/stuarteec/image/upload/v1566816472/atten_figure1_mrubms.png" alt="Attention is all we need" title="Attention Is All You Need .Figure 1" /></p>
+
+<p>For the prominent performance in neural machine translation task of Transformer with attention mechanism, it can be one state-of-the-art neural model to do the natural language to SPARQL task.</p>
+
+<p>First, we have a look at the training data, which consist of two parts, namely, <code class="highlighter-rouge">data.en</code> the source data where there’re the natural language questions with entities annoated, and <code class="highlighter-rouge">data.sparql</code> the target data where there’re the correspondent SPARQL queries.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In data.en:
+    what is the total population of dbr_Barranca_de_Otates?
+    who painted the dbr_Jekyll_+_Hyde?
+    what is the total population of dbr_Lemithou?
+    when did dbr_Haunting_of_Cassie_Palmer creator die?
+    ...
 </code></pre></div></div>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>regex
-<span class="o">&gt;&gt;&gt;</span>Question<span class="o">(</span>Pos<span class="o">(</span><span class="s2">"DT"</span><span class="o">))</span> + nouns<span class="o">(</span>Pos<span class="o">(</span><span class="s2">"NN"</span><span class="o">)</span> | Pos<span class="o">(</span><span class="s2">"NNS"</span><span class="o">)</span> | Pos<span class="o">(</span><span class="s2">"NNP"</span><span class="o">)</span> | Pos<span class="o">(</span><span class="s2">"NNPS"</span><span class="o">))</span>
-</code></pre></div></div>
-<p>given thes above, the query template is generated:</p>
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">'query'</span><span class="p">:</span><span class="w"> </span><span class="err">IsMovie()</span><span class="w"> </span><span class="err">+</span><span class="w"> </span><span class="err">HasName(name)</span><span class="w">
-</span></code></pre></div></div>
-<p>then, we can get the primitive query template:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT DISTINCT ?a WHERE {
-   ?a rdf:type dbpedia-owl:Film.
-   ?x0 dbpprop:starring ?b.
-   ?a foaf:name ?x2.
-   ?b rdf:type &lt;A&gt;
-   ?b rdfs:label "Audrey
-   ?b rdfs:label "Audrey}
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In data.sparql:
+    select var_uri where brack_open dbr_Barranca_de_Otates dbo_populationTotal var_uri sep_dot brack_close
+    select distinct var_uri where brack_open dbr_Jekyll_+_Hyde dbp_artist var_uri sep_dot brack_close
+    select var_uri where brack_open dbr_Lemithou dbo_populationTotal var_uri sep_dot brack_close
+    select distinct var_date where brack_open dbr_Haunting_of_Cassie_Palmer dbo_creator var_x sep_dot var_x dbo_deathDate var_date sep_dot brack_close
+    ...
 </code></pre></div></div>
 
-<h2 id="3-construction-of-the-templates-bank">3. Construction of the Templates Bank</h2>
-<p>The Templates Bank is a base where stores the existed templates. 
-The basic idea is to use the DBpedia entities embedding vectors to encode the question templates in order to match the existent templates.</p>
-
-<p><img src="https://res.cloudinary.com/stuarteec/image/upload/v1563696969/Atten_NSPM00.TemplatesMatching_shcofp.png" alt="TemplatesMatching" /></p>
-
-<h2 id="4-comparison-of-newly-generated-templates-and-the-model-matching">4. Comparison of Newly Generated Templates and the Model Matching</h2>
-<p>The templates generated in the previous step shall be compared against the tempalets in the Templates Bank as to match the similar one. Then, if matched, it will refer to the similar trained model that contains the matched template; if not matched, it turns to train the model on the new templates, and store the new results into the Templates Bank.</p>
 
 
                 <hr style="visibility: hidden;">

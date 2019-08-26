@@ -18,15 +18,15 @@ tags:
 The model architecture is like:
 
 
-![architecture and pipeline](https://res.cloudinary.com/stuarteec/image/upload/v1563696969/Atten_NSPM00_xaghsv.png)
+![architecture and pipeline](https://res.cloudinary.com/stuarteec/image/upload/v1566790535/Atten_NSPM00.v02_y762nv.png)
 
 # Pipeline 
 
 ## 1. Question Generation from Natural Language
 
-![QuestionsGeneration](https://res.cloudinary.com/stuarteec/image/upload/v1563696969/Atten_NSPM00.QuestionsGeneration_xrloua.png)
+![QuestionsGeneration](https://res.cloudinary.com/stuarteec/image/upload/v1566791144/Atten_NSPM00.v02_2_ep2wsi.png)
 
-We will use attention mechanism to generate questions from natural language contextual passage. By detecting entities in the passage, it will automatically get questions about the entities.
+To generate the templates from the text extracted from Wikipedia, we need first to get the sentences containing RDFs.
 
 ### 1.1 Input from Natural Language
 
@@ -36,127 +36,75 @@ We use the natural language passage from Wikipedia as input :
 ```
 ![](https://res.cloudinary.com/stuarteec/image/upload/v1563699161/v2-6a37b3b2f4db3949137d90642df08ff4_hd_uu57j6.png)
 
-### 1.2 Attention Layer with Embedding
+### 1.2 Pre-processing & RDF filtering with paraphrases
 
-The passage goes through attention layer with embedding:
+The passage goes through the `pre-processing` to remove the redundant characters and punctuations.
 
-```python
-# T stands for time_steps, timing length
-def embedding_attention_seq2seq(encoder_inputs, # [T, batch_size]
-                             	Decoder_inputs, # [T, batch_size]
-                             	Cell,
-                             	Num_encoder_symbols,
-                             	Num_decoder_symbols,
-                             	Embeddding_size,
-                             	Num_heads=1, # attention of the number of taps
-                             	Output_projection=None, #decoder's projection matrix
-                             	Feed_previous=False,
-                             	Dtype=None,
-                             	Scope=None,
-                             	Initial_state_attention=False):
+The cleaned passage will go into the part of neural coreferrences resolutions by spaCy and neuralcoref to confirm the subject's words of the topic, like: 
 
-```
-```python
-encoder_cell = rnn_cell.EmbeddingWrapper(
-        cell, embedding_classes=num_encoder_symbols,
-        embeddding_size=embedding_size)
-encoder_outputs, encoder_state = rnn.rnn(
-        encoder_cell, encoder_inputs, dtype=dtype) 
+`Barack Obama`--> `he` or `him` ;
 
-top_states = [array_ops.reshape(e, [-1, 1, cell.output_size]) \
-                  for e in encoder_outputs] 
-attention_states = array_ops.concat(1, top_states) 
+then, we use the wordnet via nltk to paraphrase the verbal forms of the predicate word, 
 
-```
-```python
-def embedding_attention_decoder(decoder_inputs,
-                                initial_state,
-                                attention_states,
-                                cell,
-                                num_symbols,
-                                embeddding_size,
-                                num_heads=1,
-                                output_size=None,
-                                output_projection=None,
-                                feed_previous=False,
-                                update_embedding_for_previous=True,
-                                dtype=None,
-                                scope=None,
-                                initial_state_attention=False):
-# core code
-    embedding = variable_scope.get_variable("embedding",
-                                            [num_symbols, embedding_size])
-    loop_function = _extract_argmax_and_embed(
-        embedding, output_projection,
-        update_embedding_for_previous) if feed_previous else None
-    emb_inp = [
-        embeddding_ops.embedding_lookup(embedding, i) for i in decoder_inputs]
-    # T * [batch_size, embedding_size]
-    return attention_decoder(
-        emb_inp,
-        initial_state,
-        attention_states,
-        cell,
-        output_size=output_size,
-        num_heads=num_heads,
-        loop_function=loop_function,
-        initial_state_attention=initial_state_attention)
+`dbo:parent` --lemmatize--> `parent` --paraphrase--> [ `father`, `mother`, ... ]
 
-```
+which can facilate the pinpointing of the RDF and filter out those sentences that can match the `< coreference(subject), paraphrase(predicate), object >` triple.
+
 ### 1.3 Output The Question
-Then we get the output question:
-```
-    "Which movie does Audrey Hepburn star ?"
-```
 
-## 2. From Natural Language Questions to Templates
-
-![](https://res.cloudinary.com/stuarteec/image/upload/v1563696969/Atten_NSPM00.TemplatesGeneration_rugjls.png)
-
-With the help of semantic parsing, the model extracts the templates from the questions.
-
-### 2.1 Entity Annotation
-With the help of DBpedia's application Spotlight, the model is able to detect the entities in the question:
-```bash
-\examples\dbpedia>python annotation.py "Which movie does Audrey Hepburn star ?"
-```
-```json
-{'Audrey Hepburn': {'@URI': 'http://dbpedia.org/resource/Audrey_Hepburn', 'Ref': 'Audrey_Hepburn', 'Schema': 'Person', 'DBpedia': ['Person', 'Agent']}}
-the template is : ('Which movie does <A> star ?', ['Person'])
-```
-### 2.2 Template Generation With Semantic Parsing
-We deploy the method of semantic parser to get the core structure of a question for query generation:
-```python 
-question = "Which movie does Audrey Hepburn star ?"
-parser = semantic_parser(question)
-regex = parser.match_regex()
-```
+Then we get the output question, for example:
 
 ```bash
-regex
->>>Question(Pos("DT")) + nouns(Pos("NN") | Pos("NNS") | Pos("NNP") | Pos("NNPS"))
-```
-given thes above, the query template is generated:
-```json
-'query': IsMovie() + HasName(name)
-```
-then, we can get the primitive query template:
-```
-SELECT DISTINCT ?a WHERE {
-   ?a rdf:type dbpedia-owl:Film.
-   ?x0 dbpprop:starring ?b.
-   ?a foaf:name ?x2.
-   ?b rdf:type <A>
-   ?b rdfs:label "Audrey
-   ?b rdfs:label "Audrey}
+    " The <father> of <Barack> is <Obama Sr>. "
 ```
 
-## 3. Construction of the Templates Bank
-The Templates Bank is a base where stores the existed templates. 
-The basic idea is to use the DBpedia entities embedding vectors to encode the question templates in order to match the existent templates.
+after which, we use the DBpedia-Spotlight API to detect the category of the entity, whether to classify it by using which interogative word to ask the question, e.g.
 
-![TemplatesMatching](https://res.cloudinary.com/stuarteec/image/upload/v1563696969/Atten_NSPM00.TemplatesMatching_shcofp.png)
+`Obama Sr` --spotlight--> `dbo:Person`
+
+then we can pick the `who` from the list of interogative words [`who`, `what`, `where`, `which`] for questioning.
+
+The output question will be converted to like:
+
+```bash
+    " who is the father of <dbr:Barack_Obama> ? "
+```
+which will be: `dbo:Person;;; who is the father of <A> ;` with the annotation of Spotlight.
+
+## 2. Matching the new template question with existing templateset to see whether there's already a similar template for this question
+
+![](https://res.cloudinary.com/stuarteec/image/upload/v1566791144/Atten_NSPM00.v02_4_f7jrnt.png)
+
+With the help of the product of Universal Sentence Encoder by importing TensorFlow-hub, the model calculate the vector similarity between the existing templates and these new questions.
+
+If the similarity score can pass the treshold, the system automatically fetch the matched item's template query to concatenate into the new question;
+
+else if the treshold doesn't pass that there is no similar question for this new question, the system will also generate the query based on the annotation triple and the regex to buid a template query for it.
 
 
-## 4. Comparison of Newly Generated Templates and the Model Matching
-The templates generated in the previous step shall be compared against the tempalets in the Templates Bank as to match the similar one. Then, if matched, it will refer to the similar trained model that contains the matched template; if not matched, it turns to train the model on the new templates, and store the new results into the Templates Bank.
+## 4. Transformer with Entities Annoatated
+
+![Attention is all we need](https://res.cloudinary.com/stuarteec/image/upload/v1566816472/atten_figure1_mrubms.png "Attention Is All You Need .Figure 1")
+
+For the prominent performance in neural machine translation task of Transformer with attention mechanism, it can be one state-of-the-art neural model to do the natural language to SPARQL task.
+
+First, we have a look at the training data, which consist of two parts, namely, `data.en` the source data where there're the natural language questions with entities annoated, and `data.sparql` the target data where there're the correspondent SPARQL queries.
+
+```text
+In data.en:
+    what is the total population of dbr_Barranca_de_Otates?
+    who painted the dbr_Jekyll_+_Hyde?
+    what is the total population of dbr_Lemithou?
+    when did dbr_Haunting_of_Cassie_Palmer creator die?
+    ...
+```
+
+```text
+In data.sparql:
+    select var_uri where brack_open dbr_Barranca_de_Otates dbo_populationTotal var_uri sep_dot brack_close
+    select distinct var_uri where brack_open dbr_Jekyll_+_Hyde dbp_artist var_uri sep_dot brack_close
+    select var_uri where brack_open dbr_Lemithou dbo_populationTotal var_uri sep_dot brack_close
+    select distinct var_date where brack_open dbr_Haunting_of_Cassie_Palmer dbo_creator var_x sep_dot var_x dbo_deathDate var_date sep_dot brack_close
+    ...
+```
+
