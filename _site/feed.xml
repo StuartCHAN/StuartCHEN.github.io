@@ -5,8 +5,8 @@
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
     <link>https://stuartchan.github.io/</link>
     <atom:link href="https://stuartchan.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 31 Aug 2019 10:24:44 +0800</pubDate>
-    <lastBuildDate>Sat, 31 Aug 2019 10:24:44 +0800</lastBuildDate>
+    <pubDate>Sat, 31 Aug 2019 10:29:34 +0800</pubDate>
+    <lastBuildDate>Sat, 31 Aug 2019 10:29:34 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -61,7 +61,7 @@
 
 &lt;p&gt;Let’s see what is the coreference resolution.&lt;/p&gt;
 
-&lt;p&gt;This’s an explanative example&lt;a href=&quot;by StandfordNLP&quot;&gt;1&lt;/a&gt;,&lt;/p&gt;
+&lt;p&gt;This’s an explanative example(by StandfordNLP) [1],&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://res.cloudinary.com/stuarteec/image/upload/v1567214556/corefexample.StandfordNLPpng_gpvkbs.png&quot; alt=&quot;Coreference Resolution&quot; title=&quot;Coreference Resolution(by StandfordNLP)&quot; /&gt;&lt;/p&gt;
 
