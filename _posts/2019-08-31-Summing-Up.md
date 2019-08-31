@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Summing-Up
-subtitle:   Wiki Extraction & Sentences Filtering 
+subtitle:   Outline & Evaluation 
 date:       2019-08-31
 author:     Stuart Chen
 header-img: img/post-bg-desk.jpg
