@@ -5,8 +5,8 @@
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
     <link>https://stuartchan.github.io/</link>
     <atom:link href="https://stuartchan.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 31 Aug 2019 10:06:44 +0800</pubDate>
-    <lastBuildDate>Sat, 31 Aug 2019 10:06:44 +0800</lastBuildDate>
+    <pubDate>Sat, 31 Aug 2019 10:24:44 +0800</pubDate>
+    <lastBuildDate>Sat, 31 Aug 2019 10:24:44 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -80,6 +80,10 @@
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;   his wife Michelle &lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;through the Coreference Resolution, we can figure out that &lt;code class=&quot;highlighter-rouge&quot;&gt;whom does it mean by 'his' ? &lt;/code&gt; in the context, which helps a lot in the RDF entities confirmation.&lt;/p&gt;
+
+&lt;p&gt;Then we get the RDF:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;'his' &amp;lt;dbr:Barack_Obama&amp;gt;&lt;/code&gt; –&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;'wife' &amp;lt;dbo:spouse&amp;gt;&lt;/code&gt; –&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;'Michelle' &amp;lt;dbr:Michelle_Obama&amp;gt;&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;Resolution of coreference is a well-studied problem in computer linguistics discourse. To obtain the correct interpretation of a text, or even to assess the relative significance of the different topics listed above, pronouns and other reference phrases must be related to the right individuals. Usually, algorithms designed to solve coreferences first look for the closestpre.&lt;/p&gt;
 
