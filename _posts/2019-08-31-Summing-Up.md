@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Summing-Up
-subtitle:   Outline & Evaluation 
+subtitle:   Outline & Evolution 
 date:       2019-08-31
 author:     Stuart Chen
 header-img: img/post-bg-desk.jpg
@@ -61,7 +61,7 @@ tags:
 
 <br>
 
-## Evaluation of the Project
+## Evolution of the Project
 
 In the initial period, we wanted to use DBpedia embedding to do the SQuAD machine reading comprehension tasks with reinforcement learning, but gradually we realize the performance of the neural SPARQL machine is highly dependent on the training data which indicate the crucial necessity of automating the templates generation from long contextual passages. The Wikipedia is a wonderful source of plenty of such articles relevant to DBpedia RDF triples, so we decided to evolve an intelligent neural SPARQL machine with automated templates generation, comparison, and accumulation to try to approach a never-ending-learning intelligent agent. 
 

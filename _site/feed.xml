@@ -5,8 +5,8 @@
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
     <link>https://stuartchan.github.io/</link>
     <atom:link href="https://stuartchan.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 31 Aug 2019 11:44:33 +0800</pubDate>
-    <lastBuildDate>Sat, 31 Aug 2019 11:44:33 +0800</lastBuildDate>
+    <pubDate>Sat, 31 Aug 2019 11:46:33 +0800</pubDate>
+    <lastBuildDate>Sat, 31 Aug 2019 11:46:33 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -70,7 +70,7 @@
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;evaluation-of-the-project&quot;&gt;Evaluation of the Project&lt;/h2&gt;
+&lt;h2 id=&quot;evolution-of-the-project&quot;&gt;Evolution of the Project&lt;/h2&gt;
 
 &lt;p&gt;In the initial period, we wanted to use DBpedia embedding to do the SQuAD machine reading comprehension tasks with reinforcement learning, but gradually we realize the performance of the neural SPARQL machine is highly dependent on the training data which indicate the crucial necessity of automating the templates generation from long contextual passages. The Wikipedia is a wonderful source of plenty of such articles relevant to DBpedia RDF triples, so we decided to evolve an intelligent neural SPARQL machine with automated templates generation, comparison, and accumulation to try to approach a never-ending-learning intelligent agent.&lt;/p&gt;
 
