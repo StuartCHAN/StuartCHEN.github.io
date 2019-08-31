@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Week 11&12
+title:      Summing-Up
 subtitle:   Wiki Extraction & Sentences Filtering 
 date:       2019-08-31
 author:     Stuart Chen
