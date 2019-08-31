@@ -5,9 +5,101 @@
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
     <link>https://stuartchan.github.io/</link>
     <atom:link href="https://stuartchan.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 31 Aug 2019 10:29:34 +0800</pubDate>
-    <lastBuildDate>Sat, 31 Aug 2019 10:29:34 +0800</lastBuildDate>
+    <pubDate>Sat, 31 Aug 2019 11:37:32 +0800</pubDate>
+    <lastBuildDate>Sat, 31 Aug 2019 11:37:32 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Week 11&amp;12</title>
+        <description>&lt;h1 id=&quot;summing-up&quot;&gt;Summing Up&lt;/h1&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;project-outline&quot;&gt;Project Outline&lt;/h2&gt;
+
+&lt;h3 id=&quot;week-1112&quot;&gt;Week 11&amp;amp;12&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Wiki Extraction &amp;amp; Sentences Filtering&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;week-910&quot;&gt;Week 9&amp;amp;10&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Univerasal Sentence Encoder for Template Matching &amp;amp; Templates Bank&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;week-78&quot;&gt;Week 7&amp;amp;8&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Analyses for Previous Works&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;week-6&quot;&gt;Week 6&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Vector Similarity Calculation&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;week-5&quot;&gt;Week 5&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Issues Analyses&lt;/li&gt;
+  &lt;li&gt;Vectors Embedding&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;week-4&quot;&gt;Week 4&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Pre-evaluation Preparation&lt;/li&gt;
+  &lt;li&gt;Exploring Potential Issues for Current NSpM&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;week-3&quot;&gt;Week 3&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Improving the Generation Component&lt;/li&gt;
+  &lt;li&gt;Thinking About The Evaluations&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;week-2&quot;&gt;Week 2&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Entity Recognition&lt;/li&gt;
+  &lt;li&gt;Template Generation&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;week-1&quot;&gt;Week 1&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;qald evaluation against GERBIL interface building the semantic tree structue for the natural lang.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;evaluation-of-the-project&quot;&gt;Evaluation of the Project&lt;/h2&gt;
+
+&lt;p&gt;In the initial period, we wanted to use DBpedia embedding to do the SQuAD machine reading comprehension tasks with reinforcement learning, but gradually we realize the performance of the neural SPARQL machine is highly dependent on the training data which indicate the crucial necessity of automating the templates generation from long contextual passages. The Wikipedia is a wonderful source of plenty of such articles relevant to DBpedia RDF triples, so we decided to evolve an intelligent neural SPARQL machine with automated templates generation, comparison, and accumulation to try to approach a never-ending-learning intelligent agent.&lt;/p&gt;
+
+&lt;p&gt;Of course, during the coding, we have countered so many difficulties, like doing the benchmark evaluations and some tough impediments, but as now I think about these problems, I think they gave me a totally thorough growth. I got to learn more and more about the newest products in the industry and get more adequate with the international coding standards which open my door to a bigger world. For example, in the part of calculating the vector similarity to match existing templates, we first used word mover distance with GLoVe vectors via gensim, but we found that was too heavy and too slow, then we used spaCy and found it much speedier. And soon after this, we found the Universal Sentence Encoder is even better in this task, which is a huge evolution in our development.&lt;/p&gt;
+
+&lt;p&gt;Another thing that I still remember is the paraphrasing of the predicates, we used to think load all the phrases in RAM and do the matching. I still remember that file was so huge even more than 17.6 GB. Then I found the wordnet from nltk can accomplish this paraphrasing task without such a huge cost, which is a smart solution.&lt;/p&gt;
+
+&lt;h3 id=&quot;future-works&quot;&gt;Future Works&lt;/h3&gt;
+
+&lt;p&gt;We hope to keep on the work on making the question generation even better and including ASK queries, queries that require filter (how many, how much, etc.) and complex queries as well. Because we believe this can make the neural SPARQL machines get even better and better performance.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;To read more, please refer to the &lt;a href=&quot;https://github.com/StuartCHAN/neural-qa#summary&quot;&gt;repository summary&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sat, 31 Aug 2019 00:00:00 +0800</pubDate>
+        <link>https://stuartchan.github.io/2019/08/31/Summing-Up/</link>
+        <guid isPermaLink="true">https://stuartchan.github.io/2019/08/31/Summing-Up/</guid>
+        
+        <category>GSoC2019</category>
+        
+        <category>NLP</category>
+        
+        <category>DBpedia</category>
+        
+        
+      </item>
     
       <item>
         <title>Week 11&amp;12</title>
@@ -1487,96 +1579,6 @@ The next days should delve into the automation about creating the new regexes fo
         <pubDate>Sun, 02 Jun 2019 00:00:00 +0800</pubDate>
         <link>https://stuartchan.github.io/2019/06/02/Architecture/</link>
         <guid isPermaLink="true">https://stuartchan.github.io/2019/06/02/Architecture/</guid>
-        
-        <category>GSoC2019</category>
-        
-        <category>NLP</category>
-        
-        <category>DBpedia</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>Week 1</title>
-        <description>&lt;blockquote&gt;
-  &lt;h1 id=&quot;the-goals-for-week-1&quot;&gt;The Goals for Week 1&lt;/h1&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Let’s have a look into this week’s topics:&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;ol&gt;
-    &lt;li&gt;
-      &lt;p&gt;qald evaluation against GERBIL interface&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li&gt;
-      &lt;p&gt;building the semantic tree structue for the natural language sentence&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;the-balance-between-whether-to-write-a-script-to-de-the-evaluation-or-to-wrap-the-whole-system-into-gerbil&quot;&gt;The balance between whether to write a script to de the evaluation or to wrap the whole system into GERBIL&lt;/h2&gt;
-
-&lt;h3 id=&quot;method-1-evaluationsh--evaluationpy-vs-mehod-2-wrapper-of-the-qa-system&quot;&gt;Method 1: evaluation.sh + evaluation.py V.S. Mehod 2: Wrapper of the QA System&lt;/h3&gt;
-
-&lt;p&gt;For Method 1, the basic idea was that, based on the two files that I committed to my &lt;a href=&quot;https://github.com/StuartCHAN/neural-qa/tree/gsoc-stuart&quot;&gt;branch&lt;/a&gt;, the evaluation depends on running the GERBIL system on local machine to get a json-format response as comparison. 
-It works on two parts parallel:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    1)first, in the evaluation.sh , it calls the NSpM model to give the output based on trained model;
-
-    2)next, it retrieve the comparative output from the GERBIL to do the evaluation. The evaluation is conducted upon the data file after generation operation.  
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;For Method 2, it is that the GERBIL needs to wrap the whole self-built QA system that’s written in python into the &lt;a href=&quot;https://github.com/dice-group/GerbilQA-Benchmarking-Template/blob/master/src/main/java/org/dice/qa/impl/ExampleQASystem.java&quot;&gt;existed system&lt;/a&gt; that’s written in java via jython. And I was adviced that this would be more straightforward to spares us from implementing the evaluation module of our own.&lt;/p&gt;
-
-&lt;p&gt;Besides, I have worked on cleaning up and refining a dataset from QALD that may be useful sooner, which contains a set of natural language queries and SPARQL queries with their answer’s value.&lt;/p&gt;
-
-&lt;p&gt;When talking the question, those natural language queries, it highlights the importance of sparsing a sentence while generating the template.&lt;/p&gt;
-
-&lt;h2 id=&quot;entity-recognition--semantic-parsing&quot;&gt;Entity Recognition &amp;amp; Semantic Parsing&lt;/h2&gt;
-
-&lt;p&gt;To illustrate the ideas, I would hope to show you this figure that was extracted from the data below:&lt;/p&gt;
-
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;answertype&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;resource&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;aggregation&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;onlydbo&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;hybrid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;question&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;language&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;en&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Who was the wife of U.S. president Lincoln?&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;keywords&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;U.S. president, Lincoln, wife&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                                        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;…&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;query&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;sparql&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; 
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;PREFIX dbo: &amp;lt;http://dbpedia.org/ontology/&amp;gt;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;PREFIX res: &amp;lt;http://dbpedia.org/resource/&amp;gt;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;SELECT DISTINCT ?uri &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;WHERE {&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n\t&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;res:Abraham_Lincoln dbo:spouse ?uri.&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;}&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                                &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;answers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                                        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;head&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;vars&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                                                        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;uri&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                                                &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                                        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                                        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;results&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;bindings&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                                                        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;uri&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                                                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;uri&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                                                                &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;value&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;http://dbpedia.org/resource/Mary_Todd_Lincoln&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                                                        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://res.cloudinary.com/stuarteec/image/upload/v1563699448/v2-c9e0a1948e0e405081513620172f94f0_hd_mumtvb.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://res.cloudinary.com/stuarteec/image/upload/v1563697005/semantic_parser_etqkzc.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This show the idelogical processing about how we detect the entities from the sentence and do the parsing, because we need to mapp them towards the RDF in DBpedia.&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 01 Jun 2019 00:00:00 +0800</pubDate>
-        <link>https://stuartchan.github.io/2019/06/01/Week-1/</link>
-        <guid isPermaLink="true">https://stuartchan.github.io/2019/06/01/Week-1/</guid>
         
         <category>GSoC2019</category>
         

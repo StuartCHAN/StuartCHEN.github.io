@@ -10,7 +10,7 @@
     <meta name="keywords"  content="BY, Blog Yeah, Stuart Jiazheng Chen, stuartchan, Machine Learning, NLP, Cognitive Science, Linguistics ">
     <meta name="theme-color" content="#000000">
     
-    <title>Week 5 - Stuart Chen | Blog Yeah</title>
+    <title>Week 11&12 - Stuart Chen | Blog Yeah</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://stuartchan.github.io/2019/06/30/Week-5/">
+    <link rel="canonical" href="https://stuartchan.github.io/2019/08/31/Summing-Up/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -150,13 +150,13 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/justin-luebke-90718-unsplash.jpg" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-desk.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/justin-luebke-90718-unsplash.jpg')
+        background-image: url('/img/post-bg-desk.jpg')
     }
 
     
@@ -176,12 +176,12 @@
                         <a class="tag" href="/tags/#DBpedia" title="DBpedia">DBpedia</a>
                         
                     </div>
-                    <h1>Week 5</h1>
+                    <h1>Week 11&12</h1>
                     
                     
-                    <h2 class="subheading">Issues Analyses & Vectors Embedding</h2>
+                    <h2 class="subheading">Wiki Extraction & Sentences Filtering</h2>
                     
-                    <span class="meta">Posted by Stuart Chen on June 30, 2019</span>
+                    <span class="meta">Posted by Stuart Chen on August 31, 2019</span>
                 </div>
             </div>
         </div>
@@ -199,175 +199,82 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h1 id="the-week--5">The Week  5</h1>
+				<h1 id="summing-up">Summing Up</h1>
 
-<p>This week I believe it’s a diving.</p>
+<p><br /></p>
 
-<p>I can now see many things, subtle and seemingly extending to somewhere abyssal.</p>
+<h2 id="project-outline">Project Outline</h2>
 
-<p>In this week, I have tried transforming the natural language questions into SPARQL queries via the trained neural SPARQL machine models, which showed the restrictedness in the vocabulary mapping.</p>
-
-<p>To trace back, I noticed that the Spotlight annotation might focus on the entity recognition based on the word-wise input. Thus, the entity consisting of more than one word could have been missed.</p>
-
-<p>Also, to make better use of the efforts of the existing templates, it is more efficient to vectorize the new question templates generated in the previous work in order to do the comparison with the existing question templates’ embeddings.</p>
-
-<p>What’s more, with the helpful advice, the project is moving forward an insightful and pioneering direction.</p>
-
-<h2 id="1-issues-analyses">1. Issues Analyses</h2>
-
-<h3 id="11-the-mismatching-while-trained-models-work-with-unprecedented-vocabulary">1.1 The Mismatching While Trained Models Work With Unprecedented Vocabulary</h3>
-
-<p>Case 1: Entities Ambiguation</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>For example,
-when the NSpM model took an input natural question that contains
-"region",
-the model referred it to 
-the "dbr:wineRegion" 
-that it had only learned about the word similar to "region",
-which might be biased and divergent to the original sense.
-</code></pre></div></div>
-
-<p>Case 2: The Abused Mapping</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>That's to say, when the model handles a vocabulary that is not in 
-the topic that it was trained, 
-it would mistakenly place the unprecedented word into the place of 
-another vocabulary that it had learned, then mismatching to the 
-value of the replaced vocabulary.
-</code></pre></div></div>
-
+<h3 id="week-1112">Week 11&amp;12</h3>
 <ul>
-  <li>For example,</li>
+  <li>Wiki Extraction &amp; Sentences Filtering</li>
 </ul>
 
-<p>if we use the model trained on dbo:Monument templates set 
-to infer the questions of the topic about location that contains the vocabulary 
-that it had not learned in the training data, like:
-the “rdf:type dbo:Place” and the “dbo:location” are the two of the most frequently abused in the inference
-for those vocabulary unprecedented.</p>
-
-<p>Case 3: Issue On Reproducibility</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The models that have attained BLEU could have not perfectly 
-translated the natural language questions with a new different 
-vocabulary into the correct query.
-</code></pre></div></div>
-
+<h3 id="week-910">Week 9&amp;10</h3>
 <ul>
-  <li>For example,</li>
+  <li>Univerasal Sentence Encoder for Template Matching &amp; Templates Bank</li>
 </ul>
 
-<p>I picked out some of the questions in the training set as
-input to the trained model to test whether it can reproduce 
-the queries that are paired to these original question in the training set,
-like:</p>
-
-<blockquote>
-  <p>“whom did xu fan marry?”,</p>
-</blockquote>
-
-<p>the generated result was</p>
-
-<blockquote>
-  <p>“select distinct var_uri where brack_open dbr_Rugrats dbo_composer var_uri”,</p>
-</blockquote>
-
-<p>where apparently the “dbr_Rugrats” and “dbo_composer” are not related to the question,
-also, the crucial entity about the person named “Xu Fan” and the entity <a href="http://live.dbpedia.org/page/Xu_Fan">“dbr_Xu_Fan”</a> has not been properly recognized,
-not matching to the correct paired query</p>
-<blockquote>
-  <p>“select distinct var_uri where brack_open var_uri dbo_spouse dbr_Xu_Fan sep_dot brack_close” in the training set.</p>
-</blockquote>
-
-<p>Summing Up:</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The current neural SPARQL machine would be having a strong 	
-dependency on the vocabulary that it have learned.
-Also, the present version of the model design has mostly focused on 
-the fitting of neural machine translation between the  natural 
-language questions and the SPARQL queries.
-</code></pre></div></div>
-
-<h3 id="12-expanding-the-question">1.2 Expanding The Question:</h3>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>So, what should we do next?
-</code></pre></div></div>
-
-<p>I got some feedback from the researches in NL2SQL that major in deploying reinforcement learning method in training the neural model to get more and more correctness in the returned answers.</p>
-
-<p><img src="https://res.cloudinary.com/stuarteec/image/upload/v1563698435/D-ljAtsUcAAqQ4Y_jpmsgf.jpg" alt="Figure 1, SEQ2SQL(V Zhong et al.)" />
-Figure 1, SEQ2SQL(V Zhong et al.) [1]</p>
-
-<p>To elaborate on this direction of researches, the paper MAPO (Memory Augmented Policy Optimization for Program Synthesis and Semantic Parsing) [2] on NIPS 2018 is worthy of our attention.</p>
-
-<p>MAPO is a method based on weakly supervised and intensive learning. In the paper, it transforms the NL2SQL task into an intensive learning task based on the basic composition of the NL2SQL task and the basic elements of reinforcement learning. In MAPO, the state of reinforcement learning x is seen as the natural language problem of input and its corresponding environment (e.g. an interpreter, or an knowledge graph or, typically in the experiment in the paper, a database), and the action space A of reinforcement learning is regarded as all possible collections of programs under the current natural language problem. And each action sequence a of the enhanced learning trajectory corresponds to every possible program.</p>
-
-<p>It can be seen that the key to the algorithm is the training of the strategy function. In MAPO, the author uses a seq2seq model to fit the strategy function, and training for the strategy function is equivalent to training the seq2seq model.</p>
-
-<p>It is worth noting that in reinforcement learning, the parameter update of the strategy function is different from the deep neural network, not based on the loss function, but based on the expected return. The parameter update is in the direction of maximizing the expected return. The expected return can be given by the Reward function.</p>
-
-<p>Since our task is to generate program statements, we can easily run the generated program in the real environment and compare the result with the label of the weakly supervised training data to get the 0-1 binary return function. Its core idea is to correct the behavior of the agent by interacting with the environment, so as to achieve the effect of “learning”.</p>
-
-<p>Based on the above-mentioned intensive learning ideas, in the specific implementation, MAPO proposed the following innovative solutions. First, in order to improve the efficiency of training, the MAPO algorithm stores the sampled high-reward program into a Memory Buffer. When training the strategy function fitting network, the objective function that maximizes the expected return is divided into two parts, one is The expected return of the sampling program in the Memory Buffer, and the other part is the expected return of the sampling program outside the Buffer, as shown in the following figure.</p>
-
-<p><img src="https://res.cloudinary.com/stuarteec/image/upload/v1563697922/D-luC0sVAAEQ9i__nk6wcd.png" alt="MAPO,NIPS2018" /></p>
-
-<p>Figure 2, MAPO(NIPS 2018) [2]</p>
-
-<p>The team[2] applied MAPO to the <a href="https://github.com/salesforce/WikiSQL">WikiSQL dataset</a>. For each sample on the WikiSQL data, 1000 sample programs were generated. Five high-return samples were stored in the Memory Buffer. The <a href="https://nlp.stanford.edu/projects/glove/">GloVe embeddings</a> was applied to the strategy function fitting network. LSTM Hidden The unit is 200 and the training is 15000 steps:
-<img src="https://res.cloudinary.com/stuarteec/image/upload/v1563697030/MAPO.figure2_tpwugh.png" alt="Figure 3, is the figure 2 from MAPO about its performances and experiments" /></p>
-
-<p>The learning of the connection between the the natural language question and the structured query is the major objective function, where the task is designed to let the query fit as much as possible during the machine translation training.</p>
-
-<p>While parallelly, the researches in NL2SQL have a comparative stronger emphasis on the result that the generated query would return and on the correctness that it would produce, because the correct return of the query is their only goal, not the matching similarity of the queries.</p>
-
-<p>That’s to say, their models tend to build a more direct function from the natural language question through the generation of the structured query finally towards the return answer, based on which this type of algorithms of reinforcement learning get the reward upon the right or wrong of the result of the generated query then learning to let the query generator get the more and more pertinent returned answer.</p>
-
-<p>To sum up, the machine translation based-model is query-driven while the reinforcement learning model that tries to take a step further can be classified as a final-answer-driven method.</p>
-
-<p>However, in this type of final-answer-driven models, there’s a pre-requisite that requires to embed the natural language questions, the structured query, and the answers entities into a calculable form while working with our problem.</p>
-
-<h2 id="2-vectors-embedding">2. Vectors Embedding</h2>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Then, why embed the data?
-</code></pre></div></div>
-
-<p>The problem of the restricted limitation of the vocabulary mapping, and the abused vocabulary matching, in my humble opinion, could be traced back to the restriction of the vocabulary that it was able to learning in the training data set.</p>
-
-<p>So, how could we remove the limitation away from the current model?</p>
-
-<p>There are two aspects to be paid attention:</p>
-
-<blockquote>
-  <p>1) Uniqueness and Directivity: 
-	   The embedding vector must be unique in terms of 
-     representing the entities, otherwise there could be conflicting mapping. And it must be 
-     promising that, in the vector space, each entity-vector pair must be correctly matched in 
-     one unique key-value pair.</p>
-</blockquote>
-
+<h3 id="week-78">Week 7&amp;8</h3>
 <ul>
-  <li>For example, the vocabulary “brack_close” was duplicated in the generated data file in the training data set on the topic about “place_v2”.</li>
+  <li>Analyses for Previous Works</li>
 </ul>
 
-<blockquote>
-  <p>2) Comprehensive Inclusion: 
-	 The vector set should, comprehensively and accurately, 
-   comprise all the entities and relation properties in the DBpedia space, with inclusion in the 
-   embedding of the keywords of the query grammars, e.g. “SELECT”,”DISTINCT”,”WHERE”.etc.</p>
-</blockquote>
+<h3 id="week-6">Week 6</h3>
+<ul>
+  <li>Vector Similarity Calculation</li>
+</ul>
 
-<p>After the attempts in training a new vector set on the given templates, I figured out that it might be of more efficiency employing the DBpedia embedding vector of the <a href="https://github.com/dbpedia/embeddings">previous projects</a>.</p>
+<h3 id="week-5">Week 5</h3>
+<ul>
+  <li>Issues Analyses</li>
+  <li>Vectors Embedding</li>
+</ul>
 
-<h2 id="references">References</h2>
+<h3 id="week-4">Week 4</h3>
+<ul>
+  <li>Pre-evaluation Preparation</li>
+  <li>Exploring Potential Issues for Current NSpM</li>
+</ul>
 
-<p>[1] <a href="https://paperswithcode.com/paper/seq2sql-generating-structured-queries-from">Victor Zhong, Caiming Xiong, Richard Socher</a>  (2017) SEQ2SQL: GENERATING STRUCTURED QUERIES
-FROM NATURAL LANGUAGE USING REINFORCEMENT
-LEARNING</p>
+<h3 id="week-3">Week 3</h3>
+<ul>
+  <li>Improving the Generation Component</li>
+  <li>Thinking About The Evaluations</li>
+</ul>
 
-<p>[2] <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Liang%2C+C">Chen Liang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Norouzi%2C+M">Mohammad Norouzi</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Berant%2C+J">Jonathan Berant</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Le%2C+Q">Quoc Le</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Lao%2C+N">Ni Lao</a> (2018) Memory Augmented Policy Optimization for Program Synthesis and Semantic Parsing</p>
+<h3 id="week-2">Week 2</h3>
 
+<ul>
+  <li>Entity Recognition</li>
+  <li>Template Generation</li>
+</ul>
+
+<h3 id="week-1">Week 1</h3>
+
+<ul>
+  <li>qald evaluation against GERBIL interface building the semantic tree structue for the natural lang.</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="evaluation-of-the-project">Evaluation of the Project</h2>
+
+<p>In the initial period, we wanted to use DBpedia embedding to do the SQuAD machine reading comprehension tasks with reinforcement learning, but gradually we realize the performance of the neural SPARQL machine is highly dependent on the training data which indicate the crucial necessity of automating the templates generation from long contextual passages. The Wikipedia is a wonderful source of plenty of such articles relevant to DBpedia RDF triples, so we decided to evolve an intelligent neural SPARQL machine with automated templates generation, comparison, and accumulation to try to approach a never-ending-learning intelligent agent.</p>
+
+<p>Of course, during the coding, we have countered so many difficulties, like doing the benchmark evaluations and some tough impediments, but as now I think about these problems, I think they gave me a totally thorough growth. I got to learn more and more about the newest products in the industry and get more adequate with the international coding standards which open my door to a bigger world. For example, in the part of calculating the vector similarity to match existing templates, we first used word mover distance with GLoVe vectors via gensim, but we found that was too heavy and too slow, then we used spaCy and found it much speedier. And soon after this, we found the Universal Sentence Encoder is even better in this task, which is a huge evolution in our development.</p>
+
+<p>Another thing that I still remember is the paraphrasing of the predicates, we used to think load all the phrases in RAM and do the matching. I still remember that file was so huge even more than 17.6 GB. Then I found the wordnet from nltk can accomplish this paraphrasing task without such a huge cost, which is a smart solution.</p>
+
+<h3 id="future-works">Future Works</h3>
+
+<p>We hope to keep on the work on making the question generation even better and including ASK queries, queries that require filter (how many, how much, etc.) and complex queries as well. Because we believe this can make the neural SPARQL machines get even better and better performance.</p>
+
+<ul>
+  <li>To read more, please refer to the <a href="https://github.com/StuartCHAN/neural-qa#summary">repository summary</a>.</li>
+</ul>
+
+<p><br /></p>
 
 
                 <hr style="visibility: hidden;">
@@ -375,19 +282,12 @@ LEARNING</p>
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2019/06/23/Week-4/" data-toggle="tooltip" data-placement="top" title="Week 4">
+                        <a href="/2019/08/18/Week-11&12/" data-toggle="tooltip" data-placement="top" title="Week 11&12">
                         Previous<br>
-                        <span>Week 4</span>
+                        <span>Week 11&12</span>
                         </a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2019/07/07/Week-6/" data-toggle="tooltip" data-placement="top" title="Week 6">
-                        Next<br>
-                        <span>Week 6</span>
-                        </a>
-                    </li>
                     
                 </ul>
 
