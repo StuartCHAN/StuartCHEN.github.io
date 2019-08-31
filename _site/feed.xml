@@ -3,10 +3,10 @@
   <channel>
     <title>Stuart Chen's Blog</title>
     <description> L'air immense ouvre et referme mon livre, la vague en poudre ose jaillir des rocs! </description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 26 Aug 2019 18:51:12 +0800</pubDate>
-    <lastBuildDate>Mon, 26 Aug 2019 18:51:12 +0800</lastBuildDate>
+    <link>https://stuartchan.github.io/</link>
+    <atom:link href="https://stuartchan.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sat, 31 Aug 2019 10:06:44 +0800</pubDate>
+    <lastBuildDate>Sat, 31 Aug 2019 10:06:44 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -59,11 +59,33 @@
 
 &lt;h3 id=&quot;21-coreference-resolution&quot;&gt;2.1. Coreference Resolution&lt;/h3&gt;
 
+&lt;p&gt;Let’s see what is the coreference resolution.&lt;/p&gt;
+
+&lt;p&gt;This’s an explanative example&lt;a href=&quot;by StandfordNLP&quot;&gt;1&lt;/a&gt;,&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://res.cloudinary.com/stuarteec/image/upload/v1567214556/corefexample.StandfordNLPpng_gpvkbs.png&quot; alt=&quot;Coreference Resolution&quot; title=&quot;Coreference Resolution(by StandfordNLP)&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;so, when the lady stated as above for this man’s election, we can see the corefernce relations as below:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    THE LADY: [ I, my, She ]
+    THE MAN:  [ Nader, he ]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This can clarify what the words or pronouns are talking about in the passage: to which entity? from which? who? what’s this entity/pronoun?&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;in this example,&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;   his wife Michelle &lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;through the Coreference Resolution, we can figure out that &lt;code class=&quot;highlighter-rouge&quot;&gt;whom does it mean by 'his' ? &lt;/code&gt; in the context, which helps a lot in the RDF entities confirmation.&lt;/p&gt;
+
 &lt;p&gt;Resolution of coreference is a well-studied problem in computer linguistics discourse. To obtain the correct interpretation of a text, or even to assess the relative significance of the different topics listed above, pronouns and other reference phrases must be related to the right individuals. Usually, algorithms designed to solve coreferences first look for the closestpre.&lt;/p&gt;
 
 &lt;p&gt;`Coreference Resolution in spaCy with Neural Networks.’&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://github.com/huggingface/neuralcoref&quot;&gt;NeuralCoref&lt;/a&gt; is a spaCy 2.1 + pipeline extension that uses a neural network to annotate and resolve coreference clusters. NeuralCoref is ready for production, incorporated into the NLP pipeline of spaCy and can be extended to fresh training datasets.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/huggingface/neuralcoref&quot;&gt;NeuralCoref&lt;/a&gt;[2] is a spaCy 2.1 + pipeline extension that uses a neural network to annotate and resolve coreference clusters. NeuralCoref is ready for production, incorporated into the NLP pipeline of spaCy and can be extended to fresh training datasets.&lt;/p&gt;
 
 &lt;p&gt;It solves the problem of pinpointing the pronounces and indicating the right corefernce of an entity.&lt;/p&gt;
 
@@ -71,7 +93,7 @@
 
 &lt;p&gt;At first, we use the API of an online paraphraser to do the part of automatic paraphrasing, which we found that might not be suitable to do the paraphrasing of short phrases like the predicates.&lt;/p&gt;
 
-&lt;p&gt;Then, we use the wordnet via NLTK to take the paraphrasing task.&lt;/p&gt;
+&lt;p&gt;Then, we use the wordnet[3] via NLTK to take the paraphrasing task.&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;nltk.corpus&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wordnet&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -162,10 +184,18 @@ Synset root hypernerm :   &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Synset&l
 
 &lt;p&gt;to match the sentences that are sitable for this RDF triple.&lt;/p&gt;
 
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;p&gt;[1] Coreference Resolution, StandfordNLP, https://nlp.stanford.edu/projects/coref.shtml&lt;/p&gt;
+
+&lt;p&gt;[2] NeuralCoref, https://github.com/huggingface/neuralcoref&lt;/p&gt;
+
+&lt;p&gt;[3] WordNet, https://wordnet.princeton.edu/&lt;/p&gt;
+
 </description>
         <pubDate>Sun, 18 Aug 2019 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2019/08/18/Week-11&12/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/08/18/Week-11&12/</guid>
+        <link>https://stuartchan.github.io/2019/08/18/Week-11&12/</link>
+        <guid isPermaLink="true">https://stuartchan.github.io/2019/08/18/Week-11&12/</guid>
         
         <category>GSoC2019</category>
         
@@ -191,6 +221,22 @@ Synset root hypernerm :   &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Synset&l
 &lt;h2 id=&quot;1-templates-matching&quot;&gt;1. Templates Matching&lt;/h2&gt;
 
 &lt;h3 id=&quot;11-universal-sentence-encoder&quot;&gt;1.1 Universal Sentence Encoder&lt;/h3&gt;
+
+&lt;p&gt;Why we need it?&lt;/p&gt;
+
+&lt;p&gt;Considering the great human efforts we have expended in manually composing the templates, we believe we can make better use of them for generating more new templates,&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;for example, when we see these two questions,&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;who is the wife of Obama?&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;who is the spouse of Obama?&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;actually, they can be represented by the same query for the same semantic meaning.&lt;/p&gt;
+
+&lt;p&gt;Then, how to accomplish the semantic searching?&lt;/p&gt;
+
+&lt;p&gt;Yes, we can use the similarity of embedding vectors by the Universal Sentence Encoder.&lt;/p&gt;
 
 &lt;p&gt;The &lt;a href=&quot;https://arxiv.org/abs/1803.11175&quot;&gt;Universal Sentence Encoder&lt;/a&gt; [1] encodes text into vectors of high dimensions that can be used in classifying documents, calculating semantic similarity, topics clustering, and more other natural language processing tasks. With &lt;a href=&quot;https://tfhub.dev/google/universal-sentence-encoder&quot;&gt;Tensorflow-hub&lt;/a&gt;, we deploy the Universal Sentence Encoder to calculate the similarity between the new question and the existing templates to do the matching task.&lt;/p&gt;
 
@@ -220,6 +266,12 @@ Trainable params: 263,169
 Non-trainable params: 0
 __________________________________________________________________________________________________
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;So, if we compare &lt;code class=&quot;highlighter-rouge&quot;&gt;who is the wife of Obama?&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;who is the spouse of Obama?&lt;/code&gt;, they would be classified into the same semantic meaning by setting the threshold similarity score.&lt;/p&gt;
+
+&lt;p&gt;However, when we faced &lt;code class=&quot;highlighter-rouge&quot;&gt;who is the father of Obama?&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;who is the spouse of Obama?&lt;/code&gt;, the difference will be shown in the similarity score. If the threshold is lower than what’s required, we call the template composing function then.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;12-preprocesing&quot;&gt;1.2 Preprocesing&lt;/h3&gt;
 
@@ -278,7 +330,11 @@ ________________________________________________________________________________
 
 &lt;p&gt;and the Spotlight can also indicate the most probable Class in this context is the “dbo:Person” in the return. So, to know to which Class it belongs, we can respectively fetch their lists of properties that its three upper Classes have,  and see in which list of properties the predicate exists.&lt;/p&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;h3 id=&quot;14--semantic-searching&quot;&gt;1.4  Semantic Searching&lt;/h3&gt;
+
+&lt;p&gt;How do we use the Universal Sentence Encoder to build the Semantic Searching?&lt;/p&gt;
 
 &lt;p&gt;Given the detected Class and its belonging templateset, we can use the similarity searching function to get the matched template for the question:&lt;/p&gt;
 
@@ -365,8 +421,8 @@ ________________________________________________________________________________
 
 </description>
         <pubDate>Sat, 03 Aug 2019 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2019/08/03/Week-9&10/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/08/03/Week-9&10/</guid>
+        <link>https://stuartchan.github.io/2019/08/03/Week-9&10/</link>
+        <guid isPermaLink="true">https://stuartchan.github.io/2019/08/03/Week-9&10/</guid>
         
         <category>GSoC2019</category>
         
@@ -509,8 +565,8 @@ ________________________________________________________________________________
 
 </description>
         <pubDate>Fri, 19 Jul 2019 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2019/07/19/Week-7&8/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/07/19/Week-7&8/</guid>
+        <link>https://stuartchan.github.io/2019/07/19/Week-7&8/</link>
+        <guid isPermaLink="true">https://stuartchan.github.io/2019/07/19/Week-7&8/</guid>
         
         <category>GSoC2019</category>
         
@@ -784,8 +840,8 @@ So, did they succeed to get the dbo:spouse from “wife”?&lt;/li&gt;
 
 </description>
         <pubDate>Sun, 07 Jul 2019 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2019/07/07/Week-6/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/07/07/Week-6/</guid>
+        <link>https://stuartchan.github.io/2019/07/07/Week-6/</link>
+        <guid isPermaLink="true">https://stuartchan.github.io/2019/07/07/Week-6/</guid>
         
         <category>GSoC2019</category>
         
@@ -969,8 +1025,8 @@ LEARNING&lt;/p&gt;
 
 </description>
         <pubDate>Sun, 30 Jun 2019 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2019/06/30/Week-5/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/06/30/Week-5/</guid>
+        <link>https://stuartchan.github.io/2019/06/30/Week-5/</link>
+        <guid isPermaLink="true">https://stuartchan.github.io/2019/06/30/Week-5/</guid>
         
         <category>GSoC2019</category>
         
@@ -1070,8 +1126,8 @@ LEARNING&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
         <pubDate>Sun, 23 Jun 2019 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2019/06/23/Week-4/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/06/23/Week-4/</guid>
+        <link>https://stuartchan.github.io/2019/06/23/Week-4/</link>
+        <guid isPermaLink="true">https://stuartchan.github.io/2019/06/23/Week-4/</guid>
         
         <category>GSoC2019</category>
         
@@ -1172,8 +1228,8 @@ LEARNING&lt;/p&gt;
 &lt;p&gt;For the next week, I will do more works concerning about the dependency parsing which pertains to the automated query template generation with robustness.&lt;/p&gt;
 </description>
         <pubDate>Sun, 16 Jun 2019 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2019/06/16/Week-3/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/06/16/Week-3/</guid>
+        <link>https://stuartchan.github.io/2019/06/16/Week-3/</link>
+        <guid isPermaLink="true">https://stuartchan.github.io/2019/06/16/Week-3/</guid>
         
         <category>GSoC2019</category>
         
@@ -1321,8 +1377,8 @@ The next days should delve into the automation about creating the new regexes fo
 
 </description>
         <pubDate>Sat, 08 Jun 2019 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2019/06/08/Week-2/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/06/08/Week-2/</guid>
+        <link>https://stuartchan.github.io/2019/06/08/Week-2/</link>
+        <guid isPermaLink="true">https://stuartchan.github.io/2019/06/08/Week-2/</guid>
         
         <category>GSoC2019</category>
         
@@ -1425,8 +1481,8 @@ The next days should delve into the automation about creating the new regexes fo
 
 </description>
         <pubDate>Sun, 02 Jun 2019 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2019/06/02/Architecture/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/06/02/Architecture/</guid>
+        <link>https://stuartchan.github.io/2019/06/02/Architecture/</link>
+        <guid isPermaLink="true">https://stuartchan.github.io/2019/06/02/Architecture/</guid>
         
         <category>GSoC2019</category>
         
@@ -1515,8 +1571,8 @@ It works on two parts parallel:&lt;/p&gt;
 
 </description>
         <pubDate>Sat, 01 Jun 2019 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2019/06/01/Week-1/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/06/01/Week-1/</guid>
+        <link>https://stuartchan.github.io/2019/06/01/Week-1/</link>
+        <guid isPermaLink="true">https://stuartchan.github.io/2019/06/01/Week-1/</guid>
         
         <category>GSoC2019</category>
         

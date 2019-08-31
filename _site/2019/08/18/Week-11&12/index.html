@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2019/08/18/Week-11&12/">
+    <link rel="canonical" href="https://stuartchan.github.io/2019/08/18/Week-11&12/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -247,11 +247,33 @@
 
 <h3 id="21-coreference-resolution">2.1. Coreference Resolution</h3>
 
+<p>Let’s see what is the coreference resolution.</p>
+
+<p>This’s an explanative example<a href="by StandfordNLP">1</a>,</p>
+
+<p><img src="https://res.cloudinary.com/stuarteec/image/upload/v1567214556/corefexample.StandfordNLPpng_gpvkbs.png" alt="Coreference Resolution" title="Coreference Resolution(by StandfordNLP)" /></p>
+
+<p>so, when the lady stated as above for this man’s election, we can see the corefernce relations as below:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    THE LADY: [ I, my, She ]
+    THE MAN:  [ Nader, he ]
+</code></pre></div></div>
+
+<p>This can clarify what the words or pronouns are talking about in the passage: to which entity? from which? who? what’s this entity/pronoun?</p>
+
+<ul>
+  <li>in this example,</li>
+</ul>
+
+<p><code class="highlighter-rouge">   his wife Michelle </code></p>
+
+<p>through the Coreference Resolution, we can figure out that <code class="highlighter-rouge">whom does it mean by 'his' ? </code> in the context, which helps a lot in the RDF entities confirmation.</p>
+
 <p>Resolution of coreference is a well-studied problem in computer linguistics discourse. To obtain the correct interpretation of a text, or even to assess the relative significance of the different topics listed above, pronouns and other reference phrases must be related to the right individuals. Usually, algorithms designed to solve coreferences first look for the closestpre.</p>
 
 <p>`Coreference Resolution in spaCy with Neural Networks.’</p>
 
-<p><a href="https://github.com/huggingface/neuralcoref">NeuralCoref</a> is a spaCy 2.1 + pipeline extension that uses a neural network to annotate and resolve coreference clusters. NeuralCoref is ready for production, incorporated into the NLP pipeline of spaCy and can be extended to fresh training datasets.</p>
+<p><a href="https://github.com/huggingface/neuralcoref">NeuralCoref</a>[2] is a spaCy 2.1 + pipeline extension that uses a neural network to annotate and resolve coreference clusters. NeuralCoref is ready for production, incorporated into the NLP pipeline of spaCy and can be extended to fresh training datasets.</p>
 
 <p>It solves the problem of pinpointing the pronounces and indicating the right corefernce of an entity.</p>
 
@@ -259,7 +281,7 @@
 
 <p>At first, we use the API of an online paraphraser to do the part of automatic paraphrasing, which we found that might not be suitable to do the paraphrasing of short phrases like the predicates.</p>
 
-<p>Then, we use the wordnet via NLTK to take the paraphrasing task.</p>
+<p>Then, we use the wordnet[3] via NLTK to take the paraphrasing task.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">wordnet</span>
 </code></pre></div></div>
@@ -349,6 +371,14 @@ Synset root hypernerm :   <span class="o">[</span>Synset<span class="o">(</span>
 <p><code class="highlighter-rouge">{"subject":CoreferenceResolution(dbr_Barack_Obama), "predicate":dbp_parents+synonyms("parents"), "obeject":dbr_Barack_Obama_Sr}</code></p>
 
 <p>to match the sentences that are sitable for this RDF triple.</p>
+
+<h2 id="references">References</h2>
+
+<p>[1] Coreference Resolution, StandfordNLP, https://nlp.stanford.edu/projects/coref.shtml</p>
+
+<p>[2] NeuralCoref, https://github.com/huggingface/neuralcoref</p>
+
+<p>[3] WordNet, https://wordnet.princeton.edu/</p>
 
 
 

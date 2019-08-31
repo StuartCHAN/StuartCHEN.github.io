@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2019/08/03/Week-9&10/">
+    <link rel="canonical" href="https://stuartchan.github.io/2019/08/03/Week-9&10/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -213,6 +213,22 @@
 
 <h3 id="11-universal-sentence-encoder">1.1 Universal Sentence Encoder</h3>
 
+<p>Why we need it?</p>
+
+<p>Considering the great human efforts we have expended in manually composing the templates, we believe we can make better use of them for generating more new templates,</p>
+
+<ul>
+  <li>for example, when we see these two questions,</li>
+</ul>
+
+<p><code class="highlighter-rouge">who is the wife of Obama?</code> and <code class="highlighter-rouge">who is the spouse of Obama?</code></p>
+
+<p>actually, they can be represented by the same query for the same semantic meaning.</p>
+
+<p>Then, how to accomplish the semantic searching?</p>
+
+<p>Yes, we can use the similarity of embedding vectors by the Universal Sentence Encoder.</p>
+
 <p>The <a href="https://arxiv.org/abs/1803.11175">Universal Sentence Encoder</a> [1] encodes text into vectors of high dimensions that can be used in classifying documents, calculating semantic similarity, topics clustering, and more other natural language processing tasks. With <a href="https://tfhub.dev/google/universal-sentence-encoder">Tensorflow-hub</a>, we deploy the Universal Sentence Encoder to calculate the similarity between the new question and the existing templates to do the matching task.</p>
 
 <p>The encoder part comes with two variant options, one with <a href="https://arxiv.org/abs/1706.03762">Transformer</a> [2] encoder and the other with <a href="http://cs.umd.edu/~miyyer/pubs/2015_acl_dan.pdf">Deep Averaging Network</a> (DAN) [3]. Both having a necessity for precision and computational resource trading, while the one with the Transformer encoder is of higher accuracy at a cost of computing, it is more intensive in computational terms. And, the other with DNA encoding is less costly computationally but with less precision.</p>
@@ -241,6 +257,12 @@ Trainable params: 263,169
 Non-trainable params: 0
 __________________________________________________________________________________________________
 </code></pre></div></div>
+
+<p>So, if we compare <code class="highlighter-rouge">who is the wife of Obama?</code> and <code class="highlighter-rouge">who is the spouse of Obama?</code>, they would be classified into the same semantic meaning by setting the threshold similarity score.</p>
+
+<p>However, when we faced <code class="highlighter-rouge">who is the father of Obama?</code> and <code class="highlighter-rouge">who is the spouse of Obama?</code>, the difference will be shown in the similarity score. If the threshold is lower than what’s required, we call the template composing function then.</p>
+
+<p><br /></p>
 
 <h3 id="12-preprocesing">1.2 Preprocesing</h3>
 
@@ -299,7 +321,11 @@ ________________________________________________________________________________
 
 <p>and the Spotlight can also indicate the most probable Class in this context is the “dbo:Person” in the return. So, to know to which Class it belongs, we can respectively fetch their lists of properties that its three upper Classes have,  and see in which list of properties the predicate exists.</p>
 
+<p><br /></p>
+
 <h3 id="14--semantic-searching">1.4  Semantic Searching</h3>
+
+<p>How do we use the Universal Sentence Encoder to build the Semantic Searching?</p>
 
 <p>Given the detected Class and its belonging templateset, we can use the similarity searching function to get the matched template for the question:</p>
 
